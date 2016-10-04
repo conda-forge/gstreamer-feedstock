@@ -12,7 +12,7 @@ source:
 
 build:
   skip: true  # [win or osx]
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -21,7 +21,7 @@ requirements:
     - glib
     - m4
     - perl
-    - xz
+    - xz 5.2.*
   run:
     - glib
 
