@@ -12,18 +12,18 @@ source:
 
 build:
   skip: true  # [win or osx]
-  number: 1
+  number: 2
 
 requirements:
   build:
     - bison
     - flex
-    - glib
+    - glib 2.51.*
     - m4
     - perl
     - xz 5.2.*
   run:
-    - glib
+    - glib 2.51.*
 
 test:
   commands:
