@@ -1,5 +1,5 @@
-{% set version = "1.8.0" %}
-{% set sha256 = "947a314a212b5d94985d89b43440dbe66b696e12bbdf9a2f78967b98d74abedc" %}
+{% set version = "1.12.2" %}
+{% set sha256 = "9fde3f39a2ea984f9e07ce09250285ce91f6e3619d186889f75b5154ecf994ba" %}
 
 package:
   name: gstreamer
@@ -12,10 +12,11 @@ source:
 
 build:
   skip: true  # [win or osx]
-  number: 2
+  number: 0
 
 requirements:
   build:
+    - {{ compiler('c') }}
     - bison
     - flex
     - glib 2.51.*
