@@ -19,10 +19,11 @@ requirements:
     - {{ compiler('c') }}
     - bison
     - flex
-    - glib >=2.53,<3.0a0
     - m4
     - perl
-    - xz 5.2.*
+  host:
+    - glib >=2.53,<3.0a0
+    - xz
   run:
     - glib >=2.53,<3.0a0
 
