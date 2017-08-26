@@ -13,9 +13,10 @@ source:
 build:
   skip: true  # [win or osx]
   number: 0
-  # remove symbols at .90 patch releases just before minor versions?
-  #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
-  - {{ pin_subpackage('gstreamer', max_pin='x.x') }}
+  run_exports:
+    # remove symbols at .90 patch releases just before minor versions?
+    #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
+    - {{ pin_subpackage('gstreamer', max_pin='x.x') }}
 
 requirements:
   build:
