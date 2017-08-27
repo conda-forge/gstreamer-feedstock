@@ -15,7 +15,7 @@ cp -r $PREFIX/lib/libffi* $PREFIX/lib64
             --disable-benchmarks  \
             --datarootdir=`pwd`/tmpshare
 
-make -j${CPU_COUNT} V=1
+make -j${CPU_COUNT} ${VERBOSE_AT}
 # This is failing because the exported symbols by the Gstreamer .so library
 # on Linux are different from the expected ones on Windows. We don't know
 # why that's happening though.
