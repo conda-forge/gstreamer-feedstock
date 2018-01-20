@@ -7,6 +7,9 @@ cp -r $PREFIX/lib/libffi* $PREFIX/lib64
 # The datarootdir option places the docs into a temp folder that won't
 # be included in the package (it is about 12MB).
 
+# https://github.com/conda-forge/bison-feedstock/issues/7
+export M4="${BUILD_PREFIX}/bin/m4"
+
 # --disable-examples because:
 # https://bugzilla.gnome.org/show_bug.cgi?id=770623#c16
 # http://lists.gnu.org/archive/html/libtool/2016-05/msg00022.html
