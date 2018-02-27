@@ -1,5 +1,5 @@
-{% set version = "1.12.2" %}
-{% set sha256 = "9fde3f39a2ea984f9e07ce09250285ce91f6e3619d186889f75b5154ecf994ba" %}
+{% set version = "1.12.4" %}
+{% set sha256 = "5a8704aa4c2eeb04da192c4a9942f94f860ac1a585de90d9f914bac26a970674" %}
 
 package:
   name: gstreamer
@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  skip: true  # [win or osx]
+  skip: true  # [not linux]
   number: 0
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
