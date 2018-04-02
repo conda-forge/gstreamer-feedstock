@@ -1,51 +1,115 @@
-{% set version = "1.12.4" %}
-{% set sha256 = "5a8704aa4c2eeb04da192c4a9942f94f860ac1a585de90d9f914bac26a970674" %}
+{% set version = "1.14.0" %}
+{% set sha256 = "fc361367f0d4b780a868a8833f9f30b9c9f4ac9faea4e6b251db8b4b0398466e" %}
+{% set plugin_base_sha256 = "7e904660ff56e02b036cf7fdfb77a50a540828ca9d2614d69ba931772e5b6940" %}
 
 package:
-  name: gstreamer
+  name: gstreamer_and_plugins
   version: {{ version }}
 
 source:
-  fn: gstreamer-{{ version }}.tar.xz
-  url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-  sha256: {{ sha256 }}
+  - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
+    sha256: {{ sha256 }}
+  - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
+    sha256: {{ plugin_base_sha256 }}
+    folder: plugins_base
 
 build:
   skip: true  # [not linux]
   number: 0
-  run_exports:
-    # remove symbols at .90 patch releases just before minor versions?
-    #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
-    - {{ pin_subpackage('gstreamer', max_pin='x.x') }}
 
-requirements:
-  build:
-    - {{ compiler('c') }}
-    - bison
-    - flex
-    - m4
-    - perl
-  host:
-    - glib
-    - xz
+outputs:
+  - name: gstreamer
+    script: install_gstreamer.sh
+    build:
+      activate_in_script: True
+      run_exports:
+        # remove symbols at .90 patch releases just before minor versions?
+        #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
+        - {{ pin_subpackage('gstreamer', max_pin='x.x') }}
 
-test:
-  commands:
-    - gst-inspect-1.0 --version
-    - gst-launch-1.0  --version
-    - gst-stats-1.0 --version
-    - gst-typefind-1.0 --version
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - bison
+        - flex
+        - m4
+        - make
+        - perl
+      host:
+        - glib
+        - xz
+    test:
+      commands:
+        - gst-inspect-1.0 --version
+        - gst-launch-1.0  --version
+        - gst-stats-1.0 --version
+        - gst-typefind-1.0 --version
+    about:
+      summary: "Library for constructing graphs of media-handling components"
+      description:
+      doc_source_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/docs
+
+  - name: gst-plugins-base
+    script: install_base_plugins.sh
+    build:
+      activate_in_script: True
+      run_exports:
+        # remove symbols at .90 patch releases just before minor versions?
+        #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
+        - {{ pin_subpackage('gst-plugins-base', max_pin='x.x') }}
+
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ cdt('libxau-devel') }}          # [linux]
+        - {{ cdt('libxext-devel') }}         # [linux]
+        - {{ cdt('libx11-devel') }}          # [linux]
+        - {{ cdt('libxrender-devel') }}      # [linux]
+        - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+        - m4
+        - make
+        - perl
+      host:
+        - {{ pin_subpackage('gstreamer') }}
+        - glib
+        - libxcb                             # [linux]
+        - xz
+      run:
+        - {{ pin_compatible('gstreamer') }}
+
+    test:
+      commands:
+        - test -f $PREFIX/lib/libgstallocators-1.0.so
+        - test -f $PREFIX/lib/libgstapp-1.0.so
+        - test -f $PREFIX/lib/libgstaudio-1.0.so
+        - test -f $PREFIX/lib/libgstfft-1.0.so
+        - test -f $PREFIX/lib/libgstpbutils-1.0.so
+        - test -f $PREFIX/lib/libgstriff-1.0.so
+        - test -f $PREFIX/lib/libgstrtp-1.0.so
+        - test -f $PREFIX/lib/libgstrtsp-1.0.so
+        - test -f $PREFIX/lib/libgstsdp-1.0.so
+        - test -f $PREFIX/lib/libgsttag-1.0.so
+        - test -f $PREFIX/lib/libgstvideo-1.0.so
+
+    about:
+        summary: "GStreamer Base Plug-ins"
+        description: |
+          GStreamer Base Plug-ins is a well-groomed and well-maintained collection of
+          GStreamer plug-ins and elements, spanning the range of possible types of
+          elements one would want to write for GStreamer.
+        doc_source_url: https://github.com/GStreamer/gst-plugins-base/tree/master/docs
+
+
 
 about:
   home: http://gstreamer.freedesktop.org/
   license: LGPL 2
-  summary: "Library for constructing graphs of media-handling components"
-  description:
   doc_url: https://gstreamer.freedesktop.org/documentation/
   dev_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/
-  doc_source_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/docs
 
 extra:
   recipe-maintainers:
     - ccordoba12
     - mingwandroid
+    - msarahan
