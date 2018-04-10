@@ -14,8 +14,8 @@ source:
     folder: plugins_base
 
 build:
-  skip: true  # [not linux]
-  number: 0
+  skip: true  # [win]
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -30,12 +30,15 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - pkg-config
         - bison
         - flex
         - m4
         - make
         - perl
       host:
+        - gobject-introspection
+        - gettext  # [osx]
         - glib
         - xz
     test:
