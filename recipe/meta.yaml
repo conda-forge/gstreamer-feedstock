@@ -38,7 +38,9 @@ outputs:
         - perl
       host:
         - gobject-introspection
-        - gettext  # [osx]
+        - gettext                            # [osx]
+        - pcre                               # [linux]
+        - libffi                             # [linux]
         - glib
         - xz
     test:
@@ -70,12 +72,15 @@ outputs:
         - {{ cdt('libx11-devel') }}          # [linux]
         - {{ cdt('libxrender-devel') }}      # [linux]
         - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+        - pkg-config
         - m4
         - make
         - perl
       host:
         - {{ pin_subpackage('gstreamer') }}
         - glib
+        - gettext                            # [osx]
+        - zlib                               # [osx]
         - libxcb                             # [linux]
         - xz
       run:
@@ -83,17 +88,18 @@ outputs:
 
     test:
       commands:
-        - test -f $PREFIX/lib/libgstallocators-1.0.so
-        - test -f $PREFIX/lib/libgstapp-1.0.so
-        - test -f $PREFIX/lib/libgstaudio-1.0.so
-        - test -f $PREFIX/lib/libgstfft-1.0.so
-        - test -f $PREFIX/lib/libgstpbutils-1.0.so
-        - test -f $PREFIX/lib/libgstriff-1.0.so
-        - test -f $PREFIX/lib/libgstrtp-1.0.so
-        - test -f $PREFIX/lib/libgstrtsp-1.0.so
-        - test -f $PREFIX/lib/libgstsdp-1.0.so
-        - test -f $PREFIX/lib/libgsttag-1.0.so
-        - test -f $PREFIX/lib/libgstvideo-1.0.so
+        {% set SOEXT = 'dylib' if osx else 'so' %}
+        - test -f $PREFIX/lib/libgstallocators-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgstapp-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgstaudio-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgstfft-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgstpbutils-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgstriff-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgstrtp-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgstrtsp-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgstsdp-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgsttag-1.0.{{ SOEXT }}
+        - test -f $PREFIX/lib/libgstvideo-1.0.{{ SOEXT }}
 
     about:
         summary: "GStreamer Base Plug-ins"

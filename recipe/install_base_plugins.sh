@@ -2,13 +2,19 @@
 
 pushd plugins_base
 
-# gstreamer expects libffi to be in lib64 for some reason.
-mkdir -p $PREFIX/lib64
-cp -r $PREFIX/lib/libffi* $PREFIX/lib64
-
 # The datarootdir option places the docs into a temp folder that won't
 # be included in the package (it is about 12MB).
-./configure --disable-examples --prefix="$PREFIX" --datarootdir=`pwd`/tmpshare
+# You need to enable opengl to get gstallocators
+
+# warning: libgstbase-1.0.so.0, needed by ./.libs/libgstnet-1.0.so, not found (try using -rpath or -rpath-link)
+if [[ ${target_platform} =~ .*linux.* ]]; then
+  export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,${PREFIX}/lib"
+fi
+
+./configure --prefix="$PREFIX"  \
+            --disable-examples  \
+            --enable-opengl     \
+            --datarootdir=`pwd`/tmpshare
 make -j${CPU_COUNT} ${VERBOSE_AT}
 # Some tests fail because not all plugins are built and it seems
 # tests expect all plugins
@@ -16,6 +22,3 @@ make -j${CPU_COUNT} ${VERBOSE_AT}
 # https://bugzilla.gnome.org/show_bug.cgi?id=752778#c17
 # make check || { cat tests/check/test-suite.log; exit 1;}
 make install
-
-# Remove the created lib64 directory
-rm -rf $PREFIX/lib64
