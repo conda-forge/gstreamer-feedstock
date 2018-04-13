@@ -72,6 +72,11 @@ outputs:
         - {{ cdt('libx11-devel') }}          # [linux]
         - {{ cdt('libxrender-devel') }}      # [linux]
         - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+        - {{ cdt('mesa-libgl-devel') }}      # [linux]
+        - {{ cdt('libdrm-devel') }}          # [linux]
+        - {{ cdt('libxdamage-devel') }}      # [linux]
+        - {{ cdt('libxfixes-devel') }}       # [linux]
+        - {{ cdt('libxxf86vm-devel') }}      # [linux]
         - pkg-config
         - m4
         - make
@@ -79,9 +84,10 @@ outputs:
       host:
         - {{ pin_subpackage('gstreamer') }}
         - glib
+        - zlib
         - gettext                            # [osx]
-        - zlib                               # [osx]
         - libxcb                             # [linux]
+        - pthread-stubs                      # [linux]
         - xz
       run:
         - {{ pin_compatible('gstreamer') }}
