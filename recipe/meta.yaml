@@ -1,6 +1,6 @@
-{% set version = "1.14.0" %}
-{% set sha256 = "fc361367f0d4b780a868a8833f9f30b9c9f4ac9faea4e6b251db8b4b0398466e" %}
-{% set plugin_base_sha256 = "7e904660ff56e02b036cf7fdfb77a50a540828ca9d2614d69ba931772e5b6940" %}
+{% set version = "1.14.1" %}
+{% set sha256 = "28d82b0d261544a9bf85b429399929e4986eb00efcf1ce16cc71d269a4c3186c" %}
+{% set plugin_base_sha256 = "1026c7c3082d825d9b5d034c1a6dd8a4ebab60eb3738b0a0afde4ad2dc0b0db5" %}
 
 package:
   name: gstreamer_and_plugins
@@ -15,7 +15,7 @@ source:
 
 build:
   skip: true  # [win]
-  number: 1
+  number: 0
 
 outputs:
   - name: gstreamer
@@ -34,6 +34,8 @@ outputs:
         - bison
         - flex
         - m4
+        - autoconf
+        - automake
         - make
         - perl
       host:
@@ -79,6 +81,8 @@ outputs:
         - {{ cdt('libxxf86vm-devel') }}      # [linux]
         - pkg-config
         - m4
+        - autoconf
+        - automake
         - make
         - perl
       host:
