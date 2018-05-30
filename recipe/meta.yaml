@@ -12,12 +12,10 @@ source:
 build:
   skip: true  # [win]
   number: 0
-  script: install_gstreamer.sh
-  # activate_in_script: True
-  run_exports:
+  #run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
-    - {{ pin_subpackage('gstreamer', max_pin='x.x') }}
+  #  - {{ pin_subpackage('gstreamer', max_pin='x.x') }}
 
 requirements:
   build:
