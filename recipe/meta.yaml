@@ -1,29 +1,33 @@
-{% set version = "1.8.0" %}
-{% set sha256 = "947a314a212b5d94985d89b43440dbe66b696e12bbdf9a2f78967b98d74abedc" %}
+{% set version = "1.12.4" %}
 
 package:
   name: gstreamer
   version: {{ version }}
 
 source:
-  fn: gstreamer-{{ version }}.tar.xz
   url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-  sha256: {{ sha256 }}
+  sha256: 5a8704aa4c2eeb04da192c4a9942f94f860ac1a585de90d9f914bac26a970674
 
 build:
-  skip: true  # [win or osx]
-  number: 2
+  skip: true  # [not linux]
+  number: 0
+  run_exports:
+    # remove symbols at .90 patch releases just before minor versions?
+    #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
+    - {{ pin_subpackage('gstreamer', max_pin='x.x') }}
 
 requirements:
   build:
+    - {{ compiler('c') }}
     - bison
     - flex
-    - glib 2.51.*
     - m4
     - perl
-    - xz 5.2.*
+  host:
+    - glib
+    - xz
   run:
-    - glib 2.51.*
+    - glib
 
 test:
   commands:
@@ -36,6 +40,10 @@ about:
   home: http://gstreamer.freedesktop.org/
   license: LGPL 2
   summary: "Library for constructing graphs of media-handling components"
+  description:
+  doc_url: https://gstreamer.freedesktop.org/documentation/
+  dev_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/
+  doc_source_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/docs
 
 extra:
   recipe-maintainers:
