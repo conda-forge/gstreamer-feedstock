@@ -9,8 +9,8 @@ source:
   sha256: 9f750d845a326880b24c1ccc913d07df8f38cd9e63009714795ae175b6c29c6a
 
 build:
-  skip: true  # [not linux]
-  number: 0
+  skip: true  # [osx]
+  number: 1
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -19,9 +19,12 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - bison
-    - flex
-    - m4
+    - bison         # [not win]
+    - m2-bison      # [win]
+    - flex          # [not win]
+    - m2-flex       # [win]
+    - m4            # [not win]
+    - m2-m4         # [win]
     - perl
   host:
     - glib
@@ -33,7 +36,7 @@ test:
   commands:
     - gst-inspect-1.0 --version
     - gst-launch-1.0  --version
-    - gst-stats-1.0 --version
+    - gst-stats-1.0 --version       # [not win]
     - gst-typefind-1.0 --version
 
 about:
