@@ -1,0 +1,42 @@
+build_number_decrement:
+- '1000'
+c_compiler:
+- toolchain_c
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- toolchain_cxx
+docker_image:
+- condaforge/linux-anvil
+glib:
+- '2.58'
+libffi:
+- '3.2'
+perl:
+- '5.26'
+pin_run_as_build:
+  glib:
+    max_pin: x.x
+  libffi:
+    max_pin: x.x
+  perl:
+    max_pin: x.x.x
+  xz:
+    max_pin: x.x
+  zlib:
+    max_pin: x.x
+target_platform:
+- linux-64
+xz:
+- '5.2'
+zip_keys:
+- - c_compiler
+  - cxx_compiler
+  - channel_sources
+  - channel_targets
+  - docker_image
+  - build_number_decrement
+zlib:
+- '1.2'

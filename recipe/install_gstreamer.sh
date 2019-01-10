@@ -1,21 +1,23 @@
 #!/bin/bash
 
-# gstreamer expects libffi to be in lib64 for some reason.
-[[ -d $PREFIX/lib64 ]] || mkdir $PREFIX/lib64
-cp -r $PREFIX/lib/libffi* $PREFIX/lib64
-
 # The datarootdir option places the docs into a temp folder that won't
 # be included in the package (it is about 12MB).
 
 # https://github.com/conda-forge/bison-feedstock/issues/7
 export M4="${BUILD_PREFIX}/bin/m4"
+if [ -n "$OSX_ARCH" ] ; then
+    export LDFLAGS="${LDFLAGS} -Wl,-rpath,${PREFIX}/lib"
+else
+    export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,${PREFIX}/lib"
+fi
 
 # --disable-examples because:
 # https://bugzilla.gnome.org/show_bug.cgi?id=770623#c16
 # http://lists.gnu.org/archive/html/libtool/2016-05/msg00022.html
-./configure --prefix="$PREFIX"    \
-            --disable-examples    \
-            --disable-benchmarks  \
+./configure --prefix="$PREFIX"     \
+            --disable-examples     \
+            --disable-benchmarks   \
+            --enable-introspection \
             --datarootdir=`pwd`/tmpshare
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
@@ -24,6 +26,3 @@ make -j${CPU_COUNT} ${VERBOSE_AT}
 # why that's happening though.
 # make check
 make install
-
-# Remove the created lib64 directory
-rm -rf $PREFIX/lib64
