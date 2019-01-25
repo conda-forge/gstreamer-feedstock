@@ -18,7 +18,7 @@ fi
             --disable-examples     \
             --disable-benchmarks   \
             --enable-introspection \
-            --datarootdir=`pwd`/tmpshare
+            --with-html-dir=$(pwd)/tmphtml
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
 # This is failing because the exported symbols by the Gstreamer .so library

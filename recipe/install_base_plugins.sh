@@ -14,7 +14,8 @@ fi
 ./configure --prefix="$PREFIX"  \
             --disable-examples  \
             --enable-opengl     \
-            --datarootdir=`pwd`/tmpshare
+            --enable-introspection \
+            --with-html-dir=$(pwd)/tmphtml
 make -j${CPU_COUNT} ${VERBOSE_AT}
 # Some tests fail because not all plugins are built and it seems
 # tests expect all plugins

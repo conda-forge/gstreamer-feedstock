@@ -12,7 +12,7 @@ source:
     folder: plugins_base
 
 build:
-  number: 1000
+  number: 1001
   skip: true  # [win]
 
 outputs:
@@ -77,6 +77,10 @@ outputs:
         - {{ cdt('libxdamage-devel') }}      # [linux]
         - {{ cdt('libxfixes-devel') }}       # [linux]
         - {{ cdt('libxxf86vm-devel') }}      # [linux]
+        - {{ cdt('mesa-dri-drivers') }}      # [linux]
+        # expat here is _only_ required for mesa-dri-drivers
+        - {{ cdt('expat') }}                 # [linux]
+        - {{ cdt('libselinux-devel') }}      # [linux]
         - pkg-config
         - m4
         - autoconf
@@ -85,6 +89,7 @@ outputs:
         - perl
       host:
         - {{ pin_subpackage('gstreamer') }}
+        - gobject-introspection
         - glib
         - zlib
         - gettext                            # [osx]
