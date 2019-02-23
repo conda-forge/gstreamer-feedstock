@@ -1,4 +1,6 @@
 {% set version = "1.14.4" %}
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: gstreamer_and_plugins
@@ -13,7 +15,7 @@ source:
 
 build:
   number: 1001
-  skip: true  # [win]
+  skip: true  # [py<35]
 
 outputs:
   - name: gstreamer
@@ -28,12 +30,12 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - pkg-config
-        - bison
-        - flex
-        - m4
-        - autoconf
-        - automake
+        - {{posix}}pkg-config
+        - {{posix}}bison
+        - {{posix}}flex
+        - {{posix}}m4
+        - {{posix}}autoconf
+        - automake      # [not win]
         - make
         - perl
       host:
@@ -81,10 +83,10 @@ outputs:
         # expat here is _only_ required for mesa-dri-drivers
         - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
-        - pkg-config
-        - m4
-        - autoconf
-        - automake
+        - {{posix}}pkg-config
+        - {{posix}}m4
+        - {{posix}}autoconf
+        - automake      # [not win]
         - make
         - perl
       host:
