@@ -39,6 +39,7 @@ outputs:
         - make
         - perl
       host:
+        - meson
         - gobject-introspection
         - gettext                            # [osx]
         - pcre                               # [linux]
@@ -90,6 +91,7 @@ outputs:
         - make
         - perl
       host:
+        - meson
         - {{ pin_subpackage('gstreamer') }}
         - gobject-introspection
         - glib
