@@ -16,7 +16,13 @@ requirements:
     host:
         - python
         - meson
+        - glib
         - {{native}}pkg-config
+        - {{posix}}bison
+        - {{posix}}flex
+        - {{posix}}m4
+        - {{posix}}autoconf
+       
 build:
   number: 1002
   skip: true  # [py<35]
