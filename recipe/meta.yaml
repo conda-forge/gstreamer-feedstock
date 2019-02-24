@@ -16,8 +16,7 @@ requirements:
     host:
         - python
         - meson
-        - {{posix}}pkg-config
-        - glib
+        - {{native}}pkg-config
 build:
   number: 1002
   skip: true  # [py<35]
@@ -49,7 +48,7 @@ outputs:
         - gobject-introspection
         - gettext                            # [osx]
         - pcre                               # [linux]
-        - libffi                             # [linux]
+        - libffi                             # [linux or win]
         - glib
         - xz
     test:
