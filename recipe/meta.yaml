@@ -29,8 +29,7 @@ outputs:
 
     requirements:
       build:
-        - python
-        - meson
+        - ninja
         - {{ compiler('c') }}
         - {{native}}pkg-config
         - {{posix}}bison
@@ -41,7 +40,6 @@ outputs:
         - make
         - perl
       host:
-        - python
         - meson
         - gobject-introspection
         - gettext                            # [osx]
@@ -71,8 +69,7 @@ outputs:
 
     requirements:
       build:
-        - python
-        - meson
+        - ninja
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ cdt('libxau-devel') }}          # [linux]
@@ -96,7 +93,6 @@ outputs:
         - make
         - perl
       host:
-        - python
         - meson
         - {{ pin_subpackage('gstreamer') }}
         - gobject-introspection
