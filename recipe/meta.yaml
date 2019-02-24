@@ -32,7 +32,7 @@ outputs:
         - python
         - meson
         - {{ compiler('c') }}
-        - {{posix}}pkg-config
+        - {{native}}pkg-config
         - {{posix}}bison
         - {{posix}}flex
         - {{posix}}m4
@@ -89,7 +89,7 @@ outputs:
         # expat here is _only_ required for mesa-dri-drivers
         - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
-        - {{posix}}pkg-config
+        - {{native}}pkg-config
         - {{posix}}m4
         - {{posix}}autoconf
         - automake      # [not win]
