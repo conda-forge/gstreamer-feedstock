@@ -1,7 +1,7 @@
-echo "************ %~n0 ******************"
+echo "************ BEGIN %~n0 ******************"
 @ECHO ON
 
-mkdir %LIBRARY_PREFIX%/tmp
+mkdir %LIBRARY_PREFIX%\tmp
 
 mkdir forgebuild
 cd forgebuild
@@ -29,5 +29,5 @@ if errorlevel 1 exit 1
 
 del %LIBRARY_PREFIX%\bin\*.pdb
 
-@REM For some reason conda-build decides that the meson files in Scripts are new?
-del %PREFIX%\Scripts\meson* %PREFIX%\Scripts\wraptool*
+@ECHO OFF
+echo "************ END %~n0 ******************"
