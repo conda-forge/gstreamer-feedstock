@@ -20,7 +20,7 @@ set PKG_CONFIG_PATH=%LIBRARY_PREFIX_M%/lib/pkgconfig
 set "PYTHONLEGACYWINDOWSSTDIO=1"
 set "PYTHONIOENCODING=UTF-8"
 
-%PYTHON% %PREFIX%\Scripts\meson --buildtype=release --prefix=%LIBRARY_PREFIX% --backend=ninja -Dcairo=true -Dpython=%PYTHON% ..
+%PYTHON% %PREFIX%\Scripts\meson --buildtype=release --prefix=%LIBRARY_PREFIX% --backend=ninja  ..
 if errorlevel 1 exit 1
 
 ninja -v
