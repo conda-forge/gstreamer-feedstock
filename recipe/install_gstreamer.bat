@@ -21,8 +21,9 @@ if errorlevel 1 exit 1
 ninja -v
 if errorlevel 1 exit 1
 
-@rem ninja test
-if errorlevel 1 exit 1
+ninja test
+@rem don't exit on test errors
+@rem if errorlevel 1 exit 1
 
 ninja install
 if errorlevel 1 exit 1
