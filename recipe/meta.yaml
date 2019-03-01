@@ -21,15 +21,18 @@ requirements:
         - python
         - meson
         - glib
+        - conda-verify
         - {{native}}pkg-config
         - {{posix}}bison
         - {{posix}}flex
         - {{posix}}m4
         - {{posix}}autoconf
+        - {{posix}}filesystem        # [win]
 
 outputs:
   - name: gstreamer
     script: install_gstreamer.sh
+    script: install_gstreamer.bat
     build:
       activate_in_script: True
       run_exports:
@@ -70,6 +73,7 @@ outputs:
 
   - name: gst-plugins-base
     script: install_base_plugins.sh
+    script: install_base_plugins.bat
     build:
       activate_in_script: True
       run_exports:
