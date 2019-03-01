@@ -1,23 +1,19 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
 c_compiler:
-- clang
+- vs2015
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- clangxx
+- vs2015
 glib:
 - '2.58'
-macos_machine:
-- x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
+libffi:
+- '3.2'
 perl:
 - '5.26'
 pin_run_as_build:
-  glib:
+  libffi:
     max_pin: x.x
   perl:
     max_pin: x.x.x
@@ -25,9 +21,10 @@ pin_run_as_build:
     max_pin: x.x
   zlib:
     max_pin: x.x
-target_platform:
-- osx-64
 xz:
 - '5.2'
+zip_keys:
+- - c_compiler
+  - cxx_compiler
 zlib:
 - '1.2'
