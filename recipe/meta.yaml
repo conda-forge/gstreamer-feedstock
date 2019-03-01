@@ -12,6 +12,10 @@ source:
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
     sha256: ca6139490e48863e7706d870ff4e8ac9f417b56f3b9e4b3ce490c13b09a77461
     folder: plugins_base
+
+build:
+  number: 1002
+  skip: true  # [py<35]
 requirements:
     host:
         - python
@@ -22,10 +26,6 @@ requirements:
         - {{posix}}flex
         - {{posix}}m4
         - {{posix}}autoconf
-       
-build:
-  number: 1002
-  skip: true  # [py<35]
 
 outputs:
   - name: gstreamer
