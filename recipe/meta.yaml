@@ -19,8 +19,8 @@ build:
 
 outputs:
   - name: gstreamer
-    script: install_gstreamer.sh
-    script: install_gstreamer.bat
+    script: install_gstreamer.sh        # [not win]
+    script: install_gstreamer.bat       # [win]
     build:
       activate_in_script: True
       run_exports:
@@ -60,8 +60,8 @@ outputs:
       doc_source_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/docs
 
   - name: gst-plugins-base
-    script: install_base_plugins.sh
-    script: install_base_plugins.bat
+    script: install_base_plugins.sh     # [not win]
+    script: install_base_plugins.bat    # [win]
     build:
       activate_in_script: True
       run_exports:

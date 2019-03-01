@@ -27,7 +27,5 @@ if errorlevel 1 exit 1
 ninja install
 if errorlevel 1 exit 1
 
-del %LIBRARY_PREFIX%\bin\*.pdb
-
 @ECHO OFF
 echo "************ END %~n0 ******************"
