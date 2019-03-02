@@ -1,13 +1,11 @@
 c_compiler:
-- gcc
+- vs2008
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- gxx
-docker_image:
-- condaforge/linux-anvil-comp7
+- vs2008
 glib:
 - '2.58'
 libffi:
@@ -15,8 +13,6 @@ libffi:
 perl:
 - '5.26'
 pin_run_as_build:
-  glib:
-    max_pin: x.x
   libffi:
     max_pin: x.x
   perl:
@@ -25,9 +21,10 @@ pin_run_as_build:
     max_pin: x.x
   zlib:
     max_pin: x.x
-target_platform:
-- linux-64
 xz:
 - '5.2'
+zip_keys:
+- - c_compiler
+  - cxx_compiler
 zlib:
 - '1.2'
