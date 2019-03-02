@@ -32,12 +32,13 @@ outputs:
       build:
         - ninja
         - {{ compiler('c') }}
+        - vs2015_runtime                # [win]
         - {{native}}pkg-config
         - {{posix}}bison
         - {{posix}}flex
         - {{posix}}m4
         - {{posix}}autoconf
-        - automake      # [not win]
+        - automake                      # [not win]
         - make
         - perl
       host:
@@ -73,6 +74,7 @@ outputs:
       build:
         - ninja
         - {{ compiler('c') }}
+        - vs2015_runtime                     # [win]
         - {{ compiler('cxx') }}
         - {{ cdt('libxau-devel') }}          # [linux]
         - {{ cdt('libxext-devel') }}         # [linux]
@@ -110,16 +112,16 @@ outputs:
     test:
       commands:
         - test -f $PREFIX/lib/libgstallocators-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgstapp-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgstaudio-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgstfft-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgstpbutils-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgstriff-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgstrtp-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgstrtsp-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgstsdp-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}  # [not win]
+        - test -f $PREFIX/lib/libgstapp-1.0${SHLIB_EXT}         # [not win]
+        - test -f $PREFIX/lib/libgstaudio-1.0${SHLIB_EXT}       # [not win]
+        - test -f $PREFIX/lib/libgstfft-1.0${SHLIB_EXT}         # [not win]
+        - test -f $PREFIX/lib/libgstpbutils-1.0${SHLIB_EXT}     # [not win]
+        - test -f $PREFIX/lib/libgstriff-1.0${SHLIB_EXT}        # [not win]
+        - test -f $PREFIX/lib/libgstrtp-1.0${SHLIB_EXT}         # [not win]
+        - test -f $PREFIX/lib/libgstrtsp-1.0${SHLIB_EXT}        # [not win]
+        - test -f $PREFIX/lib/libgstsdp-1.0${SHLIB_EXT}         # [not win]
+        - test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}         # [not win]
+        - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}       # [not win]
 
     about:
         summary: "GStreamer Base Plug-ins"
