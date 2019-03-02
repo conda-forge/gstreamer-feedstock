@@ -18,9 +18,9 @@ Summary: Library for constructing graphs of media-handling components
 Current build status
 ====================
 
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/gstreamer-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/gstreamer-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/gstreamer-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/gstreamer-feedstock)
 [![Windows](https://img.shields.io/appveyor/ci/conda-forge/gstreamer-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/gstreamer-feedstock/branch/master)
-![Linux disabled](https://img.shields.io/badge/linux-disabled-lightgrey.svg)
-![OSX disabled](https://img.shields.io/badge/OSX-disabled-lightgrey.svg)
 
 Current release info
 ====================
