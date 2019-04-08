@@ -1,26 +1,26 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
 c_compiler:
-- clang
+- gcc
 c_compiler_version:
-- '4'
+- '8'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- clangxx
+- gxx
 cxx_compiler_version:
-- '4'
+- '8'
+docker_image:
+- condaforge/linux-anvil-ppc64le
 glib:
 - '2.58'
-macos_machine:
-- x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
+libffi:
+- '3.2'
 perl:
 - '5.26'
 pin_run_as_build:
+  libffi:
+    max_pin: x.x
   perl:
     max_pin: x.x.x
   xz:
@@ -28,7 +28,7 @@ pin_run_as_build:
   zlib:
     max_pin: x.x
 target_platform:
-- osx-64
+- linux-ppc64le
 xz:
 - '5.2'
 zlib:
