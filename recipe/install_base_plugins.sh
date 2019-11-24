@@ -2,6 +2,9 @@
 
 pushd plugins_base
 
+# Maybe do this only for cos7?
+export PKG_CONFIG_PATH=${CONDA_BUILD_SYSROOT}/usr/lib64/pkgconfig
+
 # The datarootdir option places the docs into a temp folder that won't
 # be included in the package (it is about 12MB).
 # You need to enable opengl to get gstallocators
