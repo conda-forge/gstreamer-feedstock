@@ -77,7 +77,8 @@ outputs:
         - {{ cdt('libxdamage-devel') }}      # [linux]
         - {{ cdt('libxfixes-devel') }}       # [linux]
         - {{ cdt('libxxf86vm-devel') }}      # [linux]
-        - {{ cdt('libxshmfence') }}          # [ppcle64 or aarch64]
+        # really this should be dependent on cos7 vs cos6
+        - {{ cdt('libxshmfence-devel') }}    # [cdt_name=="cos7"]
         # - {{ cdt('mesa-libegl-devel') }}    # [ppcle64 or aarch64]
         - {{ cdt('mesa-dri-drivers') }}      # [linux]
         # expat here is _only_ required for mesa-dri-drivers
