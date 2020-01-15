@@ -2,8 +2,8 @@
 
 pushd plugins_base
 
-# Maybe do this only for cos7?
-export PKG_CONFIG_PATH=${CONDA_BUILD_SYSROOT}/usr/lib64/pkgconfig
+pkg-config --variable pc_path pkg-config
+pkg-config --libs --cflags gl
 
 # The datarootdir option places the docs into a temp folder that won't
 # be included in the package (it is about 12MB).
