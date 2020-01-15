@@ -1,12 +1,13 @@
 #!/bin/bash
 
+pkg-config --variable pc_path pkg-config
+pkg-config --libs --cflags gl
+
 # The datarootdir option places the docs into a temp folder that won't
 # be included in the package (it is about 12MB).
 
 # https://github.com/conda-forge/bison-feedstock/issues/7
 export M4="${BUILD_PREFIX}/bin/m4"
-
-
 if [ -n "$OSX_ARCH" ] ; then
     export LDFLAGS="${LDFLAGS} -Wl,-rpath,${PREFIX}/lib"
 else
