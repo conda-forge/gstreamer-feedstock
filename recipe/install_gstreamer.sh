@@ -6,8 +6,6 @@
 # https://github.com/conda-forge/bison-feedstock/issues/7
 export M4="${BUILD_PREFIX}/bin/m4"
 
-# Maybe do this only for cos7?
-export PKG_CONFIG_PATH=${CONDA_BUILD_SYSROOT}/usr/lib64/pkgconfig
 
 if [ -n "$OSX_ARCH" ] ; then
     export LDFLAGS="${LDFLAGS} -Wl,-rpath,${PREFIX}/lib"
