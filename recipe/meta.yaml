@@ -77,7 +77,8 @@ outputs:
         - {{ cdt('libxdamage-devel') }}      # [linux]
         - {{ cdt('libxfixes-devel') }}       # [linux]
         - {{ cdt('libxxf86vm-devel') }}      # [linux]
-        - {{ cdt('libxshmfence-devel') }}    # [cdt_name=="cos7"]
+        # This dependency is only for cos7 platforms
+        - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
         - {{ cdt('mesa-dri-drivers') }}      # [linux]
         # expat here is _only_ required for mesa-dri-drivers
         - {{ cdt('expat') }}                 # [linux]
