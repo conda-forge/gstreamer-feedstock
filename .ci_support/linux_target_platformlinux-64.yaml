@@ -17,7 +17,7 @@ glib:
 libffi:
 - '3.2'
 perl:
-- '5.26'
+- 5.26.2
 pin_run_as_build:
   libffi:
     max_pin: x.x
