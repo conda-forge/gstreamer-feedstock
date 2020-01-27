@@ -12,7 +12,7 @@ source:
     folder: plugins_base
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 outputs:
@@ -127,6 +127,7 @@ about:
   home: http://gstreamer.freedesktop.org/
   summary: "Library for constructing graphs of media-handling components"
   license: LGPL-2.0
+  license_file: COPYING
   doc_url: https://gstreamer.freedesktop.org/documentation/
   dev_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/
 
