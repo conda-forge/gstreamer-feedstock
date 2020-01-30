@@ -1,9 +1,9 @@
 About gstreamer_and_plugins
 ===========================
 
-Home: 
+Home:
 
-Package license: 
+Package license:
 
 Feedstock license: BSD 3-Clause
 
@@ -30,7 +30,7 @@ Current build status
       </a>
     </td>
   </tr>
-    
+
   <tr>
     <td>Azure</td>
     <td>
