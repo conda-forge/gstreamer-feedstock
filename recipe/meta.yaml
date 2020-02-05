@@ -78,6 +78,11 @@ outputs:
         - {{ cdt('libxfixes-devel') }}       # [linux]
         - {{ cdt('libxxf86vm-devel') }}      # [linux]
         - {{ cdt('mesa-dri-drivers') }}      # [linux]
+        # These dependencies are only for cos7 platforms
+        - {{ cdt('libglvnd-glx') }}          # [linux & (ppc64le | aarch64)]
+        - {{ cdt('libglvnd') }}              # [linux & (ppc64le | aarch64)]
+        - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
+        - {{ cdt('mesa-khr-devel') }}        # [linux & (ppc64le | aarch64)]
         # expat here is _only_ required for mesa-dri-drivers
         - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
