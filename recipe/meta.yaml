@@ -10,9 +10,12 @@ source:
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
     sha256: 7bfa9b329ea7f3c654fa1b2d43650bf2646598a5e3cb21f42c516b7e975d638e
     folder: plugins_base
+  - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
+    sha256: 678221b3f0208b31b90df3ffa509857cc8bfc337f3f5073d195c5b365d616503
+    folder: plugins_good
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 outputs:
@@ -126,7 +129,41 @@ outputs:
           elements one would want to write for GStreamer.
         doc_source_url: https://github.com/GStreamer/gst-plugins-base/tree/master/docs
 
-
+  - name: gst-plugins-good
+    script: install_good_plugins.sh
+    build:
+      activate_in_script: True
+      run_exports:
+        - {{ pin_subpackage('gst-plugins-good', max_pin='x.x') }}
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - make
+        - pkg-config
+      host:
+        - {{ pin_subpackage('gstreamer') }}
+        - {{ pin_subpackage('gst-plugins-base') }}
+        - gobject-introspection
+        - glib
+      run:
+        - {{ pin_compatible('gstreamer') }}
+        - {{ pin_subpackage('gst-plugins-base') }}
+    test:
+      commands:
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
+    about:
+      summary: "GStreamer Good Plug-ins"
+      description: |
+        GStreamer Good Plug-ins is A collection of plug-ins you'd
+        want to have right next to you on the battlefield.
+        Shooting sharp and making no mistakes, these plug-ins have it
+        all: good looks, good code, and good licensing.  Documented and
+        dressed up in tests.  If you're looking for a role model to
+        base your own plug-in on here it is.
+      doc_source_url: https://github.com/GStreamer/gst-plugins-good/tree/master/docs
 
 about:
   home: http://gstreamer.freedesktop.org/
