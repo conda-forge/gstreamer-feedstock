@@ -151,9 +151,9 @@ outputs:
         - {{ pin_subpackage('gst-plugins-base') }}
     test:
       commands:
-        - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
-        - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}  # [unix]
-        - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha.so  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug.so  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum.so  # [unix]
     about:
       summary: "GStreamer Good Plug-ins"
       description: |
