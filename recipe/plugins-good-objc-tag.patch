@@ -1,0 +1,144 @@
+--- sys/osxaudio/Makefile.in	2018-10-02 22:59:20.000000000 +0100
++++ sys/osxaudio/Makefile.in	2019-05-29 17:37:50.000000000 +0100
+@@ -187,8 +187,8 @@
+ am__v_lt_0 = --silent
+ am__v_lt_1 =
+ libgstosxaudio_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+-	$(libgstosxaudio_la_CFLAGS) $(CFLAGS) \
++	$(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
++	$(CCLD) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) \
+ 	$(libgstosxaudio_la_LDFLAGS) $(LDFLAGS) -o $@
+ AM_V_P = $(am__v_P_@AM_V@)
+ am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
+@@ -646,6 +648,7 @@
+ libgstosxaudio_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS) \
+ 	-Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox \
+ 	$(am__append_2)
++libgstosxaudio_la_LIBTOOLFLAGS = --tag=CC
+ noinst_HEADERS = gstosxaudiosink.h	  \
+                  gstosxaudiodeviceprovider.h \
+                  gstosxaudioelement.h \
+@@ -774,60 +777,60 @@
+ @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
+
+ libgstosxaudio_la-gstosxaudioringbuffer.lo: gstosxaudioringbuffer.c
+-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudioringbuffer.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudioringbuffer.Tpo -c -o libgstosxaudio_la-gstosxaudioringbuffer.lo `test -f 'gstosxaudioringbuffer.c' || echo '$(srcdir)/'`gstosxaudioringbuffer.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudioringbuffer.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudioringbuffer.Tpo -c -o libgstosxaudio_la-gstosxaudioringbuffer.lo `test -f 'gstosxaudioringbuffer.c' || echo '$(srcdir)/'`gstosxaudioringbuffer.c
+ @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxaudio_la-gstosxaudioringbuffer.Tpo $(DEPDIR)/libgstosxaudio_la-gstosxaudioringbuffer.Plo
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gstosxaudioringbuffer.c' object='libgstosxaudio_la-gstosxaudioringbuffer.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudioringbuffer.lo `test -f 'gstosxaudioringbuffer.c' || echo '$(srcdir)/'`gstosxaudioringbuffer.c
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudioringbuffer.lo `test -f 'gstosxaudioringbuffer.c' || echo '$(srcdir)/'`gstosxaudioringbuffer.c
+
+ libgstosxaudio_la-gstosxaudioelement.lo: gstosxaudioelement.c
+-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudioelement.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudioelement.Tpo -c -o libgstosxaudio_la-gstosxaudioelement.lo `test -f 'gstosxaudioelement.c' || echo '$(srcdir)/'`gstosxaudioelement.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudioelement.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudioelement.Tpo -c -o libgstosxaudio_la-gstosxaudioelement.lo `test -f 'gstosxaudioelement.c' || echo '$(srcdir)/'`gstosxaudioelement.c
+ @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxaudio_la-gstosxaudioelement.Tpo $(DEPDIR)/libgstosxaudio_la-gstosxaudioelement.Plo
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gstosxaudioelement.c' object='libgstosxaudio_la-gstosxaudioelement.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudioelement.lo `test -f 'gstosxaudioelement.c' || echo '$(srcdir)/'`gstosxaudioelement.c
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudioelement.lo `test -f 'gstosxaudioelement.c' || echo '$(srcdir)/'`gstosxaudioelement.c
+
+ libgstosxaudio_la-gstosxaudiosink.lo: gstosxaudiosink.c
+-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudiosink.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudiosink.Tpo -c -o libgstosxaudio_la-gstosxaudiosink.lo `test -f 'gstosxaudiosink.c' || echo '$(srcdir)/'`gstosxaudiosink.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudiosink.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudiosink.Tpo -c -o libgstosxaudio_la-gstosxaudiosink.lo `test -f 'gstosxaudiosink.c' || echo '$(srcdir)/'`gstosxaudiosink.c
+ @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxaudio_la-gstosxaudiosink.Tpo $(DEPDIR)/libgstosxaudio_la-gstosxaudiosink.Plo
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gstosxaudiosink.c' object='libgstosxaudio_la-gstosxaudiosink.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudiosink.lo `test -f 'gstosxaudiosink.c' || echo '$(srcdir)/'`gstosxaudiosink.c
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudiosink.lo `test -f 'gstosxaudiosink.c' || echo '$(srcdir)/'`gstosxaudiosink.c
+
+ libgstosxaudio_la-gstosxaudiosrc.lo: gstosxaudiosrc.c
+-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudiosrc.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudiosrc.Tpo -c -o libgstosxaudio_la-gstosxaudiosrc.lo `test -f 'gstosxaudiosrc.c' || echo '$(srcdir)/'`gstosxaudiosrc.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudiosrc.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudiosrc.Tpo -c -o libgstosxaudio_la-gstosxaudiosrc.lo `test -f 'gstosxaudiosrc.c' || echo '$(srcdir)/'`gstosxaudiosrc.c
+ @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxaudio_la-gstosxaudiosrc.Tpo $(DEPDIR)/libgstosxaudio_la-gstosxaudiosrc.Plo
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gstosxaudiosrc.c' object='libgstosxaudio_la-gstosxaudiosrc.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudiosrc.lo `test -f 'gstosxaudiosrc.c' || echo '$(srcdir)/'`gstosxaudiosrc.c
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudiosrc.lo `test -f 'gstosxaudiosrc.c' || echo '$(srcdir)/'`gstosxaudiosrc.c
+
+ libgstosxaudio_la-gstosxcoreaudiocommon.lo: gstosxcoreaudiocommon.c
+-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxcoreaudiocommon.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxcoreaudiocommon.Tpo -c -o libgstosxaudio_la-gstosxcoreaudiocommon.lo `test -f 'gstosxcoreaudiocommon.c' || echo '$(srcdir)/'`gstosxcoreaudiocommon.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxcoreaudiocommon.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxcoreaudiocommon.Tpo -c -o libgstosxaudio_la-gstosxcoreaudiocommon.lo `test -f 'gstosxcoreaudiocommon.c' || echo '$(srcdir)/'`gstosxcoreaudiocommon.c
+ @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxaudio_la-gstosxcoreaudiocommon.Tpo $(DEPDIR)/libgstosxaudio_la-gstosxcoreaudiocommon.Plo
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gstosxcoreaudiocommon.c' object='libgstosxaudio_la-gstosxcoreaudiocommon.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxcoreaudiocommon.lo `test -f 'gstosxcoreaudiocommon.c' || echo '$(srcdir)/'`gstosxcoreaudiocommon.c
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxcoreaudiocommon.lo `test -f 'gstosxcoreaudiocommon.c' || echo '$(srcdir)/'`gstosxcoreaudiocommon.c
+
+ libgstosxaudio_la-gstosxcoreaudio.lo: gstosxcoreaudio.c
+-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxcoreaudio.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxcoreaudio.Tpo -c -o libgstosxaudio_la-gstosxcoreaudio.lo `test -f 'gstosxcoreaudio.c' || echo '$(srcdir)/'`gstosxcoreaudio.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxcoreaudio.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxcoreaudio.Tpo -c -o libgstosxaudio_la-gstosxcoreaudio.lo `test -f 'gstosxcoreaudio.c' || echo '$(srcdir)/'`gstosxcoreaudio.c
+ @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxaudio_la-gstosxcoreaudio.Tpo $(DEPDIR)/libgstosxaudio_la-gstosxcoreaudio.Plo
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gstosxcoreaudio.c' object='libgstosxaudio_la-gstosxcoreaudio.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxcoreaudio.lo `test -f 'gstosxcoreaudio.c' || echo '$(srcdir)/'`gstosxcoreaudio.c
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxcoreaudio.lo `test -f 'gstosxcoreaudio.c' || echo '$(srcdir)/'`gstosxcoreaudio.c
+
+ libgstosxaudio_la-gstosxaudio.lo: gstosxaudio.c
+-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudio.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudio.Tpo -c -o libgstosxaudio_la-gstosxaudio.lo `test -f 'gstosxaudio.c' || echo '$(srcdir)/'`gstosxaudio.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudio.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudio.Tpo -c -o libgstosxaudio_la-gstosxaudio.lo `test -f 'gstosxaudio.c' || echo '$(srcdir)/'`gstosxaudio.c
+ @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxaudio_la-gstosxaudio.Tpo $(DEPDIR)/libgstosxaudio_la-gstosxaudio.Plo
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gstosxaudio.c' object='libgstosxaudio_la-gstosxaudio.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudio.lo `test -f 'gstosxaudio.c' || echo '$(srcdir)/'`gstosxaudio.c
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudio.lo `test -f 'gstosxaudio.c' || echo '$(srcdir)/'`gstosxaudio.c
+
+ libgstosxaudio_la-gstosxaudiodeviceprovider.lo: gstosxaudiodeviceprovider.c
+-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudiodeviceprovider.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudiodeviceprovider.Tpo -c -o libgstosxaudio_la-gstosxaudiodeviceprovider.lo `test -f 'gstosxaudiodeviceprovider.c' || echo '$(srcdir)/'`gstosxaudiodeviceprovider.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -MT libgstosxaudio_la-gstosxaudiodeviceprovider.lo -MD -MP -MF $(DEPDIR)/libgstosxaudio_la-gstosxaudiodeviceprovider.Tpo -c -o libgstosxaudio_la-gstosxaudiodeviceprovider.lo `test -f 'gstosxaudiodeviceprovider.c' || echo '$(srcdir)/'`gstosxaudiodeviceprovider.c
+ @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxaudio_la-gstosxaudiodeviceprovider.Tpo $(DEPDIR)/libgstosxaudio_la-gstosxaudiodeviceprovider.Plo
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gstosxaudiodeviceprovider.c' object='libgstosxaudio_la-gstosxaudiodeviceprovider.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudiodeviceprovider.lo `test -f 'gstosxaudiodeviceprovider.c' || echo '$(srcdir)/'`gstosxaudiodeviceprovider.c
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libgstosxaudio_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxaudio_la_CFLAGS) $(CFLAGS) -c -o libgstosxaudio_la-gstosxaudiodeviceprovider.lo `test -f 'gstosxaudiodeviceprovider.c' || echo '$(srcdir)/'`gstosxaudiodeviceprovider.c
+
+ mostlyclean-libtool:
+ 	-rm -f *.lo
+--- sys/osxvideo/Makefile.in	2018-10-02 22:59:20.000000000 +0100
++++ sys/osxvideo/Makefile.in	2019-05-29 17:37:50.000000000 +0100
+@@ -172,9 +172,9 @@
+ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
+ am__v_lt_0 = --silent
+ am__v_lt_1 =
+-libgstosxvideo_la_LINK = $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) \
+-	$(LIBTOOLFLAGS) --mode=link $(OBJCLD) \
+-	$(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) \
++libgstosxvideo_la_LINK = $(LIBTOOL) $(AM_V_lt) \
++	$(libgstosxvideo_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
++	$(OBJCLD) $(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) \
+ 	$(libgstosxvideo_la_LDFLAGS) $(LDFLAGS) -o $@
+ AM_V_P = $(am__v_P_@AM_V@)
+ am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
+@@ -624,6 +626,7 @@
+ 	-lgstvideo-$(GST_API_VERSION)
+
+ libgstosxvideo_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS) -Wl,-framework -Wl,Cocoa -Wl,-framework -Wl,OpenGL
++libgstosxvideo_la_LIBTOOLFLAGS = --tag=CC
+ noinst_HEADERS = osxvideosink.h cocoawindow.h
+ all: all-am
+
+@@ -737,18 +740,18 @@
+ @am__fastdepOBJC_FALSE@	$(AM_V_OBJC@am__nodep@)$(LTOBJCCOMPILE) -c -o $@ $<
+
+ libgstosxvideo_la-osxvideosink.lo: osxvideosink.m
+-@am__fastdepOBJC_TRUE@	$(AM_V_OBJC)$(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(OBJC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) -MT libgstosxvideo_la-osxvideosink.lo -MD -MP -MF $(DEPDIR)/libgstosxvideo_la-osxvideosink.Tpo -c -o libgstosxvideo_la-osxvideosink.lo `test -f 'osxvideosink.m' || echo '$(srcdir)/'`osxvideosink.m
++@am__fastdepOBJC_TRUE@	$(AM_V_OBJC)$(LIBTOOL) $(AM_V_lt) $(libgstosxvideo_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(OBJC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) -MT libgstosxvideo_la-osxvideosink.lo -MD -MP -MF $(DEPDIR)/libgstosxvideo_la-osxvideosink.Tpo -c -o libgstosxvideo_la-osxvideosink.lo `test -f 'osxvideosink.m' || echo '$(srcdir)/'`osxvideosink.m
+ @am__fastdepOBJC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxvideo_la-osxvideosink.Tpo $(DEPDIR)/libgstosxvideo_la-osxvideosink.Plo
+ @AMDEP_TRUE@@am__fastdepOBJC_FALSE@	$(AM_V_OBJC)source='osxvideosink.m' object='libgstosxvideo_la-osxvideosink.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepOBJC_FALSE@	DEPDIR=$(DEPDIR) $(OBJCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepOBJC_FALSE@	$(AM_V_OBJC@am__nodep@)$(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(OBJC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) -c -o libgstosxvideo_la-osxvideosink.lo `test -f 'osxvideosink.m' || echo '$(srcdir)/'`osxvideosink.m
++@am__fastdepOBJC_FALSE@	$(AM_V_OBJC@am__nodep@)$(LIBTOOL) $(AM_V_lt) $(libgstosxvideo_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(OBJC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) -c -o libgstosxvideo_la-osxvideosink.lo `test -f 'osxvideosink.m' || echo '$(srcdir)/'`osxvideosink.m
+
+ libgstosxvideo_la-cocoawindow.lo: cocoawindow.m
+-@am__fastdepOBJC_TRUE@	$(AM_V_OBJC)$(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(OBJC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) -MT libgstosxvideo_la-cocoawindow.lo -MD -MP -MF $(DEPDIR)/libgstosxvideo_la-cocoawindow.Tpo -c -o libgstosxvideo_la-cocoawindow.lo `test -f 'cocoawindow.m' || echo '$(srcdir)/'`cocoawindow.m
++@am__fastdepOBJC_TRUE@	$(AM_V_OBJC)$(LIBTOOL) $(AM_V_lt) $(libgstosxvideo_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(OBJC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) -MT libgstosxvideo_la-cocoawindow.lo -MD -MP -MF $(DEPDIR)/libgstosxvideo_la-cocoawindow.Tpo -c -o libgstosxvideo_la-cocoawindow.lo `test -f 'cocoawindow.m' || echo '$(srcdir)/'`cocoawindow.m
+ @am__fastdepOBJC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgstosxvideo_la-cocoawindow.Tpo $(DEPDIR)/libgstosxvideo_la-cocoawindow.Plo
+ @AMDEP_TRUE@@am__fastdepOBJC_FALSE@	$(AM_V_OBJC)source='cocoawindow.m' object='libgstosxvideo_la-cocoawindow.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepOBJC_FALSE@	DEPDIR=$(DEPDIR) $(OBJCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepOBJC_FALSE@	$(AM_V_OBJC@am__nodep@)$(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(OBJC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) -c -o libgstosxvideo_la-cocoawindow.lo `test -f 'cocoawindow.m' || echo '$(srcdir)/'`cocoawindow.m
++@am__fastdepOBJC_FALSE@	$(AM_V_OBJC@am__nodep@)$(LIBTOOL) $(AM_V_lt) $(libgstosxvideo_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(OBJC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstosxvideo_la_OBJCFLAGS) $(OBJCFLAGS) -c -o libgstosxvideo_la-cocoawindow.lo `test -f 'cocoawindow.m' || echo '$(srcdir)/'`cocoawindow.m
+
+ mostlyclean-libtool:
+ 	-rm -f *.lo
