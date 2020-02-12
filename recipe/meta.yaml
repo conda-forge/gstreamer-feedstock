@@ -13,6 +13,8 @@ source:
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
     sha256: 5f8b553260cb0aac56890053d8511db1528d53cae10f0287cfce2cb2acc70979
     folder: plugins_good
+    patches:
+      - plugins-good-objc-tag.patch  # [osx]
 
 build:
   number: 1002
