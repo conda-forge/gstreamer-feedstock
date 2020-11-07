@@ -190,7 +190,7 @@ outputs:
       doc_source_url: https://github.com/GStreamer/gst-plugins-good/tree/master/docs
 
 about:
-  home: http://gstreamer.freedesktop.org/
+  home: https://gstreamer.freedesktop.org/
   summary: "Library for constructing graphs of media-handling components"
   license: LGPL-2.0-or-later
   license_file: COPYING
