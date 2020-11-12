@@ -1,4 +1,5 @@
-{% set version = "1.14.5" %}
+{% set version = "1.18.1" %}
+{% set posix = 'm2-' if win else '' %}
 
 package:
   name: gstreamer_and_plugins
@@ -6,21 +7,21 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: e40888752883177e97b2d90cd68591f87ccd213dc0178ff721d80a4cdaad34b5
+    sha256: 79df8de21f284a105a5c1568527f8c559c583c85c0f2bd7bdb5b0372b8beecba
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: 7bfa9b329ea7f3c654fa1b2d43650bf2646598a5e3cb21f42c516b7e975d638e
+    sha256: 1ba654d7de30f7284b4c7071b32f881b609733ce02ab6d9d9ea29386a036c641
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: 678221b3f0208b31b90df3ffa509857cc8bfc337f3f5073d195c5b365d616503
+    sha256: e210e91a5590ecb6accc9d06c949a58ca6897d8edb3b3d55828e424c624f626c
     folder: plugins_good
 
 build:
-  number: 2
-  skip: true  # [win]
+  number: 0
 
 outputs:
   - name: gstreamer
-    script: install_gstreamer.sh
+    script: install_gstreamer.sh  # [unix]
+    script: install_gstreamer.bat  # [win]
     build:
       activate_in_script: True
       run_exports:
@@ -32,33 +33,30 @@ outputs:
       build:
         - {{ compiler('c') }}
         - pkg-config
-        - bison
-        - flex
-        - m4
-        - autoconf
-        - automake
-        - make
-        - perl
-      host:
+        - {{ posix }}bison
+        - {{ posix }}flex
+        - meson
+        - ninja
         - gobject-introspection
-        - gettext                            # [osx]
-        - pcre                               # [linux]
-        - libffi                             # [linux]
+      host:
+        - gettext
         - glib
-        - xz
     test:
       commands:
         - gst-inspect-1.0 --version
         - gst-launch-1.0  --version
         - gst-stats-1.0 --version
         - gst-typefind-1.0 --version
+        - test -f $PREFIX/lib/girepository-1.0/Gst-1.0.typelib  # [unix]
+        - if not exist %LIBRARY_LIB%\\girepository-1.0\\Gst-1.0.typelib exit 1  # [win]
     about:
       summary: "Library for constructing graphs of media-handling components"
       description:
       doc_source_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/docs
 
   - name: gst-plugins-base
-    script: install_base_plugins.sh
+    script: install_base_plugins.sh  # [unix]
+    script: install_base_plugins.bat  # [win]
     build:
       activate_in_script: True
       run_exports:
@@ -90,36 +88,37 @@ outputs:
         - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
         - pkg-config
-        - m4
-        - autoconf
-        - automake
-        - make
-        - perl
+        - meson
+        - ninja
+        - gobject-introspection
       host:
         - {{ pin_subpackage('gstreamer') }}
-        - gobject-introspection
         - glib
         - zlib
-        - gettext                            # [osx]
+        - gettext
         - libxcb                             # [linux]
-        - pthread-stubs                      # [linux]
-        - xz
+        - libpng                             # [unix]
       run:
         - {{ pin_compatible('gstreamer') }}
+        - libpng                             # [unix]
 
     test:
       commands:
-        - test -f $PREFIX/lib/libgstallocators-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgstapp-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgstaudio-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgstfft-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgstpbutils-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgstriff-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgstrtp-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgstrtsp-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgstsdp-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}
-        - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}
+        - test -f $PREFIX/lib/libgstallocators-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgstapp-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgstaudio-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgstfft-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgstpbutils-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgstriff-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgstrtp-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgstrtsp-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgstsdp-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/girepository-1.0/GstVideo-1.0.typelib  # [unix]
+        - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
+        - gst-inspect-1.0 --plugin volume
 
     about:
         summary: "GStreamer Base Plug-ins"
@@ -130,7 +129,8 @@ outputs:
         doc_source_url: https://github.com/GStreamer/gst-plugins-base/tree/master/docs
 
   - name: gst-plugins-good
-    script: install_good_plugins.sh
+    script: install_good_plugins.sh  # [unix]
+    script: install_good_plugins.bat  # [win]
     build:
       activate_in_script: True
       run_exports:
@@ -139,21 +139,45 @@ outputs:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - make
+        - {{ cdt('libxau-devel') }}          # [linux]
+        - {{ cdt('libxext-devel') }}         # [linux]
+        - {{ cdt('libx11-devel') }}          # [linux]
+        - {{ cdt('libxrender-devel') }}      # [linux]
+        - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+        - {{ cdt('mesa-libgl-devel') }}      # [linux]
+        - {{ cdt('libdrm-devel') }}          # [linux]
+        - {{ cdt('libxdamage-devel') }}      # [linux]
+        - {{ cdt('libxfixes-devel') }}       # [linux]
+        - {{ cdt('libxxf86vm-devel') }}      # [linux]
+        - {{ cdt('mesa-dri-drivers') }}      # [linux]
+        # These dependencies are only for cos7 platforms
+        - {{ cdt('libglvnd-glx') }}          # [linux & (ppc64le | aarch64)]
+        - {{ cdt('libglvnd') }}              # [linux & (ppc64le | aarch64)]
+        - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
+        - {{ cdt('mesa-khr-devel') }}        # [linux & (ppc64le | aarch64)]
+        # expat here is _only_ required for mesa-dri-drivers
+        - {{ cdt('expat') }}                 # [linux]
+        - {{ cdt('libselinux-devel') }}      # [linux]
         - pkg-config
+        - meson
+        - ninja
       host:
         - {{ pin_subpackage('gstreamer') }}
         - {{ pin_subpackage('gst-plugins-base') }}
-        - gobject-introspection
         - glib
+        - libxcb                             # [linux]
       run:
         - {{ pin_compatible('gstreamer') }}
         - {{ pin_subpackage('gst-plugins-base') }}
     test:
       commands:
-        - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha.so  # [unix]
-        - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug.so  # [unix]
-        - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum.so  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstalpha.dll exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdebug.dll exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1  # [win]
+        - gst-inspect-1.0 --plugin alpha
     about:
       summary: "GStreamer Good Plug-ins"
       description: |
@@ -166,9 +190,9 @@ outputs:
       doc_source_url: https://github.com/GStreamer/gst-plugins-good/tree/master/docs
 
 about:
-  home: http://gstreamer.freedesktop.org/
+  home: https://gstreamer.freedesktop.org/
   summary: "Library for constructing graphs of media-handling components"
-  license: LGPL-2.0
+  license: LGPL-2.0-or-later
   license_file: COPYING
   doc_url: https://gstreamer.freedesktop.org/documentation/
   dev_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/
@@ -178,3 +202,4 @@ extra:
     - ccordoba12
     - mingwandroid
     - msarahan
+    - tschoonj

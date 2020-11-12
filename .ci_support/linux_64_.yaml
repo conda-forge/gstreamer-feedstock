@@ -2,6 +2,8 @@ c_compiler:
 - gcc
 c_compiler_version:
 - '7'
+cdt_name:
+- cos6
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -14,22 +16,17 @@ docker_image:
 - condaforge/linux-anvil-comp7
 glib:
 - '2.58'
-libffi:
-- '3.2'
-perl:
-- 5.26.2
+libpng:
+- '1.6'
 pin_run_as_build:
-  libffi:
-    max_pin: x.x
-  perl:
-    max_pin: x.x.x
-  xz:
+  libpng:
     max_pin: x.x
   zlib:
     max_pin: x.x
 target_platform:
 - linux-64
-xz:
-- '5.2'
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
 zlib:
 - '1.2'
