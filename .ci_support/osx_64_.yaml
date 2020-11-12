@@ -13,7 +13,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '10'
 glib:
-- '2.58'
+- 2.64.6
 libpng:
 - '1.6'
 macos_machine:
