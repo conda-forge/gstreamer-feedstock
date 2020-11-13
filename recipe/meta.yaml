@@ -14,9 +14,12 @@ source:
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
     sha256: e210e91a5590ecb6accc9d06c949a58ca6897d8edb3b3d55828e424c624f626c
     folder: plugins_good
+  - url: https://gstreamer.freedesktop.org/src/gst-python/gst-python-{{ version }}.tar.xz
+    sha256: 42b289422f7ab32757670848cf2245c5a8a8b08a665a9cab65ded8d69364f6f6
+    folder: python
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: gstreamer
@@ -188,6 +191,64 @@ outputs:
         dressed up in tests.  If you're looking for a role model to
         base your own plug-in on here it is.
       doc_source_url: https://github.com/GStreamer/gst-plugins-good/tree/master/docs
+
+  - name: gst-python
+    script: install_python.sh  # [unix]
+    script: install_python.bat  # [win]
+    build:
+      activate_in_script: True
+      run_exports:
+        - {{ pin_subpackage('gst-python', max_pin='x.x') }}
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ cdt('libxau-devel') }}          # [linux]
+        - {{ cdt('libxext-devel') }}         # [linux]
+        - {{ cdt('libx11-devel') }}          # [linux]
+        - {{ cdt('libxrender-devel') }}      # [linux]
+        - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+        - {{ cdt('mesa-libgl-devel') }}      # [linux]
+        - {{ cdt('libdrm-devel') }}          # [linux]
+        - {{ cdt('libxdamage-devel') }}      # [linux]
+        - {{ cdt('libxfixes-devel') }}       # [linux]
+        - {{ cdt('libxxf86vm-devel') }}      # [linux]
+        - {{ cdt('mesa-dri-drivers') }}      # [linux]
+        # These dependencies are only for cos7 platforms
+        - {{ cdt('libglvnd-glx') }}          # [linux & (ppc64le | aarch64)]
+        - {{ cdt('libglvnd') }}              # [linux & (ppc64le | aarch64)]
+        - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
+        - {{ cdt('mesa-khr-devel') }}        # [linux & (ppc64le | aarch64)]
+        # expat here is _only_ required for mesa-dri-drivers
+        - {{ cdt('expat') }}                 # [linux]
+        - {{ cdt('libselinux-devel') }}      # [linux]
+        - pkg-config
+        - meson
+        - ninja
+      host:
+        - {{ pin_subpackage('gstreamer') }}
+        - {{ pin_subpackage('gst-plugins-base') }}
+        - glib
+        - libxcb                             # [linux]
+        - python
+        - pygobject
+      run:
+        - {{ pin_compatible('gstreamer') }}
+        - {{ pin_subpackage('gst-plugins-base') }}
+        - python
+        - pygobject
+    test:
+      files:
+        - test_gst_python.py
+      commands:
+        - $PYTHON test_gst_python.py  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstpython${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstpython.dll exit 1  # [win]
+        - gst-inspect-1.0 --plugin python
+    about:
+      summary: "GStreamer Python binding overrides"
+      description: |
+        GStreamer Python Bindings is a set of overrides and Gst fundamental types handling for the dynamically generated PyGObject bindings.
 
 about:
   home: https://gstreamer.freedesktop.org/
