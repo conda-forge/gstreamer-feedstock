@@ -90,6 +90,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gst--plugins--base-green.svg)](https://anaconda.org/conda-forge/gst-plugins-base) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gst-plugins-base.svg)](https://anaconda.org/conda-forge/gst-plugins-base) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gst-plugins-base.svg)](https://anaconda.org/conda-forge/gst-plugins-base) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gst-plugins-base.svg)](https://anaconda.org/conda-forge/gst-plugins-base) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gst--plugins--good-green.svg)](https://anaconda.org/conda-forge/gst-plugins-good) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gst-plugins-good.svg)](https://anaconda.org/conda-forge/gst-plugins-good) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gst-plugins-good.svg)](https://anaconda.org/conda-forge/gst-plugins-good) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gst-plugins-good.svg)](https://anaconda.org/conda-forge/gst-plugins-good) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gst--python-green.svg)](https://anaconda.org/conda-forge/gst-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gst-python.svg)](https://anaconda.org/conda-forge/gst-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gst-python.svg)](https://anaconda.org/conda-forge/gst-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gst-python.svg)](https://anaconda.org/conda-forge/gst-python) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gstreamer-green.svg)](https://anaconda.org/conda-forge/gstreamer) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gstreamer.svg)](https://anaconda.org/conda-forge/gstreamer) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gstreamer.svg)](https://anaconda.org/conda-forge/gstreamer) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gstreamer.svg)](https://anaconda.org/conda-forge/gstreamer) |
 
 Installing gstreamer_and_plugins
@@ -101,10 +102,10 @@ Installing `gstreamer_and_plugins` from the `conda-forge` channel can be achieve
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `gst-plugins-base, gst-plugins-good, gstreamer` can be installed with:
+Once the `conda-forge` channel has been enabled, `gst-plugins-base, gst-plugins-good, gst-python, gstreamer` can be installed with:
 
 ```
-conda install gst-plugins-base gst-plugins-good gstreamer
+conda install gst-plugins-base gst-plugins-good gst-python gstreamer
 ```
 
 It is possible to list all of the versions of `gst-plugins-base` available on your platform with:
