@@ -17,3 +17,7 @@ meson --prefix=${PREFIX} \
       ..
 ninja -j${CPU_COUNT}
 ninja install
+
+# remove gdb files
+rm -rf $PREFIX/share/gdb
+rm -rf $PREFIX/share/gstreamer-1.0/gdb
