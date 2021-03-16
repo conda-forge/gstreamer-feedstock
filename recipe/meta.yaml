@@ -1,4 +1,4 @@
-{% set version = "1.18.3" %}
+{% set version = "1.18.4" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -7,12 +7,12 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: 0c2e09e18f2df69a99b5cb3bd53c597b3cc2e35cf6c98043bb86a66f3d312100
+    sha256: 9aeec99b38e310817012aa2d1d76573b787af47f8a725a65b833880a094dfbc5
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: dbfa20283848f0347a223dd8523dfb62e09e5220b21b1d157a8b0c8b67ba9f52
+    sha256: 29e53229a84d01d722f6f6db13087231cdf6113dd85c25746b9b58c3d68e8323
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: 9b3b8e05d4d6073bf929fb33e2d8f74dd81ff21fa5b50c3273c78dfa2ab9c5cb
+    sha256: b6e50e3a9bbcd56ee6ec71c33aa8332cc9c926b0c1fae995aac8b3040ebe39b0
     folder: plugins_good
 
 build:
