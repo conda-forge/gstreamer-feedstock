@@ -167,7 +167,7 @@ outputs:
         - {{ pin_subpackage('gst-plugins-base') }}
         - glib
         - libxcb                             # [linux]
-        - jack >=1.9.7                       # [linux]
+        - jack >=1.9.7                       # [linux64]
         - lame                               # [linux]
       run:
         - {{ pin_compatible('gstreamer') }}
