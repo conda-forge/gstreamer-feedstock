@@ -174,5 +174,6 @@ Feedstock Maintainers
 * [@ccordoba12](https://github.com/ccordoba12/)
 * [@mingwandroid](https://github.com/mingwandroid/)
 * [@msarahan](https://github.com/msarahan/)
+* [@scopatz](https://github.com/scopatz/)
 * [@tschoonj](https://github.com/tschoonj/)
 
