@@ -92,6 +92,7 @@ Installing `gstreamer_and_plugins` from the `conda-forge` channel can be achieve
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `gst-plugins-base, gst-plugins-good, gstreamer` can be installed with:
