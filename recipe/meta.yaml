@@ -16,7 +16,7 @@ source:
     folder: plugins_good
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -98,6 +98,7 @@ outputs:
         - gettext
         - libxcb                             # [linux]
         - libpng                             # [unix]
+        - alsa-lib                           # [linux]
       run:
         - {{ pin_compatible('gstreamer') }}
         - libpng                             # [unix]
@@ -166,6 +167,8 @@ outputs:
         - {{ pin_subpackage('gst-plugins-base') }}
         - glib
         - libxcb                             # [linux]
+        - jack >=1.9.7                       # [linux64]
+        - lame                               # [linux]
       run:
         - {{ pin_compatible('gstreamer') }}
         - {{ pin_subpackage('gst-plugins-base') }}
@@ -203,3 +206,4 @@ extra:
     - mingwandroid
     - msarahan
     - tschoonj
+    - scopatz
