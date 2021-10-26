@@ -38,6 +38,7 @@ outputs:
         - meson
         - ninja
         - gobject-introspection
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - gettext
         - glib
