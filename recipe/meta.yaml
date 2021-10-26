@@ -88,6 +88,7 @@ outputs:
         # expat here is _only_ required for mesa-dri-drivers
         - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - pkg-config
         - meson
         - ninja
@@ -162,6 +163,7 @@ outputs:
         # expat here is _only_ required for mesa-dri-drivers
         - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - pkg-config
         - meson
         - ninja
