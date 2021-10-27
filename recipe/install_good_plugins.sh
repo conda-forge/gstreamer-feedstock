@@ -13,7 +13,7 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
   echo "[binaries]" >> $BUILD_PREFIX/meson_cross_file.txt
   echo "pkg-config = '$(which pkg-config)'" >> $BUILD_PREFIX/meson_cross_file.txt
   # Use Meson cross-file flag to enable cross compilation
-  EXTRA_FLAGS="--cross-file $BUILD_PREFIX/meson_cross_file.txt -Dintrospection=disabled"
+  EXTRA_FLAGS="--cross-file $BUILD_PREFIX/meson_cross_file.txt"
 fi
 
 export PKG_CONFIG=$(which pkg-config)
