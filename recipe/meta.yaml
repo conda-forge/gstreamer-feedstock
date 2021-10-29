@@ -16,7 +16,7 @@ source:
     folder: plugins_good
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -32,12 +32,14 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
         - pkg-config
         - {{ posix }}bison
         - {{ posix }}flex
         - meson
         - ninja
         - gobject-introspection
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - gettext
         - glib
@@ -87,6 +89,7 @@ outputs:
         # expat here is _only_ required for mesa-dri-drivers
         - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - pkg-config
         - meson
         - ninja
@@ -161,6 +164,7 @@ outputs:
         # expat here is _only_ required for mesa-dri-drivers
         - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - pkg-config
         - meson
         - ninja
@@ -172,6 +176,7 @@ outputs:
         - jack >=1.9.7                       # [linux64]
         - lame                               # [linux]
         - mpg123                             # [linux64 or osx]
+        - zlib
       run:
         - {{ pin_compatible('gstreamer') }}
         - {{ pin_subpackage('gst-plugins-base') }}
@@ -205,6 +210,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - andfoy
     - ccordoba12
     - mingwandroid
     - msarahan
