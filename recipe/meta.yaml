@@ -16,7 +16,7 @@ source:
     folder: plugins_good
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: gstreamer
@@ -24,6 +24,9 @@ outputs:
     script: install_gstreamer.bat  # [win]
     build:
       activate_in_script: true
+      ignore_run_exports:
+        # we need cross-python to build, but this isn't a python package
+        - python  # [build_platform != target_platform]
       run_exports:
         # remove symbols at .90 patch releases just before minor versions?
         #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -61,6 +64,9 @@ outputs:
     script: install_base_plugins.bat  # [win]
     build:
       activate_in_script: true
+      ignore_run_exports:
+        # we need cross-python to build, but this isn't a python package
+        - python  # [build_platform != target_platform]
       run_exports:
         # remove symbols at .90 patch releases just before minor versions?
         #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -139,6 +145,9 @@ outputs:
     script: install_good_plugins.bat  # [win]
     build:
       activate_in_script: true
+      ignore_run_exports:
+        # we need cross-python to build, but this isn't a python package
+        - python  # [build_platform != target_platform]
       run_exports:
         - {{ pin_subpackage('gst-plugins-good', max_pin='x.x') }}
     requirements:
