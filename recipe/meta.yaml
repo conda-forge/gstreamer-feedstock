@@ -16,7 +16,7 @@ source:
     folder: plugins_good
 
 build:
-  number: 2
+  number: 3
 
 outputs:
   - name: gstreamer
