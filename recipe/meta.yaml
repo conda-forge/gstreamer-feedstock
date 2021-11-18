@@ -186,6 +186,7 @@ outputs:
         - lame                               # [linux]
         - mpg123                             # [linux64 or osx]
         - zlib
+        - libvpx
       run:
         - {{ pin_compatible('gstreamer') }}
         - {{ pin_subpackage('gst-plugins-base') }}
