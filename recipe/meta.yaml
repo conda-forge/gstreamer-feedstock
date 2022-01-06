@@ -185,13 +185,13 @@ outputs:
         - jack >=1.9.7                       # [linux64]
         - lame                               # [linux]
         - mpg123                             # [linux64 or osx]
-        - zlib
-        - libsoup
+        - zlib                               # [not ppc64le]
+        - libsoup                            # [not ppc64le]
       run:
         - {{ pin_compatible('gstreamer') }}
         - {{ pin_subpackage('gst-plugins-base') }}
-        - libsoup
-        - glib-networking
+        - libsoup                            # [not ppc64le]
+        - glib-networking                    # [not ppc64le]
     test:
       commands:
         - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
