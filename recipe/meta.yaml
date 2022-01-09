@@ -16,7 +16,7 @@ source:
     folder: plugins_good
 
 build:
-  number: 2
+  number: 3
 
 outputs:
   - name: gstreamer
@@ -185,10 +185,13 @@ outputs:
         - jack >=1.9.7                       # [linux64]
         - lame                               # [linux]
         - mpg123                             # [linux64 or osx]
-        - zlib
+        - zlib                               # [not ppc64le]
+        - libsoup                            # [not ppc64le]
       run:
         - {{ pin_compatible('gstreamer') }}
         - {{ pin_subpackage('gst-plugins-base') }}
+        - libsoup                            # [not ppc64le]
+        - glib-networking                    # [not ppc64le]
     test:
       commands:
         - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
