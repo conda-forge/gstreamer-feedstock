@@ -183,7 +183,7 @@ outputs:
         - glib
         - libxcb                             # [linux]
         - jack >=1.9.7                       # [linux64]
-        - lame                               # [linux]
+        - lame                               # [unix]
         - mpg123                             # [linux64 or osx]
         - zlib                               # [not ppc64le]
         - libsoup                            # [not ppc64le]
@@ -197,10 +197,10 @@ outputs:
       commands:
         - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}  # [unix]
-        - test -f $PREFIX/lib/gstreamer-1.0/libgstjack${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstjack${SHLIB_EXT}  # [linux64]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstjpeg${SHLIB_EXT}  # [unix]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}  # [unix]
-        - test -f $PREFIX/lib/gstreamer-1.0/libgstmpg123${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstmpg123${SHLIB_EXT}  # [linux64 or osx]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstalpha.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdebug.dll exit 1  # [win]
