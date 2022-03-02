@@ -16,7 +16,7 @@ source:
     folder: plugins_good
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -187,6 +187,7 @@ outputs:
         - mpg123                             # [linux64 or osx]
         - zlib                               # [not ppc64le]
         - libsoup                            # [not ppc64le]
+        - jpeg
       run:
         - {{ pin_compatible('gstreamer') }}
         - {{ pin_subpackage('gst-plugins-base') }}
@@ -196,9 +197,14 @@ outputs:
       commands:
         - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstjack${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstjpeg${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstmpg123${SHLIB_EXT}  # [unix]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstalpha.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdebug.dll exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1  # [win]
         - gst-inspect-1.0 --plugin alpha
     about:
