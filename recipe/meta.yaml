@@ -14,6 +14,8 @@ source:
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
     sha256: 2d119c15ab8c9e79f8cd3c6bf582ff7a050b28ccae52ab4865e1a1464991659c
     folder: plugins_good
+    patches:
+      - jpeg-win.patch  # [win]
 
 build:
   number: 1
