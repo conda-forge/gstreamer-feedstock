@@ -14,9 +14,11 @@ source:
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
     sha256: 3c66876f821d507bcdbebffb08b4f31a322727d6753f65a0f02c905ecb7084aa
     folder: plugins_good
+    patches:
+      - jpeg-win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -183,10 +185,11 @@ outputs:
         - glib
         - libxcb                             # [linux]
         - jack >=1.9.7                       # [linux64]
-        - lame                               # [linux]
+        - lame                               # [unix]
         - mpg123                             # [linux64 or osx]
         - zlib                               # [not ppc64le]
         - libsoup                            # [not ppc64le]
+        - jpeg
       run:
         - {{ pin_compatible('gstreamer') }}
         - {{ pin_subpackage('gst-plugins-base') }}
@@ -196,9 +199,14 @@ outputs:
       commands:
         - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstjack${SHLIB_EXT}  # [linux64]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstjpeg${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstmpg123${SHLIB_EXT}  # [linux64 or osx]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstalpha.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdebug.dll exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1  # [win]
         - gst-inspect-1.0 --plugin alpha
     about:
