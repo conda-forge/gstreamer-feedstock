@@ -115,7 +115,7 @@ outputs:
         - libopus                            # [unix]
         - libvorbis
       run:
-        - {{ pin_compatible('gstreamer') }}
+        - {{ pin_subpackage('gstreamer', exact=True) }}
         - libpng                             # [unix]
 
     test:
@@ -189,12 +189,12 @@ outputs:
         - jack >=1.9.7                       # [linux64]
         - lame                               # [unix]
         - mpg123                             # [linux64 or osx]
-        - zlib                               # [not ppc64le]
+        - zlib
         - libsoup                            # [not ppc64le]
         - jpeg
       run:
-        - {{ pin_compatible('gstreamer') }}
-        - {{ pin_subpackage('gst-plugins-base') }}
+        - {{ pin_subpackage('gstreamer', exact=True) }}
+        - {{ pin_subpackage('gst-plugins-base', exact=True) }}
         - libsoup                            # [not ppc64le]
         - glib-networking                    # [not ppc64le]
     test:

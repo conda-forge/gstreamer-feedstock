@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 pushd plugins_good
 
@@ -27,6 +28,9 @@ if [ $(uname) = "Linux" ] ; then
 	# v4l2 contains clock_gettime, resulting in linker error
 	meson_options+=(-Dv4l2=disabled)
 fi
+
+# Esure we can find thes
+pkg-config --cflags gstreamer-net-1.0
 
 meson --prefix=${PREFIX} \
       --buildtype=release \
