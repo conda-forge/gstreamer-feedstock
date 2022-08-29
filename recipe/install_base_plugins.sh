@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 pushd plugins_base
 
 mkdir build
