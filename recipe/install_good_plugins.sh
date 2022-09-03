@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 pushd plugins_good
 
