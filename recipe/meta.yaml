@@ -62,6 +62,8 @@ outputs:
       summary: Library for constructing graphs of media-handling components
       description:
       doc_source_url: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/docs
+      license: LGPL-2.0-or-later
+      license_file: COPYING
 
   - name: gst-plugins-base
     script: install_base_plugins.sh  # [unix]
@@ -143,6 +145,8 @@ outputs:
         GStreamer plug-ins and elements, spanning the range of possible types of
         elements one would want to write for GStreamer.
       doc_source_url: https://github.com/GStreamer/gst-plugins-base/tree/master/docs
+      license: LGPL-2.0-or-later
+      license_file: COPYING
 
   - name: gst-plugins-good
     script: install_good_plugins.sh  # [unix]
@@ -221,6 +225,8 @@ outputs:
         dressed up in tests.  If you're looking for a role model to
         base your own plug-in on here it is.
       doc_source_url: https://github.com/GStreamer/gst-plugins-good/tree/master/docs
+      license: LGPL-2.0-or-later
+      license_file: COPYING
 
 about:
   home: https://gstreamer.freedesktop.org/
