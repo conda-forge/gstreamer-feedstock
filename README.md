@@ -3,7 +3,7 @@ About gstreamer_and_plugins
 
 Home: 
 
-Package license: 
+Package license: LGPL-2.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gstreamer-feedstock/blob/main/LICENSE.txt)
 
