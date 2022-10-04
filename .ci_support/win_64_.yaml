@@ -10,11 +10,6 @@ glib:
 - '2'
 jpeg:
 - '9'
-pin_run_as_build:
-  jpeg:
-    max_pin: x
-  zlib:
-    max_pin: x.x
 target_platform:
 - win-64
 zlib:
