@@ -26,13 +26,6 @@ jpeg:
 - '9'
 libpng:
 - '1.6'
-pin_run_as_build:
-  jpeg:
-    max_pin: x
-  libpng:
-    max_pin: x.x
-  zlib:
-    max_pin: x.x
 target_platform:
 - linux-aarch64
 zip_keys:

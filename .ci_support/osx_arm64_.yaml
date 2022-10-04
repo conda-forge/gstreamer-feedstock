@@ -20,13 +20,6 @@ libpng:
 - '1.6'
 macos_machine:
 - arm64-apple-darwin20.0.0
-pin_run_as_build:
-  jpeg:
-    max_pin: x
-  libpng:
-    max_pin: x.x
-  zlib:
-    max_pin: x.x
 target_platform:
 - osx-arm64
 zip_keys:
