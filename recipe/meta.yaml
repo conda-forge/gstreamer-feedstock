@@ -1,4 +1,4 @@
-{% set version = "1.21.1" %}
+{% set version = "1.21.2" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -7,18 +7,18 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: 9a41769bcbbb2d5ed015660c3b80902af758a884c4e30592752a3ae27b22307a
+    sha256: 27d7139ff517a52a49b91908e6bb150df930f05c3c0ea7de20624cf7be40f640
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: bcd192f6ca808d94fc5b5d19ffa3d66f179b1a025468cc55e01dfe9ef1c5c584
+    sha256: 1497013105d2fe783818dd6fe7a54f29c211f02c7080d98cbe62ffa847562068
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: 959011ffaea7d4cd4e5433e408544466b4a1ea09676e6bc64f8d36efb01f5605
+    sha256: 9fa448eba2f766d87d4bc776fb7359f0882f66839163e50c926f7a12c0e8e43f
     folder: plugins_good
     patches:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: gstreamer
@@ -111,7 +111,7 @@ outputs:
         - cross-python_{{ target_platform }} 3.10    # [build_platform != target_platform]
       host:
         - python 3.10  # [build_platform != target_platform]
-        - {{ pin_subpackage('gstreamer') }}
+        - {{ pin_subpackage('gstreamer', exact=True) }}
         - glib
         - zlib
         - gettext
@@ -192,8 +192,8 @@ outputs:
         - ninja
       host:
         - python 3.10  # [build_platform != target_platform]
-        - {{ pin_subpackage('gstreamer') }}
-        - {{ pin_subpackage('gst-plugins-base') }}
+        - {{ pin_subpackage('gstreamer', exact=True) }}
+        - {{ pin_subpackage('gst-plugins-base', exact=True) }}
         - glib
         - libxcb                             # [linux]
         - jack >=1.9.7                       # [linux64]
