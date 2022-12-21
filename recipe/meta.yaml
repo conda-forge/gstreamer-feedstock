@@ -28,7 +28,8 @@ outputs:
       activate_in_script: true
       ignore_run_exports:
         # we need cross-python to build, but this isn't a python package
-        - python  # [build_platform != target_platform]
+        - python                              # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
       run_exports:
         # remove symbols at .90 patch releases just before minor versions?
         #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -76,6 +77,7 @@ outputs:
       ignore_run_exports:
         # we need cross-python to build, but this isn't a python package
         - python  # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
       run_exports:
         # remove symbols at .90 patch releases just before minor versions?
         #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -160,6 +162,7 @@ outputs:
       ignore_run_exports:
         # we need cross-python to build, but this isn't a python package
         - python  # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
       run_exports:
         - {{ pin_subpackage('gst-plugins-good', max_pin='x.x') }}
     requirements:
