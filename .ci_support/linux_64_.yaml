@@ -22,6 +22,8 @@ jpeg:
 - '9'
 libpng:
 - '1.6'
+mpg123:
+- '1.31'
 target_platform:
 - linux-64
 zip_keys:
