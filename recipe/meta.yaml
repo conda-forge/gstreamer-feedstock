@@ -1,4 +1,4 @@
-{% set version = "1.21.2" %}
+{% set version = "1.21.3" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -7,12 +7,12 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: 27d7139ff517a52a49b91908e6bb150df930f05c3c0ea7de20624cf7be40f640
+    sha256: 27a75236bce2b10b188fe0c0087c6ceb9ee13c18fe9bf7437e0234a0e4afa226
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: 1497013105d2fe783818dd6fe7a54f29c211f02c7080d98cbe62ffa847562068
+    sha256: 953d507db08d74ab0b4531eed7545a1756c45966237049c06bd7e4e5d5265c6c
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: 9fa448eba2f766d87d4bc776fb7359f0882f66839163e50c926f7a12c0e8e43f
+    sha256: d17dca7a9ddb6b389f8d419834b5bac2ec0c5a5207c25773b1f5a57246282e84
     folder: plugins_good
     patches:
       - jpeg-win.patch  # [win]
@@ -28,7 +28,8 @@ outputs:
       activate_in_script: true
       ignore_run_exports:
         # we need cross-python to build, but this isn't a python package
-        - python  # [build_platform != target_platform]
+        - python                              # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
       run_exports:
         # remove symbols at .90 patch releases just before minor versions?
         #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -76,6 +77,7 @@ outputs:
       ignore_run_exports:
         # we need cross-python to build, but this isn't a python package
         - python  # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
       run_exports:
         # remove symbols at .90 patch releases just before minor versions?
         #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -160,6 +162,7 @@ outputs:
       ignore_run_exports:
         # we need cross-python to build, but this isn't a python package
         - python  # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
       run_exports:
         - {{ pin_subpackage('gst-plugins-good', max_pin='x.x') }}
     requirements:

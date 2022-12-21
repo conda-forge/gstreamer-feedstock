@@ -20,6 +20,8 @@ libpng:
 - '1.6'
 macos_machine:
 - arm64-apple-darwin20.0.0
+mpg123:
+- '1.31'
 target_platform:
 - osx-arm64
 zip_keys:
