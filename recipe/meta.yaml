@@ -1,4 +1,4 @@
-{% set version = "1.21.3" %}
+{% set version = "1.22.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -7,18 +7,18 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: 27a75236bce2b10b188fe0c0087c6ceb9ee13c18fe9bf7437e0234a0e4afa226
+    sha256: 78d21b5469ac93edafc6d8ceb63bc82f6cbbee94d2f866cca6b9252157ee0a09
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: 953d507db08d74ab0b4531eed7545a1756c45966237049c06bd7e4e5d5265c6c
+    sha256: f53672294f3985d56355c8b1df8f6b49c8c8721106563e19f53be3507ff2229d
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: d17dca7a9ddb6b389f8d419834b5bac2ec0c5a5207c25773b1f5a57246282e84
+    sha256: 582e617271e7f314d1a2211e3e3856ae2e4303c8c0d6114e9c4a5ea5719294b0
     folder: plugins_good
     patches:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: gstreamer
@@ -37,6 +37,7 @@ outputs:
 
     requirements:
       build:
+        - sysroot_linux-64 2.17  # [linux64]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - pkg-config
@@ -85,6 +86,7 @@ outputs:
 
     requirements:
       build:
+        - sysroot_linux-64 2.17  # [linux64]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ cdt('libxau-devel') }}          # [linux]
@@ -167,6 +169,7 @@ outputs:
         - {{ pin_subpackage('gst-plugins-good', max_pin='x.x') }}
     requirements:
       build:
+        - sysroot_linux-64 2.17  # [linux64]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ cdt('libxau-devel') }}          # [linux]

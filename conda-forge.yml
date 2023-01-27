@@ -1,5 +1,7 @@
 build_platform:
   osx_arm64: osx_64
+os_version:
+  linux_64: cos7
 conda_forge_output_validation: true
 github:
   branch_name: main
