@@ -1,13 +1,57 @@
-About gstreamer_and_plugins
-===========================
-
-Home: 
-
-Package license: LGPL-2.0-or-later
+About gstreamer_and_plugins-feedstock
+=====================================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gstreamer-feedstock/blob/main/LICENSE.txt)
 
+About gstreamer_and_plugins
+---------------------------
+
+Home: https://gstreamer.freedesktop.org/
+
+Package license: LGPL-2.0-or-later
+
 Summary: Library for constructing graphs of media-handling components
+
+Development: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/
+
+Documentation: https://gstreamer.freedesktop.org/documentation/
+About gstreamer
+---------------
+
+
+
+Package license: LGPL-2.0-or-later
+
+Summary: Library for constructing graphs of media-handling components
+About gst-plugins-base
+----------------------
+
+
+
+Package license: LGPL-2.0-or-later
+
+Summary: GStreamer Base Plug-ins
+
+GStreamer Base Plug-ins is a well-groomed and well-maintained collection of
+GStreamer plug-ins and elements, spanning the range of possible types of
+elements one would want to write for GStreamer.
+
+About gst-plugins-good
+----------------------
+
+
+
+Package license: LGPL-2.0-or-later
+
+Summary: GStreamer Good Plug-ins
+
+GStreamer Good Plug-ins is A collection of plug-ins you'd
+want to have right next to you on the battlefield.
+Shooting sharp and making no mistakes, these plug-ins have it
+all: good looks, good code, and good licensing.  Documented and
+dressed up in tests.  If you're looking for a role model to
+base your own plug-in on here it is.
+
 
 Current build status
 ====================
