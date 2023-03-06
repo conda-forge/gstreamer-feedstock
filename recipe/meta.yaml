@@ -15,10 +15,10 @@ source:
     sha256: 582e617271e7f314d1a2211e3e3856ae2e4303c8c0d6114e9c4a5ea5719294b0
     folder: plugins_good
     patches:
-      - jpeg-win.patch  # [win]
+      - libjpeg-turbo -win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -207,7 +207,7 @@ outputs:
         - mpg123                             # [linux64 or osx]
         - zlib
         - libsoup                            # [not ppc64le]
-        - jpeg
+        - libjpeg-turbo
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
