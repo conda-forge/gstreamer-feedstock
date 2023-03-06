@@ -1,6 +1,6 @@
 build_platform:
-  linux_aarch64: linux_64
-  linux_ppc64le: linux_64
+  linux_aarch64: linux_aarch64
+  linux_ppc64le: linux_ppc64le
   osx_arm64: osx_64
 conda_build:
   pkg_format: '2'
@@ -11,6 +11,6 @@ github:
 os_version:
   linux_64: cos7
 provider:
-  linux_aarch64: default
-  linux_ppc64le: default
+  linux_aarch64: azure
+  linux_ppc64le: azure
 test_on_native_only: true
