@@ -15,7 +15,7 @@ source:
     sha256: 582e617271e7f314d1a2211e3e3856ae2e4303c8c0d6114e9c4a5ea5719294b0
     folder: plugins_good
     patches:
-      - libjpeg-turbo -win.patch  # [win]
+      - jpeg-win.patch  # [win]
 
 build:
   number: 1
