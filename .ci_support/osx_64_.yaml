@@ -14,8 +14,8 @@ cxx_compiler_version:
 - '14'
 glib:
 - '2'
-jpeg:
-- '9'
+libjpeg_turbo:
+- 2.1.4
 libpng:
 - '1.6'
 macos_machine:

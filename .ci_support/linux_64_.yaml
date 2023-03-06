@@ -18,8 +18,8 @@ docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 glib:
 - '2'
-jpeg:
-- '9'
+libjpeg_turbo:
+- 2.1.4
 libpng:
 - '1.6'
 mpg123:
