@@ -8,8 +8,8 @@ cxx_compiler:
 - vs2019
 glib:
 - '2'
-jpeg:
-- '9'
+libjpeg_turbo:
+- 2.1.4
 target_platform:
 - win-64
 zlib:

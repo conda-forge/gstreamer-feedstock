@@ -18,7 +18,7 @@ source:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -207,7 +207,7 @@ outputs:
         - mpg123                             # [linux64 or osx]
         - zlib
         - libsoup                            # [not ppc64le]
-        - jpeg
+        - libjpeg-turbo
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
