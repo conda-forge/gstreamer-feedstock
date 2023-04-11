@@ -9,7 +9,7 @@ cxx_compiler:
 glib:
 - '2'
 libjpeg_turbo:
-- 2.1.5
+- '2'
 target_platform:
 - win-64
 zlib:

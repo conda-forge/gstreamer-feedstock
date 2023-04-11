@@ -19,7 +19,7 @@ docker_image:
 glib:
 - '2'
 libjpeg_turbo:
-- 2.1.5
+- '2'
 libpng:
 - '1.6'
 mpg123:
