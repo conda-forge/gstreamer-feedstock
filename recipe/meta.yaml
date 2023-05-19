@@ -1,4 +1,4 @@
-{% set version = "1.22.0" %}
+{% set version = "1.22.3" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -7,18 +7,18 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: 78d21b5469ac93edafc6d8ceb63bc82f6cbbee94d2f866cca6b9252157ee0a09
+    sha256: 9ffeab95053f9f6995eb3b3da225e88f21c129cd60da002d3f795db70d6d5974
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: f53672294f3985d56355c8b1df8f6b49c8c8721106563e19f53be3507ff2229d
+    sha256: 1c596289a0d4207380233eba8c36a932c4d1aceba19932937d9b57c24cef89f3
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: 582e617271e7f314d1a2211e3e3856ae2e4303c8c0d6114e9c4a5ea5719294b0
+    sha256: af81154b3a2ef3f4d2feba395f25696feea6fd13ec62c92d3c7a973470710273
     folder: plugins_good
     patches:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: gstreamer
