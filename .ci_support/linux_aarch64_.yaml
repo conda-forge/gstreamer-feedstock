@@ -23,7 +23,7 @@ docker_image:
 glib:
 - '2'
 libjpeg_turbo:
-- '2'
+- 2.1.5
 libpng:
 - '1.6'
 target_platform:
