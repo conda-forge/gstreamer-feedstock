@@ -5,7 +5,7 @@ alsa_lib:
 c_compiler:
 - gcc
 c_compiler_version:
-- '11'
+- '12'
 cdt_arch:
 - aarch64
 cdt_name:
@@ -17,13 +17,13 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '11'
+- '12'
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64
 glib:
 - '2'
 libjpeg_turbo:
-- 2.1.5
+- '2'
 libpng:
 - '1.6'
 target_platform:
