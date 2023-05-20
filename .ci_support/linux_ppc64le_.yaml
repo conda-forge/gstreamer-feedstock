@@ -22,6 +22,8 @@ libjpeg_turbo:
 - 2.1.5
 libpng:
 - '1.6'
+libxcb:
+- '1.15'
 target_platform:
 - linux-ppc64le
 zip_keys:
