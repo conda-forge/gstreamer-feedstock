@@ -1,4 +1,4 @@
-{% set version = "1.22.3" %}
+{% set version = "1.22.4" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -7,18 +7,18 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: 9ffeab95053f9f6995eb3b3da225e88f21c129cd60da002d3f795db70d6d5974
+    sha256: 11cb0498bc16b93d8b99d22f75f829b8d0abfd8254840b2120618db5532dc655
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: 1c596289a0d4207380233eba8c36a932c4d1aceba19932937d9b57c24cef89f3
+    sha256: 292424e82dea170528c42b456f62a89532bcabc0508f192e34672fb86f68e5b8
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: af81154b3a2ef3f4d2feba395f25696feea6fd13ec62c92d3c7a973470710273
+    sha256: d7120c1146a9d723d53d5bfe8074da2575a81f0598438752937f39bb7c833b6a
     folder: plugins_good
     patches:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: gstreamer
@@ -53,6 +53,7 @@ outputs:
         - python 3.10  # [build_platform != target_platform]
         - gettext
         - glib
+        - libiconv
       run:
         - {{ pin_compatible("glib") }}  # required for anything that builds against GStreamer, e.g. Qt
     test:
@@ -89,24 +90,14 @@ outputs:
         - sysroot_linux-64 2.17  # [linux64]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ cdt('libxau-devel') }}          # [linux]
-        - {{ cdt('libxext-devel') }}         # [linux]
-        - {{ cdt('libx11-devel') }}          # [linux]
-        - {{ cdt('libxrender-devel') }}      # [linux]
-        - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
         - {{ cdt('mesa-libgl-devel') }}      # [linux]
         - {{ cdt('libdrm-devel') }}          # [linux]
-        - {{ cdt('libxdamage-devel') }}      # [linux]
-        - {{ cdt('libxfixes-devel') }}       # [linux]
-        - {{ cdt('libxxf86vm-devel') }}      # [linux]
         - {{ cdt('mesa-dri-drivers') }}      # [linux]
         # These dependencies are only for cos7 platforms
         - {{ cdt('libglvnd-glx') }}          # [linux & (ppc64le | aarch64)]
         - {{ cdt('libglvnd') }}              # [linux & (ppc64le | aarch64)]
-        - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
+        # - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
         - {{ cdt('mesa-khr-devel') }}        # [linux & (ppc64le | aarch64)]
-        # expat here is _only_ required for mesa-dri-drivers
-        - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
         - pkg-config
         - meson
@@ -119,14 +110,23 @@ outputs:
         - glib
         - zlib
         - gettext
+        - libogg
         - libxcb                             # [linux]
         - libpng                             # [unix]
         - alsa-lib                           # [linux]
         - libopus                            # [unix]
         - libvorbis
+        - xorg-libxfixes                     # [linux]
+        - xorg-libxext                       # [linux]
+        - xorg-xproto                        # [linux]
+        - xorg-libx11                        # [linux]
+        - expat                              # [linux]
+        - xorg-libxrender                    # [linux]
+        - xorg-libxdamage                    # [linux]
+        - xorg-libxxf86vm                    # [linux]
+        - xorg-libxau                        # [linux]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
-        - libpng                             # [unix]
 
     test:
       commands:
@@ -172,24 +172,14 @@ outputs:
         - sysroot_linux-64 2.17  # [linux64]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ cdt('libxau-devel') }}          # [linux]
-        - {{ cdt('libxext-devel') }}         # [linux]
-        - {{ cdt('libx11-devel') }}          # [linux]
-        - {{ cdt('libxrender-devel') }}      # [linux]
-        - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
         - {{ cdt('mesa-libgl-devel') }}      # [linux]
         - {{ cdt('libdrm-devel') }}          # [linux]
-        - {{ cdt('libxdamage-devel') }}      # [linux]
-        - {{ cdt('libxfixes-devel') }}       # [linux]
-        - {{ cdt('libxxf86vm-devel') }}      # [linux]
         - {{ cdt('mesa-dri-drivers') }}      # [linux]
         # These dependencies are only for cos7 platforms
         - {{ cdt('libglvnd-glx') }}          # [linux & (ppc64le | aarch64)]
         - {{ cdt('libglvnd') }}              # [linux & (ppc64le | aarch64)]
-        - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
+        # - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
         - {{ cdt('mesa-khr-devel') }}        # [linux & (ppc64le | aarch64)]
-        # expat here is _only_ required for mesa-dri-drivers
-        - {{ cdt('expat') }}                 # [linux]
         - {{ cdt('libselinux-devel') }}      # [linux]
         # 20221027 - hmaarrfk - needs distutils, which was removed from 3.11
         - cross-python_{{ target_platform }} 3.10    # [build_platform != target_platform]
@@ -200,6 +190,9 @@ outputs:
         - python 3.10  # [build_platform != target_platform]
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
+        - gettext
+        - openssl
+        - libxml2
         - glib
         - libxcb                             # [linux]
         - jack >=1.9.7                       # [linux64]
@@ -208,11 +201,26 @@ outputs:
         - zlib
         - libsoup                            # [not ppc64le]
         - libjpeg-turbo
+        - libpng                             # [unix]
+        - bzip2                              # [linux]
+        - libxml2                            # [linux]
+        - xorg-libxfixes                     # [linux]
+        - xorg-libxext                       # [linux]
+        - xorg-xproto                        # [linux]
+        - xorg-libx11                        # [linux]
+        - expat                              # [linux]
+        - xorg-libxrender                    # [linux]
+        - xorg-libxdamage                    # [linux]
+        - xorg-libxxf86vm                    # [linux]
+        - xorg-libxau                        # [linux]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
         - libsoup                            # [not ppc64le]
         - glib-networking                    # [not ppc64le]
+        - xorg-libxfixes                     # [linux]
+        - xorg-libxdamage                    # [linux]
+
     test:
       commands:
         - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]

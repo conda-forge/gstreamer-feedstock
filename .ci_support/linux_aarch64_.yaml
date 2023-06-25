@@ -1,7 +1,9 @@
 BUILD:
 - aarch64-conda_cos7-linux-gnu
 alsa_lib:
-- 1.2.8
+- 1.2.9
+bzip2:
+- '1'
 c_compiler:
 - gcc
 c_compiler_version:
@@ -20,14 +22,22 @@ cxx_compiler_version:
 - '12'
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64
+expat:
+- '2'
 glib:
 - '2'
+libiconv:
+- '1'
 libjpeg_turbo:
 - 2.1.5
 libpng:
 - '1.6'
 libxcb:
 - '1.15'
+libxml2:
+- '2.10'
+openssl:
+- '3'
 target_platform:
 - linux-aarch64
 zip_keys:
