@@ -31,7 +31,7 @@ libpng:
 libxcb:
 - '1.15'
 libxml2:
-- '2.10'
+- '2.11'
 openssl:
 - '3'
 target_platform:
