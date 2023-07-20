@@ -3,6 +3,7 @@ About gstreamer_and_plugins-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gstreamer-feedstock/blob/main/LICENSE.txt)
 
+
 About gstreamer_and_plugins
 ---------------------------
 
@@ -15,6 +16,7 @@ Summary: Library for constructing graphs of media-handling components
 Development: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/
 
 Documentation: https://gstreamer.freedesktop.org/documentation/
+
 About gstreamer
 ---------------
 
@@ -23,6 +25,7 @@ About gstreamer
 Package license: LGPL-2.0-or-later
 
 Summary: Library for constructing graphs of media-handling components
+
 About gst-plugins-base
 ----------------------
 
@@ -35,6 +38,7 @@ Summary: GStreamer Base Plug-ins
 GStreamer Base Plug-ins is a well-groomed and well-maintained collection of
 GStreamer plug-ins and elements, spanning the range of possible types of
 elements one would want to write for GStreamer.
+
 
 About gst-plugins-good
 ----------------------
