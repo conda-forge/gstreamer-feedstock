@@ -1,5 +1,5 @@
 alsa_lib:
-- 1.2.9
+- 1.2.10
 bzip2:
 - '1'
 c_compiler:
