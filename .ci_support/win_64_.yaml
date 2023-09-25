@@ -11,7 +11,7 @@ glib:
 libiconv:
 - '1'
 libjpeg_turbo:
-- 2.1.5
+- '3'
 libxml2:
 - '2.11'
 openssl:
