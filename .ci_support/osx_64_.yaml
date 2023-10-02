@@ -25,7 +25,7 @@ libxml2:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 mpg123:
-- '1.31'
+- '1.32'
 openssl:
 - '3'
 target_platform:

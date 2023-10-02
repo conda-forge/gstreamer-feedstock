@@ -33,7 +33,7 @@ libxcb:
 libxml2:
 - '2.11'
 mpg123:
-- '1.31'
+- '1.32'
 openssl:
 - '3'
 target_platform:
