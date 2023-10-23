@@ -18,7 +18,7 @@ source:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 2
+  number: 3
 
 outputs:
   - name: gstreamer
@@ -197,6 +197,7 @@ outputs:
         - libxcb                             # [linux]
         - jack >=1.9.7                       # [linux64]
         - lame                               # [unix]
+        - pulseaudio                         # [linux]
         - mpg123                             # [linux64 or osx]
         - zlib
         - libsoup                            # [not ppc64le]
