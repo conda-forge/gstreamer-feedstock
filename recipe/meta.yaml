@@ -142,7 +142,6 @@ outputs:
         - test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}  # [unix]
         - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}  # [unix]
         - test -f $PREFIX/lib/girepository-1.0/GstVideo-1.0.typelib  # [unix]
-        - test -f ${PREFIX}/lib/gstreamer-1.0/libgstpulseaudio.so  # [linux]
         - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
         - gst-inspect-1.0 --plugin volume
@@ -232,6 +231,7 @@ outputs:
         - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}  # [unix]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstmpg123${SHLIB_EXT}  # [linux64 or osx]
         - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
+        - test -f ${PREFIX}/lib/gstreamer-1.0/libgstpulseaudio${SHLIB_EXT}  # [linux]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstalpha.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdebug.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1  # [win]
