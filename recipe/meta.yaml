@@ -197,7 +197,7 @@ outputs:
         - libxcb                             # [linux]
         - jack >=1.9.7                       # [linux64]
         - lame                               # [unix]
-        - pulseaudio                         # [linux]
+        - pulseaudio-client                  # [linux]
         - mpg123                             # [linux64 or osx]
         - zlib
         - libsoup                            # [not ppc64le]
