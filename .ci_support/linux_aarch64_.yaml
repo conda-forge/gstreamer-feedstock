@@ -38,6 +38,8 @@ libxml2:
 - '2.11'
 openssl:
 - '3'
+pulseaudio_client:
+- '16.1'
 target_platform:
 - linux-aarch64
 zip_keys:
