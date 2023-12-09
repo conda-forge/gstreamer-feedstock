@@ -31,7 +31,7 @@ libpng:
 libxcb:
 - '1.15'
 libxml2:
-- '2.11'
+- '2.12'
 mpg123:
 - '1.32'
 openssl:
