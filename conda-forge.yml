@@ -11,6 +11,6 @@ github:
 os_version:
   linux_64: cos7
 provider:
-  linux_aarch64: azure
-  linux_ppc64le: azure
+  linux_aarch64: travis
+  linux_ppc64le: travis
 test_on_native_only: true
