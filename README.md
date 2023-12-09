@@ -61,7 +61,14 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://app.travis-ci.com/conda-forge/gstreamer-feedstock">
+        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/gstreamer-feedstock/main.svg?label=Linux">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -253,7 +260,4 @@ Feedstock Maintainers
 * [@msarahan](https://github.com/msarahan/)
 * [@scopatz](https://github.com/scopatz/)
 * [@tschoonj](https://github.com/tschoonj/)
-
-
-<!-- dummy commit to enable rerendering -->
 
