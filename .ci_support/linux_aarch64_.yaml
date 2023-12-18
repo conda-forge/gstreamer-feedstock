@@ -32,6 +32,8 @@ libjpeg_turbo:
 - '3'
 libpng:
 - '1.6'
+libsoup:
+- '3'
 libxcb:
 - '1.15'
 libxml2:
