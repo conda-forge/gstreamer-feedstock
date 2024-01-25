@@ -23,7 +23,7 @@ libpng:
 libsoup:
 - '3'
 libxml2:
-- '2.12'
+- '2'
 macos_machine:
 - arm64-apple-darwin20.0.0
 mpg123:

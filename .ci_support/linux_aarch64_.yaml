@@ -37,7 +37,7 @@ libsoup:
 libxcb:
 - '1.15'
 libxml2:
-- '2.12'
+- '2'
 openssl:
 - '3'
 pulseaudio_client:
