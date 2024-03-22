@@ -53,7 +53,7 @@ outputs:
       host:
         - python 3.10  # [build_platform != target_platform]
         - gettext
-        - glib  2.78.*
+        - glib  2.80.*
         - libiconv
       run:
         - {{ pin_compatible("glib") }}  # required for anything that builds against GStreamer, e.g. Qt
