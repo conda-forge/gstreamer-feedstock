@@ -53,6 +53,9 @@ outputs:
         - python 3.10  # [build_platform != target_platform]
         - gettext
         - glib
+        # 2024/03 Remove when the following is resolved
+        # https://github.com/conda-forge/glib-feedstock/issues/169
+        - glib !=2.80  # [win]
         - libiconv
       run:
         - {{ pin_compatible("glib") }}  # required for anything that builds against GStreamer, e.g. Qt
@@ -107,6 +110,9 @@ outputs:
       host:
         - python 3.10  # [build_platform != target_platform]
         - {{ pin_subpackage('gstreamer', exact=True) }}
+        # 2024/03 Remove when the following is resolved
+        # https://github.com/conda-forge/glib-feedstock/issues/169
+        - glib !=2.80  # [win]
         - glib
         - zlib
         - gettext
@@ -193,6 +199,9 @@ outputs:
         - gettext
         - openssl
         - libxml2
+        # 2024/03 Remove when the following is resolved
+        # https://github.com/conda-forge/glib-feedstock/issues/169
+        - glib !=2.80  # [win]
         - glib
         - libxcb                             # [linux]
         - jack >=1.9.7                       # [linux64]
