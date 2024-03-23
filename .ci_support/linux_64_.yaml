@@ -1,5 +1,5 @@
 alsa_lib:
-- 1.2.10
+- '1.2'
 bzip2:
 - '1'
 c_compiler:
@@ -39,7 +39,7 @@ mpg123:
 openssl:
 - '3'
 pulseaudio_client:
-- '16.1'
+- '17'
 target_platform:
 - linux-64
 zip_keys:
