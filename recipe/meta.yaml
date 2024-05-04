@@ -1,4 +1,4 @@
-{% set version = "1.24.1" %}
+{% set version = "1.24.3" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -7,18 +7,18 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: 88fc3629a8cacf7955d8671b2ae867d4a52a07b6948daa25b67feed22f8055ef
+    sha256: 1225ef4a329fae1cadc5ec727dab249ad567e8072879493561ceb91ed34aa414
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: 884045d1d7c5d6bb8605e45c7ee0e9f1341888e81c2b7c42dff52bb98ede8ec3
+    sha256: f1094397eaa7932f06e57ebbb075aa33aa2c76e4b75630a16b02c8d4af46832e
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: c02ba5583863e0bd9e265e5e4a27a03a3c473eb9ec1c10b07238f7176d9368a2
+    sha256: 150f914e61dc05600b68b88ca103c7cc227130158e389ea9ea159f4050a2ebb0
     folder: plugins_good
     patches:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: gstreamer
@@ -37,8 +37,8 @@ outputs:
 
     requirements:
       build:
-        - sysroot_linux-64 2.17  # [linux64]
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - pkg-config
         - {{ posix }}bison
@@ -57,7 +57,6 @@ outputs:
         - libiconv
       run:
         - {{ pin_compatible("glib") }}  # required for anything that builds against GStreamer, e.g. Qt
-        - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
     test:
       commands:
         - gst-inspect-1.0 --version
@@ -89,8 +88,8 @@ outputs:
 
     requirements:
       build:
-        - sysroot_linux-64 2.17  # [linux64]
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - {{ cdt('mesa-libgl-devel') }}      # [linux]
         - {{ cdt('libdrm-devel') }}          # [linux]
@@ -172,8 +171,8 @@ outputs:
         - {{ pin_subpackage('gst-plugins-good', max_pin='x.x') }}
     requirements:
       build:
-        - sysroot_linux-64 2.17  # [linux64]
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - {{ cdt('mesa-libgl-devel') }}      # [linux]
         - {{ cdt('libdrm-devel') }}          # [linux]
