@@ -43,7 +43,7 @@ mpg123:
 openssl:
 - '3'
 pulseaudio_client:
-- '17'
+- '17.0'
 target_platform:
 - linux-64
 zip_keys:
