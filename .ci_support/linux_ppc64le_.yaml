@@ -39,7 +39,7 @@ libxml2:
 openssl:
 - '3'
 pulseaudio_client:
-- '17'
+- '17.0'
 target_platform:
 - linux-ppc64le
 zip_keys:
