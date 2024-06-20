@@ -33,7 +33,7 @@ libjpeg_turbo:
 libpng:
 - '1.6'
 libxcb:
-- '1.15'
+- '1.16'
 libxml2:
 - '2'
 openssl:
@@ -48,4 +48,4 @@ zip_keys:
 - - c_stdlib_version
   - cdt_name
 zlib:
-- '1.2'
+- '1'
