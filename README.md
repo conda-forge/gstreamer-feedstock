@@ -255,6 +255,3 @@ Feedstock Maintainers
 * [@scopatz](https://github.com/scopatz/)
 * [@tschoonj](https://github.com/tschoonj/)
 
-
-<!-- dummy commit to enable rerendering -->
-
