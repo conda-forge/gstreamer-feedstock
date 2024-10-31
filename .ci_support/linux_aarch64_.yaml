@@ -39,7 +39,7 @@ libpng:
 libsoup:
 - '3'
 libxcb:
-- '1.16'
+- '1'
 libxml2:
 - '2'
 openssl:
