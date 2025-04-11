@@ -13,7 +13,7 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
   EXTRA_FLAGS="--cross-file $BUILD_PREFIX/meson_cross_file.txt"
 fi
 
-export PKG_CONFIG=$(which pkg-config)
+export PKG_CONFIG=$(which pkgconf)
 
 meson_options=(
       -Dexamples=disabled
