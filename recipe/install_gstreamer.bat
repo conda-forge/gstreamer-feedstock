@@ -8,7 +8,15 @@ set "PKG_CONFIG_PATH=%LIBRARY_LIB%\pkgconfig;%LIBRARY_PREFIX%\share\pkgconfig;%B
 set "LIBRARY_PREFIX_M=%LIBRARY_PREFIX:\=/%"
 
 
-%BUILD_PREFIX%\Scripts\meson.exe setup builddir --wrap-mode=nofallback --buildtype=release --prefix=%LIBRARY_PREFIX_M% --backend=ninja -Dexamples=disabled -Dintrospection=enabled -Dtests=disabled -Dc_link_args=intl.dll.lib
+%BUILD_PREFIX%\Scripts\meson.exe setup builddir ^
+    --wrap-mode=nofallback ^
+    --buildtype=release ^
+    --prefix=%LIBRARY_PREFIX_M% ^
+    --backend=ninja ^
+    -Dexamples=disabled ^
+    -Dintrospection=enabled ^
+    -Dtests=disabled ^
+    -Dc_link_args=intl.dll.lib
 if errorlevel 1 exit 1
 
 ninja -v -C builddir -j %CPU_COUNT%
