@@ -55,6 +55,7 @@ outputs:
         - glib
         - libintl-devel  # [not linux]
         - libiconv
+        - zlib
       run:
         - {{ pin_compatible("glib") }}  # required for anything that builds against GStreamer, e.g. Qt
     test:
