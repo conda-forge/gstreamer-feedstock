@@ -9,9 +9,9 @@ set "LIBRARY_PREFIX_M=%LIBRARY_PREFIX:\=/%"
 
 cd plugins_base
 
-%BUILD_PREFIX%\Scripts\meson.exe setup builddir ^
+meson setup builddir ^
+    %MESON_ARGS% ^
     --wrap-mode=nofallback ^
-    --buildtype=release ^
     --prefix=%LIBRARY_PREFIX_M% ^
     --backend=ninja ^
     -Dexamples=disabled ^

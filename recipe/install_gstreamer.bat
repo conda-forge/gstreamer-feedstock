@@ -8,9 +8,9 @@ set "PKG_CONFIG_PATH=%LIBRARY_LIB%\pkgconfig;%LIBRARY_PREFIX%\share\pkgconfig;%B
 set "LIBRARY_PREFIX_M=%LIBRARY_PREFIX:\=/%"
 
 
-%BUILD_PREFIX%\Scripts\meson.exe setup builddir ^
+meson setup builddir ^
+    %MESON_ARGS% ^
     --wrap-mode=nofallback ^
-    --buildtype=release ^
     --prefix=%LIBRARY_PREFIX_M% ^
     --backend=ninja ^
     -Dexamples=disabled ^
