@@ -1,4 +1,4 @@
-{% set version = "1.24.7" %}
+{% set version = "1.24.11" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -7,12 +7,12 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: c0e75b124c52bb7a0c3dcdb734b2ad260ea7286a8745cf2ea629d4c849e6a958
+    sha256: 093a379602a250d5cd33b88e723757c80198317efde33893edf3c87b6e53b907
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: 1528d1746a393299f5ac17ebf13a32a660202f1e29d0a852a2250f6a059a2fda
+    sha256: 98572c1f8b710e52673e250cd96e4f2660d79bd66aa172c5dde5f690c1231e1d
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: 759acb11e6de8373ff8cbb5e7ab8eb9a38631be81cf24220267b001eb55593c1
+    sha256: 94bf3b5118dd4213af66048faac830569cc9a94a8c8e59e8a6d33b315f518462
     folder: plugins_good
     patches:
       - jpeg-win.patch  # [win]
@@ -38,7 +38,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ stdlib("c") }}
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - pkg-config
         - {{ posix }}bison
@@ -55,6 +55,7 @@ outputs:
         - glib
         - libintl-devel  # [not linux]
         - libiconv
+        - zlib
       run:
         - {{ pin_compatible("glib") }}  # required for anything that builds against GStreamer, e.g. Qt
     test:
@@ -89,17 +90,8 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ stdlib("c") }}
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
-        - {{ cdt('mesa-libgl-devel') }}      # [linux]
-        - {{ cdt('libdrm-devel') }}          # [linux]
-        - {{ cdt('mesa-dri-drivers') }}      # [linux]
-        # These dependencies are only for cos7 platforms
-        - {{ cdt('libglvnd-glx') }}          # [linux & (ppc64le | aarch64)]
-        - {{ cdt('libglvnd') }}              # [linux & (ppc64le | aarch64)]
-        # - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
-        - {{ cdt('mesa-khr-devel') }}        # [linux & (ppc64le | aarch64)]
-        - {{ cdt('libselinux-devel') }}      # [linux]
         - pkg-config
         - meson
         - ninja
@@ -107,6 +99,9 @@ outputs:
         - gobject-introspection
         - cross-python_{{ target_platform }} 3.10    # [build_platform != target_platform]
       host:
+        - libgl-devel                        # [linux]
+        - libegl-devel                       # [linux]
+        - libdrm                             # [linux]
         - python 3.10  # [build_platform != target_platform]
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - glib
@@ -118,15 +113,16 @@ outputs:
         - alsa-lib                           # [linux]
         - libopus                            # [unix]
         - libvorbis
+        - expat                              # [linux]
         - xorg-libxfixes                     # [linux]
         - xorg-libxext                       # [linux]
-        - xorg-xproto                        # [linux]
+        - xorg-xorgproto                     # [linux]
         - xorg-libx11                        # [linux]
-        - expat                              # [linux]
         - xorg-libxrender                    # [linux]
         - xorg-libxdamage                    # [linux]
         - xorg-libxxf86vm                    # [linux]
         - xorg-libxau                        # [linux]
+        - xorg-libxshmfence                  # [linux]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
 
@@ -172,17 +168,8 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ stdlib("c") }}
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
-        - {{ cdt('mesa-libgl-devel') }}      # [linux]
-        - {{ cdt('libdrm-devel') }}          # [linux]
-        - {{ cdt('mesa-dri-drivers') }}      # [linux]
-        # These dependencies are only for cos7 platforms
-        - {{ cdt('libglvnd-glx') }}          # [linux & (ppc64le | aarch64)]
-        - {{ cdt('libglvnd') }}              # [linux & (ppc64le | aarch64)]
-        # - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
-        - {{ cdt('mesa-khr-devel') }}        # [linux & (ppc64le | aarch64)]
-        - {{ cdt('libselinux-devel') }}      # [linux]
         # 20221027 - hmaarrfk - needs distutils, which was removed from 3.11
         - cross-python_{{ target_platform }} 3.10    # [build_platform != target_platform]
         - pkg-config
@@ -190,6 +177,9 @@ outputs:
         - ninja
         - gettext-tools
       host:
+        - libgl-devel                        # [linux]
+        - libegl-devel                       # [linux]
+        - libdrm                             # [linux]
         - python 3.10  # [build_platform != target_platform]
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
@@ -208,15 +198,16 @@ outputs:
         - libpng                             # [unix]
         - bzip2                              # [linux]
         - libxml2                            # [linux]
+        - expat                              # [linux]
+        - xorg-xorgproto                     # [linux]
         - xorg-libxfixes                     # [linux]
         - xorg-libxext                       # [linux]
-        - xorg-xproto                        # [linux]
         - xorg-libx11                        # [linux]
-        - expat                              # [linux]
         - xorg-libxrender                    # [linux]
         - xorg-libxdamage                    # [linux]
         - xorg-libxxf86vm                    # [linux]
         - xorg-libxau                        # [linux]
+        - xorg-libxshmfence                  # [linux]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
