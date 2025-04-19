@@ -39,7 +39,7 @@ libsoup:
 libxcb:
 - '1'
 libxml2:
-- '2'
+- '2.13'
 mpg123:
 - '1.32'
 openssl:

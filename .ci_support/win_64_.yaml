@@ -19,7 +19,7 @@ libjpeg_turbo:
 libsoup:
 - '3'
 libxml2:
-- '2'
+- '2.13'
 openssl:
 - '3'
 target_platform:
