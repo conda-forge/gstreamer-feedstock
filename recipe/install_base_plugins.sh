@@ -12,9 +12,18 @@ EXTRA_FLAGS="-Dintrospection=enabled"
 if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
   # Use Meson cross-file flag to enable cross compilation
   EXTRA_FLAGS="--cross-file $BUILD_PREFIX/meson_cross_file.txt -Dintrospection=disabled"
+  if [[ "${target_platform}" == "osx-arm64" ]]; then
+      echo "objcpp = '${CXX}'" >> ${BUILD_PREFIX}/meson_cross_file.txt
+      cat ${BUILD_PREFIX}/meson_cross_file.txt
+  fi
 fi
 
-export PKG_CONFIG=$(which pkgconf)
+if [[ "${target_platform}" == "osx-"* ]]; then
+    export OBJCXX=${CXX}
+    export OBJCXX_FOR_BUILD=${CXX_FOR_BUILD}
+fi
+
+export PKG_CONFIG=$(which pkg-config)
 
 meson_options=(
       -Dgl=enabled
@@ -29,9 +38,7 @@ if [ -n "$OSX_ARCH" ] ; then
 	meson_options+=(-Dxshm=disabled)
 fi
 
-meson --prefix=${PREFIX} \
-      --libdir=$PREFIX/lib \
-      --buildtype=release \
+meson ${MESON_ARGS} \
       $EXTRA_FLAGS \
       --wrap-mode=nofallback \
       "${meson_options[@]}" \
