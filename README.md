@@ -17,15 +17,6 @@ Development: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/
 
 Documentation: https://gstreamer.freedesktop.org/documentation/
 
-About gstreamer
----------------
-
-
-
-Package license: LGPL-2.0-or-later
-
-Summary: Library for constructing graphs of media-handling components
-
 About gst-plugins-base
 ----------------------
 
@@ -56,6 +47,15 @@ all: good looks, good code, and good licensing.  Documented and
 dressed up in tests.  If you're looking for a role model to
 base your own plug-in on here it is.
 
+
+About gstreamer
+---------------
+
+
+
+Package license: LGPL-2.0-or-later
+
+Summary: Library for constructing graphs of media-handling components
 
 Current build status
 ====================
