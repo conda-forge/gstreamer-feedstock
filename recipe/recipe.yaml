@@ -1,0 +1,306 @@
+context:
+  version: "1.26.2"
+  posix: ${{ "m2-" if win else "" }}
+
+recipe:
+  name: gstreamer_and_plugins
+  version: ${{ version }}
+
+source:
+  - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${{ version }}.tar.xz
+    sha256: f75334a3dff497c240844304a60015145792ecc3b6b213ac19841ccbd6fdf0ad
+  - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-${{ version }}.tar.xz
+    sha256: f4b9fc0be852fe5f65401d18ae6218e4aea3ff7a3c9f8d265939b9c4704915f7
+    target_directory: plugins_base
+  - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${{ version }}.tar.xz
+    sha256: d864b9aec28c3a80895468c909dd303e5f22f92d6e2b1137f80e2a1454584339
+    target_directory: plugins_good
+    patches:
+      - jpeg-win.patch  # [win]
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: gstreamer
+    build:
+      script: install_gstreamer
+
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - pkg-config
+        - ${{ posix }}bison
+        - ${{ posix }}flex
+        - meson
+        - ninja
+        - gettext-tools
+        - gobject-introspection
+      host:
+        - glib
+        - libiconv
+        - zlib
+        - if: not linux
+          then:
+            - libintl-devel
+
+      ignore_run_exports:
+        by_name: 
+          # we need cross-python to build, but this isn't a python package
+          - python
+          - python_abi
+      run_exports:
+        # remove symbols at .90 patch releases just before minor versions?
+        # https://abi-laboratory.pro/tracker/timeline/gstreamer/
+        - ${{ pin_subpackage('gstreamer', upper_bound='x.x') }}
+
+      run:
+        - ${{ pin_compatible("glib") }}  # required for anything that builds against GStreamer, e.g. Qt
+    tests:
+      - package_contents:
+          lib:
+            - gstbase-1.0
+            - gstcheck-1.0
+          include:
+            - gstreamer-1.0/gst/gst.h
+            - gstreamer-1.0/gst/gstversion.h
+            - gstreamer-1.0/gst/check/gstcheck.h
+          files:
+            - "**/lib/girepository-1.0/Gst-1.0.typelib"
+            - "**/lib/girepository-1.0/GstCheck-1.0.typelib"
+
+      - script:
+        - gst-inspect-1.0 --version
+        - gst-launch-1.0  --version
+        - gst-stats-1.0 --version
+        - gst-typefind-1.0 --version
+
+    about:
+      summary: Library for constructing graphs of media-handling components
+      license: LGPL-2.0-or-later
+      license_file: COPYING
+
+  - package:
+      name: gst-plugins-base
+    build:
+      script: install_base_plugins
+      # activate_in_script: true
+
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - pkg-config
+        - meson
+        - ninja
+        - gettext-tools
+        - gobject-introspection
+      host:
+        - ${{ pin_subpackage('gstreamer', exact=True) }}
+        - glib
+        - zlib
+        - libogg
+        - libvorbis
+
+        - if: not linux
+          then:
+            - libintl-devel
+        - if: unix
+          then:
+            - libpng
+            - libopus
+        - if: linux
+          then:
+            - libxcb
+            - alsa-lib
+            - libgl-devel
+            - libegl-devel
+            - libdrm
+            - expat
+            - xorg-libxfixes
+            - xorg-libxext
+            - xorg-xorgproto
+            - xorg-libx11
+            - xorg-libxrender
+            - xorg-libxdamage
+            - xorg-libxxf86vm
+            - xorg-libxau
+            - xorg-libxshmfence
+
+      run:
+        - ${{ pin_subpackage('gstreamer', exact=True) }}
+
+      run_exports:
+        # remove symbols at .90 patch releases just before minor versions?
+        #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
+        - ${{ pin_subpackage('gst-plugins-base', upper_bound='x.x') }}
+
+    # tests:
+      # - script:
+        # - test -f $PREFIX/lib/libgstallocators-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgstapp-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgstaudio-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgstfft-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgstpbutils-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgstriff-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgstrtp-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgstrtsp-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgstsdp-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/girepository-1.0/GstVideo-1.0.typelib  # [unix]
+        # - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
+        # - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
+        # - gst-inspect-1.0 --plugin volume
+
+    about:
+      summary: GStreamer Base Plug-ins
+      description: |
+        GStreamer Base Plug-ins is a well-groomed and well-maintained collection of
+        GStreamer plug-ins and elements, spanning the range of possible types of
+        elements one would want to write for GStreamer.
+      license: LGPL-2.0-or-later
+      license_file: COPYING
+
+  - package:
+      name: gst-plugins-good
+    build:
+      script: install_good_plugins
+
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - pkg-config
+        - meson
+        - ninja
+        - gettext-tools
+      host:
+        # - ${{ pin_subpackage('gstreamer', exact=True) }}
+        # - ${{ pin_subpackage('gst-plugins-base', exact=True) }}
+        - gstreamer
+        - gst-plugins-base
+
+        - openssl
+        - libxml2
+        - glib
+        - zlib
+        - libjpeg-turbo
+
+        - ${{ "libsoup" if not ppc64le }}
+        - ${{ "libintl-devel" if not linux }}
+
+        - if: unix
+          then:
+            - lame
+            - libpng
+            - mpg123
+
+        - if: linux
+          then:
+            - pulseaudio-client
+            - libgl-devel
+            - libegl-devel
+            - libdrm
+            - libxcb
+            - jack >=1.9.7
+            - bzip2
+            - libxml2
+            - expat
+            - xorg-xorgproto
+            - xorg-libxfixes
+            - xorg-libxext
+            - xorg-libx11
+            - xorg-libxrender
+            - xorg-libxdamage
+            - xorg-libxxf86vm
+            - xorg-libxau
+            - xorg-libxshmfence
+
+      ignore_run_exports:
+        from_package:
+          - python
+
+      run_exports:
+        - ${{ pin_subpackage('gst-plugins-good', upper_bound='x.x') }}
+
+      run:
+        # - ${{ pin_subpackage('gstreamer', exact=True) }}
+        # - ${{ pin_subpackage('gst-plugins-base', exact=True) }}
+
+        - gstreamer
+        - gst-plugins-base
+        
+        - if: not ppc64le
+          then:
+            - libsoup
+            - glib-networking
+        - if: linux
+          then:
+            - xorg-libxfixes
+            - xorg-libxdamage
+
+    tests:
+      - package_contents:
+          lib:
+            - gstalpha
+            # - gstreamer-1.0/libgstalpha.*
+            # - gstreamer-1.0/libgstdebug.*
+            # - gstreamer-1.0/libgstjpeg${SHLIB_EXT}  # [unix]
+            # - gstreamer-1.0/libgstlame${SHLIB_EXT}  # [unix]
+            # - gstreamer-1.0/libgstmpg123${SHLIB_EXT}  # [linux64 or osx]
+            # - gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
+            - if: linux
+              then:
+                - gstreamer-1.0/libgstpulseaudio.so
+                - gstreamer-1.0/libgstjack.so
+
+      - script:
+        # - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/gstreamer-1.0/libgstjack${SHLIB_EXT}  # [linux64]
+        # - test -f $PREFIX/lib/gstreamer-1.0/libgstjpeg${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}  # [unix]
+        # - test -f $PREFIX/lib/gstreamer-1.0/libgstmpg123${SHLIB_EXT}  # [linux64 or osx]
+        # - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
+        # - test -f ${PREFIX}/lib/gstreamer-1.0/libgstpulseaudio${SHLIB_EXT}  # [linux]
+        # - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstalpha.dll exit 1  # [win]
+        # - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdebug.dll exit 1  # [win]
+        # - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1  # [win]
+        # - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1  # [win]
+        - gst-inspect-1.0 --plugin alpha
+
+    about:
+      summary: GStreamer Good Plug-ins
+      description: |
+        GStreamer Good Plug-ins is A collection of plug-ins you'd
+        want to have right next to you on the battlefield.
+        Shooting sharp and making no mistakes, these plug-ins have it
+        all: good looks, good code, and good licensing.  Documented and
+        dressed up in tests.  If you're looking for a role model to
+        base your own plug-in on here it is.
+      license: LGPL-2.0-or-later
+      license_file: COPYING
+
+about:
+  homepage: https://gstreamer.freedesktop.org/
+  summary: Library for constructing graphs of media-handling components
+  license: LGPL-2.0-or-later
+  license_file: COPYING
+  documentation: https://gstreamer.freedesktop.org/documentation/
+  repository: https://cgit.freedesktop.org/gstreamer/gstreamer/
+
+extra:
+  recipe-maintainers:
+    - hmaarrfk
+    - andfoy
+    - ccordoba12
+    - mingwandroid
+    - msarahan
+    - tschoonj
+    - scopatz
