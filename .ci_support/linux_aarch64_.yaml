@@ -26,7 +26,7 @@ expat:
 - '2'
 glib:
 - '2'
-gstreamer:
+gst_plugins_base:
 - '1.24'
 libiconv:
 - '1'
@@ -40,6 +40,8 @@ libxcb:
 - '1'
 libxml2:
 - '2.13'
+mpg123:
+- '1.32'
 openssl:
 - '3'
 pulseaudio_client:
