@@ -10,7 +10,7 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/
 EXTRA_FLAGS="-Dintrospection=enabled"
 if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
   # Use Meson cross-file flag to enable cross compilation
-  EXTRA_FLAGS="--cross-file $BUILD_PREFIX/meson_cross_file.txt -Dintrospection=disabled"
+  EXTRA_FLAGS="--cross-file $BUILD_PREFIX/meson_cross_file.txt -Dintrospection=enabled"
   if [[ "${target_platform}" == "osx-arm64" ]]; then
       echo "objcpp = '${CXX}'" >> ${BUILD_PREFIX}/meson_cross_file.txt
       cat ${BUILD_PREFIX}/meson_cross_file.txt
