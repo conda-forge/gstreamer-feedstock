@@ -16,7 +16,7 @@ source:
     sha256: d864b9aec28c3a80895468c909dd303e5f22f92d6e2b1137f80e2a1454584339
     target_directory: plugins_good
     patches:
-      - jpeg-win.patch  # [win]
+      - jpeg-win.patch # [win]
 
 build:
   number: 0
@@ -52,7 +52,7 @@ outputs:
             - libintl-devel
 
       ignore_run_exports:
-        by_name: 
+        by_name:
           # we need cross-python to build, but this isn't a python package
           - python
           - python_abi
@@ -62,7 +62,7 @@ outputs:
         - ${{ pin_subpackage('gstreamer', upper_bound='x.x') }}
 
       run:
-        - ${{ pin_compatible("glib") }}  # required for anything that builds against GStreamer, e.g. Qt
+        - ${{ pin_compatible("glib") }} # required for anything that builds against GStreamer, e.g. Qt
     tests:
       - package_contents:
           lib:
@@ -77,10 +77,10 @@ outputs:
             - "**/lib/girepository-1.0/GstCheck-1.0.typelib"
 
       - script:
-        - gst-inspect-1.0 --version
-        - gst-launch-1.0  --version
-        - gst-stats-1.0 --version
-        - gst-typefind-1.0 --version
+          - gst-inspect-1.0 --version
+          - gst-launch-1.0  --version
+          - gst-stats-1.0 --version
+          - gst-typefind-1.0 --version
 
     about:
       summary: Library for constructing graphs of media-handling components
@@ -143,23 +143,26 @@ outputs:
         #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
         - ${{ pin_subpackage('gst-plugins-base', upper_bound='x.x') }}
 
-    # tests:
-      # - script:
-        # - test -f $PREFIX/lib/libgstallocators-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgstapp-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgstaudio-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgstfft-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgstpbutils-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgstriff-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgstrtp-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgstrtsp-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgstsdp-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/girepository-1.0/GstVideo-1.0.typelib  # [unix]
-        # - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
-        # - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
-        # - gst-inspect-1.0 --plugin volume
+    tests:
+      - package_contents:
+          lib:
+            - if: unix
+              then:
+                - gstreamer-1.0/libgstapp-1.0.*
+                - gstreamer-1.0/libgstaudio-1.0.*
+                - gstreamer-1.0/libgstfft-1.0.*
+                - gstreamer-1.0/libgstpbutils-1.0.*
+                - gstreamer-1.0/libgstriff-1.0.*
+                - gstreamer-1.0/libgstrtp-1.0.*
+                - gstreamer-1.0/libgstrtsp-1.0.*
+                - gstreamer-1.0/libgstsdp-1.0.*
+                - gstreamer-1.0/libgsttag-1.0.*
+                - gstreamer-1.0/libgstvideo-1.0.*
+
+            - gstreamer-1.0/${{ "lib" if unix }}gstallocators-1.0.*
+            - girepository-1.0/GstVideo-1.0.typelib
+      - script:
+          - gst-inspect-1.0 --plugin volume
 
     about:
       summary: GStreamer Base Plug-ins
@@ -185,6 +188,7 @@ outputs:
         - ninja
         - gettext-tools
       host:
+        # TODO pin_subpackage not working here with `conda-smithy`
         # - ${{ pin_subpackage('gstreamer', exact=True) }}
         # - ${{ pin_subpackage('gst-plugins-base', exact=True) }}
         - gstreamer
@@ -252,32 +256,18 @@ outputs:
     tests:
       - package_contents:
           lib:
-            - gstalpha
-            # - gstreamer-1.0/libgstalpha.*
-            # - gstreamer-1.0/libgstdebug.*
-            # - gstreamer-1.0/libgstjpeg${SHLIB_EXT}  # [unix]
-            # - gstreamer-1.0/libgstlame${SHLIB_EXT}  # [unix]
-            # - gstreamer-1.0/libgstmpg123${SHLIB_EXT}  # [linux64 or osx]
-            # - gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
+            - gstreamer-1.0/${{ "lib" if unix }}gstalpha.*
+            - gstreamer-1.0/${{ "lib" if unix }}gstdebug.*
+            - gstreamer-1.0/${{ "lib" if unix }}gstjpeg.*
+            - gstreamer-1.0/${{ "lib" if unix }}gstlame.*
+            - gstreamer-1.0/${{ "lib" if unix }}gstmpg123.*
+            - gstreamer-1.0/${{ "lib" if unix }}gstspectrum.*
             - if: linux
               then:
                 - gstreamer-1.0/libgstpulseaudio.so
                 - gstreamer-1.0/libgstjack.so
-
       - script:
-        # - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/gstreamer-1.0/libgstjack${SHLIB_EXT}  # [linux64]
-        # - test -f $PREFIX/lib/gstreamer-1.0/libgstjpeg${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}  # [unix]
-        # - test -f $PREFIX/lib/gstreamer-1.0/libgstmpg123${SHLIB_EXT}  # [linux64 or osx]
-        # - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}  # [unix]
-        # - test -f ${PREFIX}/lib/gstreamer-1.0/libgstpulseaudio${SHLIB_EXT}  # [linux]
-        # - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstalpha.dll exit 1  # [win]
-        # - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdebug.dll exit 1  # [win]
-        # - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1  # [win]
-        # - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1  # [win]
-        - gst-inspect-1.0 --plugin alpha
+          - gst-inspect-1.0 --plugin alpha
 
     about:
       summary: GStreamer Good Plug-ins
