@@ -14,6 +14,9 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
   if [[ "${target_platform}" == "osx-arm64" ]]; then
       echo "objcpp = '${CXX}'" >> ${BUILD_PREFIX}/meson_cross_file.txt
       cat ${BUILD_PREFIX}/meson_cross_file.txt
+
+      rm $PREFIX/bin/glib-mkenums
+      ln -s $BUILD_PREFIX/bin/glib-mkenums $PREFIX/bin/glib-mkenums
   fi
 fi
 if [[ "${target_platform}" == "osx-"* ]]; then
