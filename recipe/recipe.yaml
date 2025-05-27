@@ -20,6 +20,7 @@ source:
 
 build:
   number: 0
+  skip: not osx-arm64
 
 outputs:
   - package:
@@ -39,6 +40,9 @@ outputs:
         - ninja
         - gettext-tools
         - gobject-introspection
+
+        # we need glib-mkenums
+        - ${{ "glib" if build_platform != target_platform }}
       host:
         - glib
         - libiconv
@@ -235,7 +239,7 @@ outputs:
 
         - gstreamer
         - gst-plugins-base
-        
+
         - if: not ppc64le
           then:
             - libsoup
