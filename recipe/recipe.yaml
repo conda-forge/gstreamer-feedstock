@@ -47,6 +47,7 @@ outputs:
         - glib
         - libiconv
         - zlib
+        - gobject-introspection
         - if: not linux
           then:
             - libintl-devel
