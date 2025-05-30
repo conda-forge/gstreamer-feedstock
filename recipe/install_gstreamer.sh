@@ -19,6 +19,7 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
       ln -s $BUILD_PREFIX/bin/glib-mkenums $PREFIX/bin/glib-mkenums
   fi
 fi
+
 if [[ "${target_platform}" == "osx-"* ]]; then
     export OBJCXX=${CXX}
     export OBJCXX_FOR_BUILD=${CXX_FOR_BUILD}
@@ -39,3 +40,12 @@ ninja install
 # remove gdb files
 rm -rf $PREFIX/share/gdb
 rm -rf $PREFIX/share/gstreamer-1.0/gdb
+
+# check if an arm64 file
+file $PREFIX/bin/gst-inspect-1.0
+
+otool -l $PREFIX/bin/gst-inspect-1.0
+otool -L $PREFIX/bin/gst-inspect-1.0
+
+# print more debug info about the file
+$PREFIX/bin/gst-inspect-1.0 --version
