@@ -24,7 +24,7 @@ jobs:
           - CONFIG: osx_arm64_
             UPLOAD_PACKAGES: True
             os: macos
-            runs_on: ['cirun-macos-m4-large--${{ github.run_id }}-osx_arm64_', 'osx', 'arm64']
+            runs_on: ['cirun-macos-m4-large--${{ github.run_id }}-osx_arm64_', 'macOS', 'arm64', 'self-hosted']
     steps:
 
     - name: Checkout code
@@ -43,8 +43,10 @@ jobs:
         STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
       shell: bash
       run: |
-        echo "::group::Configure binfmt_misc"
-        docker run --rm --privileged multiarch/qemu-user-static:register --reset --credential yes
+        if [[ "$(uname -m)" == "x86_64" ]]; then
+          echo "::group::Configure binfmt_misc"
+          docker run --rm --privileged multiarch/qemu-user-static:register --reset --credential yes
+        fi
         export flow_run_id="github_$GITHUB_RUN_ID"
         export remote_url="https://github.com/$GITHUB_REPOSITORY"
         export sha="$GITHUB_SHA"
