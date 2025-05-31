@@ -80,6 +80,10 @@ outputs:
             - "**/lib/girepository-1.0/GstCheck-1.0.typelib"
 
       - script:
+          - export GST_VAAPI_ALL_DRIVERS=0
+          - export GST_GL_PLATFORM=glx
+          - export GST_GL_API=opengl
+
           - gst-inspect-1.0 --version
           - gst-launch-1.0  --version
           - gst-stats-1.0 --version
