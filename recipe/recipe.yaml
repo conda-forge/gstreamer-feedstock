@@ -80,9 +80,11 @@ outputs:
             - "**/lib/girepository-1.0/GstCheck-1.0.typelib"
 
       - script:
-          - export GST_VAAPI_ALL_DRIVERS=0
-          - export GST_GL_PLATFORM=glx
-          - export GST_GL_API=opengl
+          - if: target_platform == "osx-arm64"
+            then:
+              - export GST_VAAPI_ALL_DRIVERS=0
+              - export GST_GL_PLATFORM=glx
+              - export GST_GL_API=opengl
 
           - gst-inspect-1.0 --version
           - gst-launch-1.0  --version
@@ -96,6 +98,7 @@ outputs:
 
   - package:
       name: gst-plugins-base
+
     build:
       script: install_base_plugins
       # activate_in_script: true
@@ -151,24 +154,29 @@ outputs:
         - ${{ pin_subpackage('gst-plugins-base', upper_bound='x.x') }}
 
     tests:
-      # - package_contents:
-      #     lib:
-      #       - if: unix
-      #         then:
-      #           - gstreamer-1.0/libgstapp-1.0.*
-      #           - gstreamer-1.0/libgstaudio-1.0.*
-      #           - gstreamer-1.0/libgstfft-1.0.*
-      #           - gstreamer-1.0/libgstpbutils-1.0.*
-      #           - gstreamer-1.0/libgstriff-1.0.*
-      #           - gstreamer-1.0/libgstrtp-1.0.*
-      #           - gstreamer-1.0/libgstrtsp-1.0.*
-      #           - gstreamer-1.0/libgstsdp-1.0.*
-      #           - gstreamer-1.0/libgsttag-1.0.*
-      #           - gstreamer-1.0/libgstvideo-1.0.*
+      - package_contents:
+          lib:
+            - if: unix
+              then:
+                - gstreamer-1.0/libgstapp-1.0.*
+                - gstreamer-1.0/libgstaudio-1.0.*
+                - gstreamer-1.0/libgstfft-1.0.*
+                - gstreamer-1.0/libgstpbutils-1.0.*
+                - gstreamer-1.0/libgstriff-1.0.*
+                - gstreamer-1.0/libgstrtp-1.0.*
+                - gstreamer-1.0/libgstrtsp-1.0.*
+                - gstreamer-1.0/libgstsdp-1.0.*
+                - gstreamer-1.0/libgsttag-1.0.*
+                - gstreamer-1.0/libgstvideo-1.0.*
 
-      #       - gstreamer-1.0/${{ "lib" if unix }}gstallocators-1.0.*
-      #       - girepository-1.0/GstVideo-1.0.typelib
+            - gstreamer-1.0/${{ "lib" if unix }}gstallocators-1.0.*
+            - girepository-1.0/GstVideo-1.0.typelib
       - script:
+          - if: target_platform == "osx-arm64"
+            then:
+              - export GST_VAAPI_ALL_DRIVERS=0
+              - export GST_GL_PLATFORM=glx
+              - export GST_GL_API=opengl
           - gst-inspect-1.0 --plugin volume
 
     about:
@@ -245,8 +253,8 @@ outputs:
         - ${{ pin_subpackage('gst-plugins-good', upper_bound='x.x') }}
 
       run:
-        # - ${{ pin_subpackage('gstreamer', exact=True) }}
-        # - ${{ pin_subpackage('gst-plugins-base', exact=True) }}
+        - ${{ pin_subpackage('gstreamer', exact=True) }}
+        - ${{ pin_subpackage('gst-plugins-base', exact=True) }}
 
         - if: not ppc64le
           then:
