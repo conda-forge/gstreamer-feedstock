@@ -21,7 +21,7 @@ source:
 
 build:
   number: 0
-  skip: not target_platform == "osx-arm64"
+  skip: not osx
 
 outputs:
   - package:

@@ -3,3 +3,5 @@ MACOSX_SDK_VERSION:            # [osx]
   - '12.3'                     # [osx]
 github_actions_labels:          # [osx and arm64]
 - cirun-macos-m4-large          # [osx and arm64]
+# CONDA_BUILD_SYSROOT:
+#   - "/Users/wolfv/sdk/MacOSX12.3.sdk"
