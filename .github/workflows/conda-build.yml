@@ -24,7 +24,7 @@ jobs:
           - CONFIG: osx_arm64_
             UPLOAD_PACKAGES: True
             os: macos
-            runs_on: ['cirun-macos-m4-large--${{ github.run_id }}-osx_arm64_', 'macOS', 'arm64', 'self-hosted']
+            runs_on: ['cirun-macos-m4-large--${{ github.run_id }}-osx_arm64_', 'osx', 'arm64']
     steps:
 
     - name: Checkout code

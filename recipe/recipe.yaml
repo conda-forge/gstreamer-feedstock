@@ -244,9 +244,6 @@ outputs:
         # - ${{ pin_subpackage('gstreamer', exact=True) }}
         # - ${{ pin_subpackage('gst-plugins-base', exact=True) }}
 
-        - gstreamer
-        - gst-plugins-base
-
         - if: not ppc64le
           then:
             - libsoup
