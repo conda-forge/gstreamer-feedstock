@@ -48,5 +48,9 @@ file $PREFIX/bin/gst-inspect-1.0
 otool -l $PREFIX/bin/gst-inspect-1.0
 otool -L $PREFIX/bin/gst-inspect-1.0
 
+export GST_VAAPI_ALL_DRIVERS=0
+export GST_GL_PLATFORM=glx
+export GST_GL_API=opengl
+
 # print more debug info about the file
 $PREFIX/bin/gst-inspect-1.0 --version
