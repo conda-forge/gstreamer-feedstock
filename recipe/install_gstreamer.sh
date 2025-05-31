@@ -8,17 +8,18 @@ pushd build
 export XDG_DATA_DIRS=${XDG_DATA_DIRS}:$PREFIX/share:$BUILD_PREFIX/share
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/pkgconfig
 EXTRA_FLAGS="-Dintrospection=enabled"
-if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
-  # Use Meson cross-file flag to enable cross compilation
-  EXTRA_FLAGS="--cross-file $BUILD_PREFIX/meson_cross_file.txt -Dintrospection=enabled"
-  if [[ "${target_platform}" == "osx-arm64" ]]; then
-      echo "objcpp = '${CXX}'" >> ${BUILD_PREFIX}/meson_cross_file.txt
-      cat ${BUILD_PREFIX}/meson_cross_file.txt
 
-      rm $PREFIX/bin/glib-mkenums
-      ln -s $BUILD_PREFIX/bin/glib-mkenums $PREFIX/bin/glib-mkenums
-  fi
-fi
+# if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
+#   # Use Meson cross-file flag to enable cross compilation
+#   EXTRA_FLAGS="--cross-file $BUILD_PREFIX/meson_cross_file.txt -Dintrospection=enabled"
+#   if [[ "${target_platform}" == "osx-arm64" ]]; then
+#       echo "objcpp = '${CXX}'" >> ${BUILD_PREFIX}/meson_cross_file.txt
+#       cat ${BUILD_PREFIX}/meson_cross_file.txt
+
+#       rm $PREFIX/bin/glib-mkenums
+#       ln -s $BUILD_PREFIX/bin/glib-mkenums $PREFIX/bin/glib-mkenums
+#   fi
+# fi
 
 if [[ "${target_platform}" == "osx-"* ]]; then
     export OBJCXX=${CXX}
@@ -27,7 +28,7 @@ fi
 
 export PKG_CONFIG=$(which pkg-config)
 
-meson ${MESON_ARGS} \
+meson setup ${MESON_ARGS} \
       $EXTRA_FLAGS \
       -Dptp-helper-permissions=none \
       -Dexamples=disabled \
