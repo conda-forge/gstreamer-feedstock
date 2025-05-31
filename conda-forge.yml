@@ -1,7 +1,6 @@
 build_platform:
   linux_aarch64: linux_aarch64
   linux_ppc64le: linux_ppc64le
-  osx_arm64: osx_64
 conda_build:
   pkg_format: '2'
 conda_forge_output_validation: true
@@ -13,4 +12,11 @@ os_version:
 provider:
   linux_aarch64: azure
   linux_ppc64le: azure
+  osx_arm64: github_actions
 test: native_and_emulated
+github_actions:
+  self_hosted: true
+  timeout_minutes: 360
+  triggers:
+    - push
+    - pull_request
