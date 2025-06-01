@@ -83,6 +83,15 @@ jobs:
         fi
         ./.scripts/run_osx_build.sh
 
+    # Upload all conda packages as Github artifacts
+    - name: Upload conda packages
+      if: matrix.os == 'macos' || matrix.os == 'ubuntu'
+      uses: actions/upload-artifact@v3
+      with:
+        name: conda-packages-${{ matrix.CONFIG }}
+        path: /Users/runnerx/miniforge3/conda-bld/**/*.conda
+        retention-days: 7
+
     - name: Build on windows
       shell: cmd
       run: |
