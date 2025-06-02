@@ -86,7 +86,7 @@ jobs:
     # Upload all conda packages as Github artifacts
     - name: Upload conda packages
       if: matrix.os == 'macos' || matrix.os == 'ubuntu'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: conda-packages-${{ matrix.CONFIG }}
         path: /Users/runnerx/miniforge3/conda-bld/**/*.conda
