@@ -1,44 +1,38 @@
-About gstreamer_and_plugins-feedstock
-=====================================
+About gst-plugins-base-feedstock
+================================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gstreamer-feedstock/blob/main/LICENSE.txt)
 
 
-About gstreamer_and_plugins
----------------------------
+About gst-plugins-base
+----------------------
 
 Home: https://gstreamer.freedesktop.org/
 
 Package license: LGPL-2.0-or-later
 
-Summary: Library for constructing graphs of media-handling components
+Summary: GStreamer Base Plug-ins
 
-Development: https://cgit.freedesktop.org/gstreamer/gstreamer/tree/
+Development: https://cgit.freedesktop.org/gstreamer/gstreamer/
 
 Documentation: https://gstreamer.freedesktop.org/documentation/
-
-About gst-plugins-base
-----------------------
-
-
-
-Package license: LGPL-2.0-or-later
-
-Summary: GStreamer Base Plug-ins
 
 GStreamer Base Plug-ins is a well-groomed and well-maintained collection of
 GStreamer plug-ins and elements, spanning the range of possible types of
 elements one would want to write for GStreamer.
 
-
 About gst-plugins-good
 ----------------------
 
-
+Home: https://gstreamer.freedesktop.org/
 
 Package license: LGPL-2.0-or-later
 
 Summary: GStreamer Good Plug-ins
+
+Development: https://cgit.freedesktop.org/gstreamer/gstreamer/
+
+Documentation: https://gstreamer.freedesktop.org/documentation/
 
 GStreamer Good Plug-ins is A collection of plug-ins you'd
 want to have right next to you on the battlefield.
@@ -47,15 +41,18 @@ all: good looks, good code, and good licensing.  Documented and
 dressed up in tests.  If you're looking for a role model to
 base your own plug-in on here it is.
 
-
 About gstreamer
 ---------------
 
-
+Home: https://gstreamer.freedesktop.org/
 
 Package license: LGPL-2.0-or-later
 
 Summary: Library for constructing graphs of media-handling components
+
+Development: https://cgit.freedesktop.org/gstreamer/gstreamer/
+
+Documentation: https://gstreamer.freedesktop.org/documentation/
 
 Current build status
 ====================
@@ -75,27 +72,6 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=394&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gstreamer-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=394&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gstreamer-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=394&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gstreamer-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=394&branchName=main">
@@ -107,13 +83,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=394&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gstreamer-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=394&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gstreamer-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -133,10 +102,10 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gst--plugins--good-green.svg)](https://anaconda.org/conda-forge/gst-plugins-good) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gst-plugins-good.svg)](https://anaconda.org/conda-forge/gst-plugins-good) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gst-plugins-good.svg)](https://anaconda.org/conda-forge/gst-plugins-good) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gst-plugins-good.svg)](https://anaconda.org/conda-forge/gst-plugins-good) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gstreamer-green.svg)](https://anaconda.org/conda-forge/gstreamer) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gstreamer.svg)](https://anaconda.org/conda-forge/gstreamer) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gstreamer.svg)](https://anaconda.org/conda-forge/gstreamer) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gstreamer.svg)](https://anaconda.org/conda-forge/gstreamer) |
 
-Installing gstreamer_and_plugins
-================================
+Installing gst-plugins-base
+===========================
 
-Installing `gstreamer_and_plugins` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `gst-plugins-base` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
@@ -222,17 +191,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating gstreamer_and_plugins-feedstock
-========================================
+Updating gst-plugins-base-feedstock
+===================================
 
-If you would like to improve the gstreamer_and_plugins recipe or build a new
+If you would like to improve the gst-plugins-base recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/gstreamer_and_plugins-feedstock are
+Note that all branches in the conda-forge/gst-plugins-base-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
