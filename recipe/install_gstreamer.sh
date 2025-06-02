@@ -43,14 +43,14 @@ rm -rf $PREFIX/share/gdb
 rm -rf $PREFIX/share/gstreamer-1.0/gdb
 
 # check if an arm64 file
-file $PREFIX/bin/gst-inspect-1.0
+# file $PREFIX/bin/gst-inspect-1.0
 
-otool -l $PREFIX/bin/gst-inspect-1.0
-otool -L $PREFIX/bin/gst-inspect-1.0
+# otool -l $PREFIX/bin/gst-inspect-1.0
+# otool -L $PREFIX/bin/gst-inspect-1.0
 
-export GST_VAAPI_ALL_DRIVERS=0
-export GST_GL_PLATFORM=glx
-export GST_GL_API=opengl
+# export GST_VAAPI_ALL_DRIVERS=0
+# export GST_GL_PLATFORM=glx
+# export GST_GL_API=opengl
 
-# print more debug info about the file
-$PREFIX/bin/gst-inspect-1.0 --version
+# # print more debug info about the file
+# $PREFIX/bin/gst-inspect-1.0 --version
