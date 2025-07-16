@@ -18,6 +18,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '18'
+github_actions_labels:
+- cirun-macos-m4-large
 glib:
 - '2'
 gstreamer:
