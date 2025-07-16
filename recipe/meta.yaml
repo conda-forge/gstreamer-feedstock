@@ -210,6 +210,7 @@ outputs:
         - xorg-libxxf86vm                    # [linux]
         - xorg-libxau                        # [linux]
         - xorg-libxshmfence                  # [linux]
+        - libvpx                             # [unix]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
@@ -233,6 +234,7 @@ outputs:
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1  # [win]
         - gst-inspect-1.0 --plugin alpha
+        - gst-inspect-1.0 --plugin vpx  # [unix]
     about:
       summary: GStreamer Good Plug-ins
       description: |
