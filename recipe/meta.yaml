@@ -18,7 +18,7 @@ source:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -123,6 +123,7 @@ outputs:
         - xorg-libxxf86vm                    # [linux]
         - xorg-libxau                        # [linux]
         - xorg-libxshmfence                  # [linux]
+        - pango                              # [linux]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
 
@@ -143,6 +144,7 @@ outputs:
         - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
         - gst-inspect-1.0 --plugin volume
+        - gst-inspect-1.0 --plugin pango  # [linux]
 
     about:
       summary: GStreamer Base Plug-ins
