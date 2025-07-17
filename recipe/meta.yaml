@@ -123,6 +123,9 @@ outputs:
         - xorg-libxxf86vm                    # [linux]
         - xorg-libxau                        # [linux]
         - xorg-libxshmfence                  # [linux]
+        # July 17, 2025 -- yishai1999
+        # https://github.com/conda-forge/gstreamer-feedstock/pull/155#discussion_r2213275624
+        # The GStreamer pango plugin doesn't seem to compile on OSX and windows
         - pango                              # [linux]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
