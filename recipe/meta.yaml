@@ -18,7 +18,7 @@ source:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -123,6 +123,10 @@ outputs:
         - xorg-libxxf86vm                    # [linux]
         - xorg-libxau                        # [linux]
         - xorg-libxshmfence                  # [linux]
+        # July 17, 2025 -- yishai1999
+        # https://github.com/conda-forge/gstreamer-feedstock/pull/155#discussion_r2213275624
+        # The GStreamer pango plugin doesn't seem to compile on OSX and windows
+        - pango                              # [linux]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
 
@@ -143,6 +147,7 @@ outputs:
         - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
         - gst-inspect-1.0 --plugin volume
+        - gst-inspect-1.0 --plugin pango  # [linux]
 
     about:
       summary: GStreamer Base Plug-ins
@@ -208,6 +213,7 @@ outputs:
         - xorg-libxxf86vm                    # [linux]
         - xorg-libxau                        # [linux]
         - xorg-libxshmfence                  # [linux]
+        - libvpx                             # [unix]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
@@ -231,6 +237,7 @@ outputs:
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1  # [win]
         - gst-inspect-1.0 --plugin alpha
+        - gst-inspect-1.0 --plugin vpx  # [unix]
     about:
       summary: GStreamer Good Plug-ins
       description: |
