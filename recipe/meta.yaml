@@ -8,6 +8,9 @@ package:
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
     sha256: dc661603221293dccc740862425eb54fbbed60fb29d08c801d440a6a3ff82680
+  - url: https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-{{ version }}.tar.xz
+    sha256: 415e8a53a9844789770dd4f116ac2e3a4a33de42673c57acc25c5ba0f4406fc5
+    folder: rtsp_server
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
     sha256: 4ef9f9ef09025308ce220e2dd22a89e4c992d8ca71b968e3c70af0634ec27933
     folder: plugins_base
@@ -156,6 +159,59 @@ outputs:
         GStreamer plug-ins and elements, spanning the range of possible types of
         elements one would want to write for GStreamer.
       doc_source_url: https://github.com/GStreamer/gst-plugins-base/tree/master/docs
+      license: LGPL-2.0-or-later
+      license_file: COPYING
+
+  - name: gst-rtsp-server
+    script: install_rtsp_server.sh  # [unix]
+    script: install_rtsp_server.bat  # [win]
+    build:
+      activate_in_script: true
+      ignore_run_exports:
+        # we need cross-python to build, but this isn't a python package
+        - python      # [build_platform != target_platform]
+        - python_abi  # [build_platform != target_platform]
+      run_exports:
+        - {{ pin_subpackage('gst-rtsp-server', max_pin='x.x') }}
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ stdlib('c') }}
+        - {{ compiler('cxx') }}
+        - pkg-config
+        - meson
+        - ninja
+        - gettext-tools
+        - gobject-introspection
+        - cross-python_{{ target_platform }} 3.10    # [build_platform != target_platform]
+      host:
+        - python 3.10  # [build_platform != target_platform]
+        - {{ pin_subpackage('gstreamer', exact=True) }}
+        - {{ pin_subpackage('gst-plugins-base', exact=True) }}
+        - glib
+        - libintl-devel  # [not linux]
+        - libiconv
+        - zlib
+      run:
+        - {{ pin_subpackage('gstreamer', exact=True) }}
+        - {{ pin_subpackage('gst-plugins-base', exact=True) }}
+        - libsoup                            # [not ppc64le]
+        - glib-networking                    # [not ppc64le]
+
+    test:
+      commands:
+        - test -f $PREFIX/include/gstreamer-1.0/gst/rtsp-server/rtsp-server.h  # [unix]
+        - test -f $PREFIX/lib/libgstrtspserver-1.0${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/gstreamer-1.0/libgstrtspclientsink${SHLIB_EXT}  # [unix]
+        - if not exist %LIBRARY_INC%\\gstreamer-1.0\\gst\\rtsp-server\\rtsp-server.h  # [win]
+        - if not exist %LIBRARY_LIB%\\libgstrtspserver-1.0.dll  # [win]
+        - if not exist %LIBRARY_LIB%\\libgstrtspclientsink.dll  # [win]
+        - gst-inspect-1.0 --plugin rtspclientsink
+    about:
+      summary: GStreamer RTSP Server
+      description: |
+        GStreamer RTSP Server is a library on top of GStreamer for building an RTSP server.
+      doc_source_url: https://github.com/GStreamer/gst-rtsp-server/tree/master/docs
       license: LGPL-2.0-or-later
       license_file: COPYING
 
