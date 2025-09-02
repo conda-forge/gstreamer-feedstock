@@ -158,7 +158,7 @@ outputs:
         GStreamer Base Plug-ins is a well-groomed and well-maintained collection of
         GStreamer plug-ins and elements, spanning the range of possible types of
         elements one would want to write for GStreamer.
-      doc_source_url: https://github.com/GStreamer/gst-plugins-base/tree/master/docs
+      doc_source_url: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/tree/main/subprojects/gst-plugins-base/docs
       license: LGPL-2.0-or-later
       license_file: COPYING
 
@@ -211,7 +211,7 @@ outputs:
       summary: GStreamer RTSP Server
       description: |
         GStreamer RTSP Server is a library on top of GStreamer for building an RTSP server.
-      doc_source_url: https://github.com/GStreamer/gst-rtsp-server/tree/master/docs
+      doc_source_url: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/tree/main/subprojects/gst-rtsp-server/docs
       license: LGPL-2.0-or-later
       license_file: COPYING
 
@@ -303,7 +303,7 @@ outputs:
         all: good looks, good code, and good licensing.  Documented and
         dressed up in tests.  If you're looking for a role model to
         base your own plug-in on here it is.
-      doc_source_url: https://github.com/GStreamer/gst-plugins-good/tree/master/docs
+      doc_source_url: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/tree/main/subprojects/gst-plugins-good/docs
       license: LGPL-2.0-or-later
       license_file: COPYING
 
