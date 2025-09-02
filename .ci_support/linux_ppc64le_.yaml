@@ -40,6 +40,8 @@ libxml2:
 - '2.13'
 openssl:
 - '3'
+pango:
+- '1'
 pulseaudio_client:
 - '17.0'
 target_platform:
