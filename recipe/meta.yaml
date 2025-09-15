@@ -18,7 +18,7 @@ source:
       - jpeg-win.patch  # [win]
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: gstreamer
@@ -190,7 +190,7 @@ outputs:
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
         - libintl-devel                      # [not linux]
         - openssl
-        - libxml2
+        - libxml2-devel
         - glib
         - libxcb                             # [linux]
         - jack >=1.9.7                       # [linux64]
@@ -202,7 +202,7 @@ outputs:
         - libjpeg-turbo
         - libpng                             # [unix]
         - bzip2                              # [linux]
-        - libxml2                            # [linux]
+        - libxml2-devel                            # [linux]
         - expat                              # [linux]
         - xorg-xorgproto                     # [linux]
         - xorg-libxfixes                     # [linux]
