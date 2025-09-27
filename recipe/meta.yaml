@@ -202,7 +202,6 @@ outputs:
         - libjpeg-turbo
         - libpng                             # [unix]
         - bzip2                              # [linux]
-        - libxml2-devel                            # [linux]
         - expat                              # [linux]
         - xorg-xorgproto                     # [linux]
         - xorg-libxfixes                     # [linux]
