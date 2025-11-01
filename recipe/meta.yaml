@@ -15,10 +15,10 @@ source:
     sha256: d0956535c8315856df9ca2de495f7725128b462863b3c7cd357ef64fb4199679
     folder: plugins_good
     patches:
-#      - jpeg-win.patch  # [win]
+#      - jpeg-win.patch  # [win]  # comment out for 1.26.6+
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: gstreamer
