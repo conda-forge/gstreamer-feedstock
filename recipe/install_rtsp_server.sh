@@ -21,13 +21,6 @@ meson_options=(
       -Dtests=disabled
 )
 
-if [ -n "$OSX_ARCH" ] ; then
-	# disable X11 plugins on macOS
-	meson_options+=(-Dx11=disabled)
-	meson_options+=(-Dxvideo=disabled)
-	meson_options+=(-Dxshm=disabled)
-fi
-
 meson --prefix=${PREFIX} \
       --libdir=$PREFIX/lib \
       --buildtype=release \
