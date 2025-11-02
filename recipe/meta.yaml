@@ -16,7 +16,7 @@ source:
     folder: plugins_good
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -111,7 +111,7 @@ outputs:
         - alsa-lib                           # [linux]
         - libopus                            # [unix]
         - libvorbis
-        - expat                              # [linux]
+        - expat                              # [unix]
         - xorg-libxfixes                     # [linux]
         - xorg-libxext                       # [linux]
         - xorg-xorgproto                     # [linux]
@@ -123,8 +123,8 @@ outputs:
         - xorg-libxshmfence                  # [linux]
         # July 17, 2025 -- yishai1999
         # https://github.com/conda-forge/gstreamer-feedstock/pull/155#discussion_r2213275624
-        # The GStreamer pango plugin doesn't seem to compile on OSX and windows
-        - pango                              # [linux]
+        # The GStreamer pango plugin doesn't seem to compile on windows
+        - pango                              # [unix]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
 
@@ -145,7 +145,7 @@ outputs:
         - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
         - gst-inspect-1.0 --plugin volume
-        - gst-inspect-1.0 --plugin pango  # [linux]
+        - gst-inspect-1.0 --plugin pango  # [unix]
 
     about:
       summary: GStreamer Base Plug-ins
