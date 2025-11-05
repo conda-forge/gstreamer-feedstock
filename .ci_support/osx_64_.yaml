@@ -37,7 +37,7 @@ macos_machine:
 mpg123:
 - '1.32'
 openssl:
-- '3'
+- '3.5'
 target_platform:
 - osx-64
 zip_keys:
