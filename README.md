@@ -266,6 +266,7 @@ Feedstock Maintainers
 * [@mingwandroid](https://github.com/mingwandroid/)
 * [@msarahan](https://github.com/msarahan/)
 * [@scopatz](https://github.com/scopatz/)
+* [@tjwilli58](https://github.com/tjwilli58/)
 * [@tschoonj](https://github.com/tschoonj/)
 * [@yishai1999](https://github.com/yishai1999/)
 

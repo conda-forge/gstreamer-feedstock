@@ -1,4 +1,4 @@
-{% set version = "1.26.3" %}
+{% set version = "1.26.7" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -11,14 +11,13 @@ source:
   - url: https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-{{ version }}.tar.xz
     sha256: 415e8a53a9844789770dd4f116ac2e3a4a33de42673c57acc25c5ba0f4406fc5
     folder: rtsp_server
+    sha256: 18a5e214114dc501407697dd458514bba62cadd5414c60f793cf70141a4d0bb3
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
-    sha256: 4ef9f9ef09025308ce220e2dd22a89e4c992d8ca71b968e3c70af0634ec27933
+    sha256: 969e3cbf05dfab92cf37e94840fbe398517d7ba3275331d1c216a2e30a7208d0
     folder: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-{{ version }}.tar.xz
-    sha256: fe4ec9670edfe6bb1e5f27169ae145b5ac2dd218ac98bd8251c8fba41ad33c53
+    sha256: 82af18a1f3e4a060db61d2630fbb975269b80b55bb2fdcfddfab5c6440d30781
     folder: plugins_good
-    patches:
-      - jpeg-win.patch  # [win]
 
 build:
   number: 1
@@ -116,7 +115,7 @@ outputs:
         - alsa-lib                           # [linux]
         - libopus                            # [unix]
         - libvorbis
-        - expat                              # [linux]
+        - expat                              # [unix]
         - xorg-libxfixes                     # [linux]
         - xorg-libxext                       # [linux]
         - xorg-xorgproto                     # [linux]
@@ -128,8 +127,8 @@ outputs:
         - xorg-libxshmfence                  # [linux]
         # July 17, 2025 -- yishai1999
         # https://github.com/conda-forge/gstreamer-feedstock/pull/155#discussion_r2213275624
-        # The GStreamer pango plugin doesn't seem to compile on OSX and windows
-        - pango                              # [linux]
+        # The GStreamer pango plugin doesn't seem to compile on windows
+        - pango                              # [unix]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
 
@@ -150,7 +149,7 @@ outputs:
         - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
         - gst-inspect-1.0 --plugin volume
-        - gst-inspect-1.0 --plugin pango  # [linux]
+        - gst-inspect-1.0 --plugin pango  # [unix]
 
     about:
       summary: GStreamer Base Plug-ins
@@ -317,6 +316,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - tjwilli58
     - yishai1999
     - hmaarrfk
     - andfoy
