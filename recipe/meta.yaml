@@ -7,11 +7,10 @@ package:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
-    sha256: dc661603221293dccc740862425eb54fbbed60fb29d08c801d440a6a3ff82680
-  - url: https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-{{ version }}.tar.xz
-    sha256: 415e8a53a9844789770dd4f116ac2e3a4a33de42673c57acc25c5ba0f4406fc5
-    folder: rtsp_server
     sha256: 18a5e214114dc501407697dd458514bba62cadd5414c60f793cf70141a4d0bb3
+  - url: https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-{{ version }}.tar.xz
+    sha256: 4f234594aea692e3c1bfaa969965039aaf7483bdfc5862b31d614a59e6718abf
+    folder: rtsp_server
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-{{ version }}.tar.xz
     sha256: 969e3cbf05dfab92cf37e94840fbe398517d7ba3275331d1c216a2e30a7208d0
     folder: plugins_base
