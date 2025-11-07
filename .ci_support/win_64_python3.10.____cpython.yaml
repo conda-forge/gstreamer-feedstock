@@ -1,0 +1,38 @@
+c_compiler:
+- vs2022
+c_stdlib:
+- vs
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- vs2022
+expat:
+- '2'
+glib:
+- '2'
+gstreamer:
+- '1.24'
+libiconv:
+- '1'
+libjpeg_turbo:
+- '3'
+libsoup:
+- '3'
+libxml2:
+- '2.13'
+openssl:
+- '3.5'
+pango:
+- '1'
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- 3.10.* *_cpython
+target_platform:
+- win-64
+zlib:
+- '1'

@@ -16,7 +16,7 @@ source:
     folder: plugins_good
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: gstreamer
@@ -25,7 +25,6 @@ outputs:
     build:
       activate_in_script: true
       ignore_run_exports:
-        # we need cross-python to build, but this isn't a python package
         - python      # [build_platform != target_platform]
         - python_abi  # [build_platform != target_platform]
       run_exports:
@@ -45,11 +44,9 @@ outputs:
         - ninja
         - gettext-tools
         - gobject-introspection
-        # 20221027 - hmaarrfk
-        # 3.11 doesn't have distutils which mesons needs???
-        - cross-python_{{ target_platform }} 3.10  # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+        - python <{{ 3.15 }}
       host:
-        - python 3.10  # [build_platform != target_platform]
         - glib
         - libintl-devel  # [not linux]
         - libiconv
@@ -77,7 +74,6 @@ outputs:
     build:
       activate_in_script: true
       ignore_run_exports:
-        # we need cross-python to build, but this isn't a python package
         - python      # [build_platform != target_platform]
         - python_abi  # [build_platform != target_platform]
       run_exports:
@@ -95,12 +91,12 @@ outputs:
         - ninja
         - gettext-tools
         - gobject-introspection
-        - cross-python_{{ target_platform }} 3.10    # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+        - python <{{ 3.15 }}
       host:
         - libgl-devel                        # [linux]
         - libegl-devel                       # [linux]
         - libdrm                             # [linux]
-        - python 3.10  # [build_platform != target_platform]
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - glib
         - zlib
@@ -111,7 +107,7 @@ outputs:
         - alsa-lib                           # [linux]
         - libopus                            # [unix]
         - libvorbis
-        - expat                              # [unix]
+        - expat
         - xorg-libxfixes                     # [linux]
         - xorg-libxext                       # [linux]
         - xorg-xorgproto                     # [linux]
@@ -121,10 +117,7 @@ outputs:
         - xorg-libxxf86vm                    # [linux]
         - xorg-libxau                        # [linux]
         - xorg-libxshmfence                  # [linux]
-        # July 17, 2025 -- yishai1999
-        # https://github.com/conda-forge/gstreamer-feedstock/pull/155#discussion_r2213275624
-        # The GStreamer pango plugin doesn't seem to compile on windows
-        - pango                              # [unix]
+        - pango   
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
 
@@ -145,7 +138,7 @@ outputs:
         - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
         - gst-inspect-1.0 --plugin volume
-        - gst-inspect-1.0 --plugin pango  # [unix]
+        - gst-inspect-1.0 --plugin pango
 
     about:
       summary: GStreamer Base Plug-ins
@@ -163,7 +156,6 @@ outputs:
     build:
       activate_in_script: true
       ignore_run_exports:
-        # we need cross-python to build, but this isn't a python package
         - python      # [build_platform != target_platform]
         - python_abi  # [build_platform != target_platform]
       run_exports:
@@ -173,17 +165,16 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
-        # 20221027 - hmaarrfk - needs distutils, which was removed from 3.11
-        - cross-python_{{ target_platform }} 3.10    # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
         - pkg-config
         - meson
         - ninja
         - gettext-tools
+        - python <{{ 3.15 }}
       host:
         - libgl-devel                        # [linux]
         - libegl-devel                       # [linux]
         - libdrm                             # [linux]
-        - python 3.10  # [build_platform != target_platform]
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
         - libintl-devel                      # [not linux]
@@ -201,7 +192,7 @@ outputs:
         - libpng                             # [unix]
         - bzip2                              # [linux]
         - libxml2                            # [linux]
-        - expat                              # [linux]
+        - expat
         - xorg-xorgproto                     # [linux]
         - xorg-libxfixes                     # [linux]
         - xorg-libxext                       # [linux]
