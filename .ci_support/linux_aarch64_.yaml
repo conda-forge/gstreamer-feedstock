@@ -42,14 +42,8 @@ openssl:
 - '3.5'
 pango:
 - '1'
-pin_run_as_build:
-  python:
-    min_pin: x.x
-    max_pin: x.x
 pulseaudio_client:
 - '17.0'
-python:
-- 3.13.* *_cp313
 target_platform:
 - linux-aarch64
 zip_keys:
