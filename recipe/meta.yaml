@@ -46,6 +46,7 @@ outputs:
         - gobject-introspection
         - cross-python_{{ target_platform }}  # [build_platform != target_platform]
         - python <{{ 3.15 }}
+        - setuptools <81
       host:
         - glib
         - libintl-devel  # [not linux]
@@ -93,6 +94,7 @@ outputs:
         - gobject-introspection
         - cross-python_{{ target_platform }}  # [build_platform != target_platform]
         - python <{{ 3.15 }}
+        - setuptools <81
       host:
         - libgl-devel                        # [linux]
         - libegl-devel                       # [linux]
@@ -171,6 +173,7 @@ outputs:
         - ninja
         - gettext-tools
         - python <{{ 3.15 }}
+        - setuptools <81
       host:
         - libgl-devel                        # [linux]
         - libegl-devel                       # [linux]
