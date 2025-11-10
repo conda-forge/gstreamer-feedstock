@@ -18,6 +18,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '19'
+expat:
+- '2'
 glib:
 - '2'
 gstreamer:
@@ -38,6 +40,8 @@ mpg123:
 - '1.32'
 openssl:
 - '3.5'
+pango:
+- '1'
 target_platform:
 - osx-64
 zip_keys:
