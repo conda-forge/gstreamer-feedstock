@@ -257,6 +257,3 @@ Feedstock Maintainers
 * [@tschoonj](https://github.com/tschoonj/)
 * [@yishai1999](https://github.com/yishai1999/)
 
-
-<!-- dummy commit to enable rerendering -->
-
