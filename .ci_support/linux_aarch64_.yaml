@@ -38,8 +38,8 @@ libsoup:
 - '3'
 libxcb:
 - '1'
-libxml2:
-- '2.13'
+libxml2_devel:
+- '2.14'
 openssl:
 - '3.5'
 pango:
