@@ -16,7 +16,7 @@ source:
     folder: plugins_good
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: gstreamer
@@ -182,7 +182,7 @@ outputs:
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
         - libintl-devel                      # [not linux]
         - openssl
-        - libxml2
+        - libxml2-devel
         - glib
         - libxcb                             # [linux]
         - jack >=1.9.7                       # [linux64]
@@ -194,7 +194,7 @@ outputs:
         - libjpeg-turbo
         - libpng                             # [unix]
         - bzip2                              # [linux]
-        - libxml2                            # [linux]
+        - libxml2-devel                            # [linux]
         - expat
         - xorg-xorgproto                     # [linux]
         - xorg-libxfixes                     # [linux]
