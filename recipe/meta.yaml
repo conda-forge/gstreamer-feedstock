@@ -206,6 +206,7 @@ outputs:
         - xorg-libxau                        # [linux]
         - xorg-libxshmfence                  # [linux]
         - libvpx                             # [unix]
+        - xz                                 # [win]
       run:
         - {{ pin_subpackage('gstreamer', exact=True) }}
         - {{ pin_subpackage('gst-plugins-base', exact=True) }}
@@ -213,6 +214,7 @@ outputs:
         - glib-networking                    # [not ppc64le]
         - xorg-libxfixes                     # [linux]
         - xorg-libxdamage                    # [linux]
+        - xz                                 # [win]
 
     test:
       commands:
