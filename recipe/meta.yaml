@@ -214,7 +214,6 @@ outputs:
         - glib-networking                    # [not ppc64le]
         - xorg-libxfixes                     # [linux]
         - xorg-libxdamage                    # [linux]
-        - liblzma-devel                      # [win]
 
     test:
       commands:
