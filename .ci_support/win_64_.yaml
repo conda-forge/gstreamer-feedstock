@@ -30,5 +30,7 @@ pango:
 - '1'
 target_platform:
 - win-64
+xz:
+- '5'
 zlib:
 - '1'
