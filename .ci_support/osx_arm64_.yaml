@@ -23,7 +23,7 @@ expat:
 glib:
 - '2'
 gstreamer:
-- '1.24'
+- '1.26'
 libiconv:
 - '1'
 libjpeg_turbo:
