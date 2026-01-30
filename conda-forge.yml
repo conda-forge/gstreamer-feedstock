@@ -1,4 +1,6 @@
 bot:
+  abi_migration_branches:
+    - "1.26.x.x"
   version_updates:
     even_odd_versions: true
 build_platform:
