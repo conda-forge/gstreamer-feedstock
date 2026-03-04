@@ -140,7 +140,11 @@ outputs:
         - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
         - gst-inspect-1.0 --plugin volume
-        - gst-inspect-1.0 --plugin pango
+        # March 3, 2026 -- tjwilli58
+        # pangocario isn't found anymore on Windows since sometime AFTER Jan 30, 2026
+        # https://github.com/conda-forge/gstreamer-feedstock/pull/191
+        # Disable the test for pango plugin until it can be found again.
+        - gst-inspect-1.0 --plugin pango                # [not win]
 
     about:
       summary: GStreamer Base Plug-ins
@@ -198,7 +202,7 @@ outputs:
         - xorg-xorgproto                     # [linux]
         - xorg-libxfixes                     # [linux]
         - xorg-libxext                       # [linux]
-        - xorg-libx11                        # [linux]
+        - xorg-libx11                        # [linux and not osx_arm64]
         - xorg-libxrender                    # [linux]
         - xorg-libxdamage                    # [linux]
         - xorg-libxxf86vm                    # [linux]
