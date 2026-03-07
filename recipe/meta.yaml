@@ -17,6 +17,7 @@ source:
 
 build:
   number: 0
+  skip: true  # [linux]
 
 outputs:
   - name: gstreamer
@@ -202,7 +203,7 @@ outputs:
         - xorg-xorgproto                     # [linux]
         - xorg-libxfixes                     # [linux]
         - xorg-libxext                       # [linux]
-        - xorg-libx11                        # [linux and not osx_arm64]
+        - xorg-libx11                        # [linux]
         - xorg-libxrender                    # [linux]
         - xorg-libxdamage                    # [linux]
         - xorg-libxxf86vm                    # [linux]
