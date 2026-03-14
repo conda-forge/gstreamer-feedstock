@@ -7,22 +7,6 @@ set "PKG_CONFIG_PATH=%LIBRARY_LIB%\pkgconfig;%LIBRARY_PREFIX%\share\pkgconfig;%B
 :: get mixed path (forward slash) form of prefix so host prefix replacement works
 set "LIBRARY_PREFIX_M=%LIBRARY_PREFIX:\=/%"
 
-rem Requires.private and Libs.private
-rem Are not meaningful in the context of shared libraries for conda-forge
-rem We thus "remove them" outright to avoid
-rem burdening the recipe
-rem https://github.com/conda-forge/harfbuzz-feedstock/pull/146
-rem https://github.com/conda-forge/conda-forge.github.io/issues/1880
-
-rem Remove Requires.private and Libs.private from all .pc files
-for %%D in ("%LIBRARY_PREFIX%\lib\pkgconfig") do (
-    if exist "%%~D" (
-        for /r "%%~D" %%F in (*.pc) do (
-            findstr /V /R /C:"^Requires\.private" /C:"^Libs\.private" "%%F" > "%%F.tmp"
-            move /Y "%%F.tmp" "%%F" >nul
-        )
-    )
-)
 cd plugins_base
 
 meson setup builddir ^

@@ -7,7 +7,6 @@ build_platform:
   linux_aarch64: linux_aarch64
   linux_ppc64le: linux_ppc64le
   osx_64: osx_64
-  osx_arm64: osx_64
 conda_build:
   pkg_format: '2'
 conda_forge_output_validation: true
@@ -18,4 +17,4 @@ provider:
   linux_aarch64: azure
   linux_ppc64le: azure
   osx_arm64: default
-test: native
+test: native_and_emulated

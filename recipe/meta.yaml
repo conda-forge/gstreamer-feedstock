@@ -17,8 +17,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [linux]
-
+  skip: true  # [not osx]
 outputs:
   - name: gstreamer
     script: install_gstreamer.sh  # [unix]
@@ -96,6 +95,7 @@ outputs:
         - cross-python_{{ target_platform }}  # [build_platform != target_platform]
         - python <{{ 3.15 }}
         - setuptools <81
+        - freetype
       host:
         - libgl-devel                        # [linux]
         - libegl-devel                       # [linux]
@@ -141,11 +141,7 @@ outputs:
         - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1  # [win]
         - gst-inspect-1.0 --plugin volume
-        # March 3, 2026 -- tjwilli58
-        # pangocario isn't found anymore on Windows since sometime AFTER Jan 30, 2026
-        # https://github.com/conda-forge/gstreamer-feedstock/pull/191
-        # Disable the test for pango plugin until it can be found again.
-        - gst-inspect-1.0 --plugin pango                # [not win]
+        - gst-inspect-1.0 --plugin pango
 
     about:
       summary: GStreamer Base Plug-ins
