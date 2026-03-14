@@ -17,7 +17,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [not osx]
+
 outputs:
   - name: gstreamer
     script: install_gstreamer.sh  # [unix]
