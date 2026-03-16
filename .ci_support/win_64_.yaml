@@ -10,6 +10,8 @@ cxx_compiler:
 - vs2022
 expat:
 - '2'
+freetype:
+- '2'
 glib:
 - '2'
 gstreamer:
