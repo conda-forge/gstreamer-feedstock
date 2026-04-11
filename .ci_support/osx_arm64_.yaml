@@ -4,28 +4,20 @@ MACOSX_SDK_VERSION:
 - '12.3'
 c_compiler:
 - clang
-c_compiler_version:
-- '19'
 c_stdlib:
 - macosx_deployment_target
-c_stdlib_version:
-- '11.0'
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
 - clangxx
-cxx_compiler_version:
-- '19'
 expat:
 - '2'
 freetype:
 - '2'
 glib:
 - '2'
-gstreamer:
-- '1.26'
 libiconv:
 - '1'
 libjpeg_turbo:
@@ -48,8 +40,5 @@ pango:
 - '1'
 target_platform:
 - osx-arm64
-zip_keys:
-- - c_compiler_version
-  - cxx_compiler_version
 zlib:
 - '1'

@@ -1,8 +1,10 @@
 schema_version: 1
+context:
+  version: "1.28.2"
 
 recipe:
   name: gstreamer_and_plugins
-  version: "1.28.2"
+  version: ${{ version }}
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${{ version }}.tar.xz
@@ -15,13 +17,13 @@ source:
     target_directory: plugins_good
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - package:
       name: gstreamer
     build:
-      activate_in_script: true
+      #activate_in_script: true
       script:
         file: install_gstreamer
     requirements:
@@ -80,7 +82,7 @@ outputs:
   - package:
       name: gst-plugins-base
     build:
-      activate_in_script: true
+      #activate_in_script: true
       script:
         file: install_base_plugins
     requirements:
@@ -193,7 +195,7 @@ outputs:
   - package:
       name: gst-plugins-good
     build:
-      activate_in_script: true
+      #activate_in_script: true
       script:
         file: install_good_plugins
     requirements:
