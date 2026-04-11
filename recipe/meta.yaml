@@ -21,7 +21,7 @@ build:
 outputs:
   - name: gstreamer
     script: install_gstreamer.sh  # [unix]
-    #script: install_gstreamer.bat  # [win]
+    script: install_gstreamer.bat  # [win]
     build:
       activate_in_script: true
       ignore_run_exports:
@@ -71,7 +71,7 @@ outputs:
 
   - name: gst-plugins-base
     script: install_base_plugins.sh  # [unix]
-    #script: install_base_plugins.bat  # [win]
+    script: install_base_plugins.bat  # [win]
     build:
       activate_in_script: true
       ignore_run_exports:
@@ -155,7 +155,7 @@ outputs:
 
   - name: gst-plugins-good
     script: install_good_plugins.sh  # [unix]
-    #script: install_good_plugins.bat  # [win]
+    script: install_good_plugins.bat  # [win]
     build:
       activate_in_script: true
       ignore_run_exports:
