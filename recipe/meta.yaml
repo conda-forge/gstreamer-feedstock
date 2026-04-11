@@ -1,9 +1,6 @@
-{% set version = "1.28.2" %}
-{% set posix = 'm2-' if win else '' %}
-
 package:
   name: gstreamer_and_plugins
-  version: {{ version }}
+  version: 1.28.2
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-{{ version }}.tar.xz
@@ -20,8 +17,7 @@ build:
 
 outputs:
   - name: gstreamer
-    script: install_gstreamer.sh  # [unix]
-    script: install_gstreamer.bat  # [win]
+    script: install_gstreamer
     build:
       activate_in_script: true
       ignore_run_exports:
@@ -34,12 +30,14 @@ outputs:
 
     requirements:
       build:
-        - {{ compiler('c') }}
-        - {{ stdlib('c') }}
-        - {{ compiler('cxx') }}
+        - c-compiler
+        - cxx-compiler
+        - c-stdlib
         - pkg-config
-        - {{ posix }}bison
-        - {{ posix }}flex
+        - bison        # [unix]
+        - m2-bison     # [win]
+        - flex         # [unix]
+        - m2-flex      # [win]
         - meson
         - ninja
         - gettext-tools
@@ -70,8 +68,7 @@ outputs:
       license_file: COPYING
 
   - name: gst-plugins-base
-    script: install_base_plugins.sh  # [unix]
-    script: install_base_plugins.bat  # [win]
+    script: install_base_plugins
     build:
       activate_in_script: true
       ignore_run_exports:
@@ -84,9 +81,9 @@ outputs:
 
     requirements:
       build:
-        - {{ compiler('c') }}
-        - {{ stdlib('c') }}
-        - {{ compiler('cxx') }}
+        - c-compiler
+        - cxx-compiler
+        - c-stdlib
         - pkg-config
         - meson
         - ninja
@@ -154,8 +151,7 @@ outputs:
       license_file: COPYING
 
   - name: gst-plugins-good
-    script: install_good_plugins.sh  # [unix]
-    script: install_good_plugins.bat  # [win]
+    script: install_good_plugins
     build:
       activate_in_script: true
       ignore_run_exports:
@@ -165,9 +161,9 @@ outputs:
         - {{ pin_subpackage('gst-plugins-good', max_pin='x.x') }}
     requirements:
       build:
-        - {{ compiler('c') }}
-        - {{ stdlib('c') }}
-        - {{ compiler('cxx') }}
+        - c-compiler
+        - cxx-compiler
+        - c-stdlib
         - cross-python_{{ target_platform }}  # [build_platform != target_platform]
         - pkg-config
         - meson
@@ -232,6 +228,7 @@ outputs:
         - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1  # [win]
         - gst-inspect-1.0 --plugin alpha
         - gst-inspect-1.0 --plugin vpx  # [unix]
+
     about:
       summary: GStreamer Good Plug-ins
       description: |
