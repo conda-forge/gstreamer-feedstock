@@ -28,9 +28,9 @@ outputs:
         file: install_gstreamer
     requirements:
       build:
-        - c-compiler
-        - cxx-compiler
-        - c-stdlib
+        - ${{ compiler('c') }} 
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
         - pkg-config
         - if: unix
           then: bison
@@ -87,9 +87,9 @@ outputs:
         file: install_base_plugins
     requirements:
       build:
-        - c-compiler
-        - cxx-compiler
-        - c-stdlib
+        - ${{ compiler('c') }} 
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
         - pkg-config
         - meson
         - ninja
@@ -200,9 +200,9 @@ outputs:
         file: install_good_plugins
     requirements:
       build:
-        - c-compiler
-        - cxx-compiler
-        - c-stdlib
+        - ${{ compiler('c') }} 
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
         - if: build_platform != target_platform
           then: cross-python_${{ target_platform }}
         - pkg-config
