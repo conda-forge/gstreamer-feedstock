@@ -34,12 +34,10 @@ outputs:
         - pkg-config
         - if: unix
           then: bison
-        - if: win
-          then: m2-bison
+          else: m2-bison
         - if: unix
           then: flex
-        - if: win
-          then: m2-flex
+          else: m2-flex
         - meson
         - ninja
         - gettext-tools
@@ -102,45 +100,33 @@ outputs:
         - freetype
       host:
         - if: linux
-          then: libgl-devel
-        - if: linux
-          then: libegl-devel
-        - if: linux
-          then: libdrm
+          then: 
+            - libgl-devel
+            - libegl-devel
+            - libdrm
+            - libxcb
+            - alsa-lib
+            - xorg-libxfixes
+            - xorg-libxext
+            - xorg-xorgproto
+            - xorg-libx11
+            - xorg-libxrender
+            - xorg-libxdamage
+            - xorg-libxxf86vm
+            - xorg-libxau
+            - xorg-libxshmfence
         - ${{ pin_subpackage('gstreamer', exact=True) }}
         - glib
         - zlib
         - if: not linux
           then: libintl-devel
         - libogg
-        - if: linux
-          then: libxcb
         - if: unix
-          then: libpng
-        - if: linux
-          then: alsa-lib
-        - if: unix
-          then: libopus
+          then:
+            - libpng
+            - libopus
         - libvorbis
         - expat
-        - if: linux
-          then: xorg-libxfixes
-        - if: linux
-          then: xorg-libxext
-        - if: linux
-          then: xorg-xorgproto
-        - if: linux
-          then: xorg-libx11
-        - if: linux
-          then: xorg-libxrender
-        - if: linux
-          then: xorg-libxdamage
-        - if: linux
-          then: xorg-libxxf86vm
-        - if: linux
-          then: xorg-libxau
-        - if: linux
-          then: xorg-libxshmfence
         - pango
       run:
         - ${{ pin_subpackage('gstreamer', exact=True) }}
@@ -149,39 +135,29 @@ outputs:
       ignore_run_exports:
         by_name:
           - if: build_platform != target_platform
-            then: python
-          - if: build_platform != target_platform
-            then: python_abi
+            then:
+              - python
+              - python_abi
     tests:
       - script:
           - if: unix
-            then: test -f $PREFIX/lib/libgstallocators-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgstapp-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgstaudio-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgstfft-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgstpbutils-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgstriff-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgstrtp-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgstrtsp-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgstsdp-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/girepository-1.0/GstVideo-1.0.typelib
+            then: 
+                - test -f $PREFIX/lib/libgstallocators-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgstapp-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgstaudio-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgstfft-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgstpbutils-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgstriff-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgstrtp-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgstrtsp-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgstsdp-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}
+                - test -f $PREFIX/lib/girepository-1.0/GstVideo-1.0.typelib
           - if: win
-            then: if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1
-          - if: win
-            then: if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1
+            then: 
+                - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1
+                - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1
           - gst-inspect-1.0 --plugin volume
           - gst-inspect-1.0 --plugin pango
     about:
@@ -213,11 +189,23 @@ outputs:
         - setuptools <81
       host:
         - if: linux
-          then: libgl-devel
-        - if: linux
-          then: libegl-devel
-        - if: linux
-          then: libdrm
+          then: 
+            - libgl-devel
+            - libegl-devel
+            - libdrm
+            - libxcb
+            - pulseaudio-client
+            - bzip2
+            - xorg-xorgproto
+            - xorg-xorgproto
+            - xorg-libxfixes
+            - xorg-libxext
+            - xorg-libx11
+            - xorg-libxrender
+            - xorg-libxdamage
+            - xorg-libxxf86vm
+            - xorg-libxau
+            - xorg-libxshmfence
         - ${{ pin_subpackage('gstreamer', exact=True) }}
         - ${{ pin_subpackage('gst-plugins-base', exact=True) }}
         - if: not linux
@@ -225,58 +213,33 @@ outputs:
         - openssl
         - libxml2-devel
         - glib
-        - if: linux
-          then: libxcb
         - if: linux64
           then: jack >=1.9.7
         - if: unix
-          then: lame
-        - if: linux
-          then: pulseaudio-client
+          then:
+            - lame
+            - libpng
+            - libvpx
         - if: linux64 or osx
           then: mpg123
         - zlib
         - if: not ppc64le
           then: libsoup
         - libjpeg-turbo
-        - if: unix
-          then: libpng
-        - if: linux
-          then: bzip2
         - expat
-        - if: linux
-          then: xorg-xorgproto
-        - if: linux
-          then: xorg-libxfixes
-        - if: linux
-          then: xorg-libxext
-        - if: linux
-          then: xorg-libx11
-        - if: linux
-          then: xorg-libxrender
-        - if: linux
-          then: xorg-libxdamage
-        - if: linux
-          then: xorg-libxxf86vm
-        - if: linux
-          then: xorg-libxau
-        - if: linux
-          then: xorg-libxshmfence
-        - if: unix
-          then: libvpx
         - if: win
           then: liblzma-devel
       run:
         - ${{ pin_subpackage('gstreamer', exact=True) }}
         - ${{ pin_subpackage('gst-plugins-base', exact=True) }}
         - if: not ppc64le
-          then: libsoup
-        - if: not ppc64le
-          then: glib-networking
+          then: 
+            - libsoup
+            - glib-networking
         - if: linux
-          then: xorg-libxfixes
-        - if: linux
-          then: xorg-libxdamage
+          then: 
+            - xorg-libxfixes
+            - xorg-libxdamage
         - if: win
           then: liblzma-devel
       run_exports:
@@ -290,32 +253,26 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}
+            then: 
+                - test -f $PREFIX/lib/gstreamer-1.0/libgstalpha${SHLIB_EXT}
+                - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}
+                - test -f $PREFIX/lib/gstreamer-1.0/libgstjpeg${SHLIB_EXT}
+                - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}
+                - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}
+                - gst-inspect-1.0 --plugin vpx
           - if: linux64
             then: test -f $PREFIX/lib/gstreamer-1.0/libgstjack${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/gstreamer-1.0/libgstjpeg${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}
           - if: linux64 or osx
             then: test -f $PREFIX/lib/gstreamer-1.0/libgstmpg123${SHLIB_EXT}
-          - if: unix
-            then: test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}
           - if: linux
             then: test -f ${PREFIX}/lib/gstreamer-1.0/libgstpulseaudio${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstalpha.dll exit 1
-          - if: win
-            then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdebug.dll exit 1
-          - if: win
-            then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1
-          - if: win
-            then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1
+            then: 
+                - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstalpha.dll exit 1
+                - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdebug.dll exit 1
+                - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1
+                - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1
           - gst-inspect-1.0 --plugin alpha
-          - if: unix
-            then: gst-inspect-1.0 --plugin vpx
     about:
       summary: GStreamer Good Plug-ins
       description: |
