@@ -24,8 +24,6 @@ freetype:
 - '2'
 glib:
 - '2'
-gstreamer:
-- '1.26'
 libiconv:
 - '1'
 libjpeg_turbo:
