@@ -96,6 +96,7 @@ outputs:
           then: cross-python_${{ target_platform }}
         - python <${{ 3.15 }}
         - setuptools <81
+        - freetype
       host:
         - if: linux
           then: libgl-devel
