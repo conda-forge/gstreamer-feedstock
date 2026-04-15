@@ -20,10 +20,10 @@ cxx_compiler_version:
 - '19'
 expat:
 - '2'
+freetype:
+- '2'
 glib:
 - '2'
-gstreamer:
-- '1.24'
 libiconv:
 - '1'
 libjpeg_turbo:

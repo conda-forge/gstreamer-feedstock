@@ -1,19 +1,19 @@
+conda_build_tool: rattler-build
 bot:
   version_updates:
     even_odd_versions: true
 build_platform:
   linux_aarch64: linux_aarch64
   linux_ppc64le: linux_ppc64le
-  osx_arm64: osx_64
+  osx_64: osx_64
 conda_build:
   pkg_format: '2'
 conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
-os_version:
-  linux_64: cos7
 provider:
   linux_aarch64: azure
   linux_ppc64le: azure
+  osx_arm64: default
 test: native_and_emulated

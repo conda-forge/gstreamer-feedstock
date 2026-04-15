@@ -28,6 +28,10 @@ meson_options=(
       -Dtests=disabled
 )
 
+if [ -n "$OSX_ARCH" ] ; then
+	# disable X11 plugins on macOS
+	meson_options+=(-Dximagesrc=disabled)
+fi
 
 meson setup ${MESON_ARGS} \
       $EXTRA_FLAGS \
