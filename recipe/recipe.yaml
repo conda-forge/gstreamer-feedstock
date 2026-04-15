@@ -121,9 +121,9 @@ outputs:
           then: libintl-devel
         - libogg
         - if: unix
-          then: libpng
-        - if: unix
-          then: libopus
+          then:
+            - libpng
+            - libopus
         - libvorbis
         - expat
         - pango
@@ -134,9 +134,9 @@ outputs:
       ignore_run_exports:
         by_name:
           - if: build_platform != target_platform
-            then: python
-          - if: build_platform != target_platform
-            then: python_abi
+            then:
+              - python
+              - python_abi
     tests:
       - script:
           - if: unix
@@ -154,9 +154,9 @@ outputs:
                 - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}
                 - test -f $PREFIX/lib/girepository-1.0/GstVideo-1.0.typelib
           - if: win
-            then: if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1
-          - if: win
-            then: if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1
+            then: 
+                - if not exist %LIBRARY_BIN%\\gstallocators-1.0-0.dll exit 1
+                - if not exist %LIBRARY_LIB%\\girepository-1.0\\GstVideo-1.0.typelib exit 1
           - gst-inspect-1.0 --plugin volume
           - gst-inspect-1.0 --plugin pango
     about:
@@ -213,18 +213,17 @@ outputs:
         - if: linux64
           then: jack >=1.9.7
         - if: unix
-          then: lame
+          then:
+            - lame
+            - libpng
+            - libvpx
         - if: linux64 or osx
           then: mpg123
         - zlib
         - if: not ppc64le
           then: libsoup
         - libjpeg-turbo
-        - if: unix
-          then: libpng
         - expat
-        - if: unix
-          then: libvpx
         - if: win
           then: liblzma-devel
       run:
@@ -256,7 +255,8 @@ outputs:
                 - test -f $PREFIX/lib/gstreamer-1.0/libgstdebug${SHLIB_EXT}
                 - test -f $PREFIX/lib/gstreamer-1.0/libgstjpeg${SHLIB_EXT}
                 - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}
-                - test -f $PREFIX/lib/gstreamer-1.0/libgstspectrum${SHLIB_EXT}
+                - test -f $PREFIX/lib/gstreamer-1.0/libgstlame${SHLIB_EXT}
+                - gst-inspect-1.0 --plugin vpx
           - if: linux64
             then: test -f $PREFIX/lib/gstreamer-1.0/libgstjack${SHLIB_EXT}
           - if: linux64 or osx
@@ -270,8 +270,6 @@ outputs:
                 - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpeg.dll exit 1
                 - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstspectrum.dll exit 1
           - gst-inspect-1.0 --plugin alpha
-          - if: unix
-            then: gst-inspect-1.0 --plugin vpx
     about:
       summary: GStreamer Good Plug-ins
       description: |
