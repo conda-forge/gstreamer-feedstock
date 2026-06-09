@@ -17,7 +17,7 @@ source:
     target_directory: plugins_good
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - package:
@@ -299,7 +299,6 @@ extra:
     - tjwilli58
     - yishai1999
     - andfoy
-    - mingwandroid
     - msarahan
     - tschoonj
     - scopatz
