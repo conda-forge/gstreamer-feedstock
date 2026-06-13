@@ -32,6 +32,8 @@ outputs:
         - ${{ compiler('cxx') }}
         - ${{ stdlib("c") }}
         - pkg-config
+        - if: win
+          then: cmd
         - if: unix
           then:
             - bison
@@ -89,6 +91,8 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ compiler('cxx') }}
         - ${{ stdlib("c") }}
+        - if: win
+          then: cmd
         - pkg-config
         - meson
         - ninja
@@ -182,6 +186,8 @@ outputs:
         - ${{ stdlib("c") }}
         - if: build_platform != target_platform
           then: cross-python_${{ target_platform }}
+        - if: win
+          then: cmd
         - pkg-config
         - meson
         - ninja
