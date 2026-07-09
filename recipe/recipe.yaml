@@ -1,6 +1,6 @@
 schema_version: 1
 context:
-  version: "1.28.4"
+  version: "1.28.5"
 
 recipe:
   name: gstreamer_and_plugins
@@ -8,12 +8,12 @@ recipe:
 
 source:
   - url: https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${{ version }}.tar.xz
-    sha256: f5adc7e8f448c10260b3b25aa101c9d540674c8d9a54c2b77a86d04f2b3b50dd
+    sha256: a5a9f783809b17a8eb774f4a7695b2cb8cba6b15520129906f87eaf30e7f8469
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-${{ version }}.tar.xz
-    sha256: a898afd5766172b0049e6781558e0689098bf87b9d82b846c652e571c01d60d8
+    sha256: 776f19228f91fd25bbf54d9850597e158507f594872a52b9b6814e2429b43eaa
     target_directory: plugins_base
   - url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${{ version }}.tar.xz
-    sha256: c825ea737c59cea0e4a0c41da2388045ff5dd32d162220ac93a7a82ee4a04e61
+    sha256: 58b45d24a1d77b39d7bb7d9ccc6e2d76bbf28618998c335c163f18e6f94a9324
     target_directory: plugins_good
 
 build:
