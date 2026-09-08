@@ -25,7 +25,7 @@ libogg:
 libsoup:
 - '3'
 libxml2_devel:
-- '2.14'
+- '2.15'
 openssl:
 - '3.5'
 pango:
