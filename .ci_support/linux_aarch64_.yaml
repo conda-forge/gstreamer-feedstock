@@ -36,6 +36,8 @@ libpng:
 - '1.6'
 libsoup:
 - '3'
+libvpx:
+- '1.17'
 libxcb:
 - '1'
 libxml2_devel:
