@@ -51,7 +51,6 @@ outputs:
         - glib
         - if: not linux
           then: libintl-devel <1
-          else: libintl <1
         - libiconv
         - zlib
       run:
@@ -122,7 +121,6 @@ outputs:
         - zlib
         - if: not linux
           then: libintl-devel <1
-          else: libintl <1
         - libogg
         - if: unix
           then:
@@ -214,7 +212,6 @@ outputs:
         - ${{ pin_subpackage('gst-plugins-base', exact=True) }}
         - if: not linux
           then: libintl-devel <1
-          else: libintl <1
         - openssl
         - libxml2-devel
         - glib
